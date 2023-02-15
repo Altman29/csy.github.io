@@ -5,7 +5,6 @@ categories:
 tags:
 - Spring
 ---
-
 # Why to learn?
 * 简化开发，降低企业级开发的复杂性;
 * 框架整合，高效整合其他技术，提高企业级应用开发与运行效率;
@@ -61,3 +60,5 @@ Spring发展到现在已经形成了一种开发生态圈，提供若干项目�
 ![](https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302141834748.png)
 ![](https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302141835797.png)
 [<center>====传送门====</center>](https://github.com/Altman29/spring_ioc_demo/tree/master)
+
+测试新分支终端A提交使用。
