@@ -1,7 +1,9 @@
 ---
 title: about chatGPT
-date: 2023-02-14 15:13:11
+date: 2022-12-24 15:13:11
 tags: chatGPT
+index_img: /img/chatGPT.webp
+excerpt: chatGPT是革命？我不这么认为。
 ---
 
 chatGPT实现原理
