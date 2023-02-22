@@ -78,4 +78,5 @@ Spring发展到现在已经形成了一种开发生态圈，提供若干项目�
 ## DI入门实例编写
 ![](https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/step5.png)
 ![](https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/step7.png)
+![](https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302222308558.png)
 [<center>====传送门====</center>](https://github.com/Altman29/spring_ioc_demo/tree/DI_demo)
