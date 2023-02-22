@@ -65,4 +65,17 @@ Spring发展到现在已经形成了一种开发生态圈，提供若干项目�
 ![](https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302141835797.png)
 [<center>====传送门====</center>](https://github.com/Altman29/spring_ioc_demo/tree/master)
 
-测试新分支终端A提交使用。
+## now
+此时，把bean交给Spring的IoC容器，并且可以从容器获取实例了。那么充分解耦的最终目的达到了么，目前是没有的，因为具体bean里面还存在着`new`来创建对象呢！~ 接下来就看搞定它，下面看下DI入门案例。
+
+# DI入门案例
+## 分析
++ 首先，要基于IoC管理bean
++ Service中使用new形式创建的对象是否保留？（否）
++ Service中需要的Dao对象如何进入到Service中？（提供方法）
++ Service与Dao之间的关系如何描述？（配置）
+
+## DI入门实例编写
+![](https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/step5.png)
+![](https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/step7.png)
+[<center>====传送门====</center>](https://github.com/Altman29/spring_ioc_demo/tree/DI_demo)
