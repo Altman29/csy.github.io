@@ -80,3 +80,69 @@ Spring发展到现在已经形成了一种开发生态圈，提供若干项目�
 ![](https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/step7.png)
 ![](https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302222308558.png)
 [<center>====传送门====</center>](https://github.com/Altman29/spring_ioc_demo/tree/DI_demo)
+
+# bean配置
++ bean的基础配置
++ bean的别名配置
++ bean的作用范围配置
+
+## bean的基础配置
+![](https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302231517119.png)
+## bean的别名
+![](https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302231558931.png)
+## bean的作用范围
+多次获取bean，就是多个对象还是一个对象呢？（默认是单例的）
+![](https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302231559662.png)
+如果不想要单例呢，其实，这是可以配置的，只不过默认是单例的。
+![](https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302231600952.png)
+总结如下：
+![](https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302231602869.png)
+
++ 为什么bean默认为单例的？
+  + 是为了复用！
++ 什么不适合单例呢？
+  + 有状态的对象不适合！
+
+# bean的实例化
+## 使用构造方法实例化bean
++ bean本质上就是对象，创建bean使用构造方法完成
+
+![](https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302231609926.png)
+可以看出来，构造方法私有也不影响对象的创建。可以想到什么？   ---->>>><font color="red">反射</font>
+但是，如果给构造方法加一个参数呢？
+![](https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302231612627.png)
+很遗憾,Spring是找不到这个构造的来创建对象的。必须使用<b>无参构造方法</b>！
+
+## 使用静态工厂方式实例化bean
+![](https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302231624175.png)
+
+## 使用实例工厂方式实例化bean
+![](https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302231627057.png)
+
+## 使用FactoryBean实例化bean
+![](https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302231633024.png)
+
+# bean的生命周期
++ 生命周期：从创建到消亡的完整过程；
++ bean的生命周期：bean从创建到销毁的整体过程；
++ bean的生命周期控制：在bean创建后到销毁前做一些事情；
+
+## 配置的方式
+![](https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302231658291.png)
+
+## 接口的方式
+![](https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302231659677.png)
+
+## 生命周期描述
++ 初始化容器
+  + 1.创建对象（内存分配）
+  + 2.执行构造方法
+  + 3.执行属性注入（set操作）
+  + 4.执行bean初始化方法
++ 使用bean
+  + 执行业务操作
++ 关闭/销毁容器
+  + 执行bean销毁方法
+
+## bean销毁时机
+![](https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302231703590.png)
