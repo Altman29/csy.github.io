@@ -209,5 +209,46 @@ Spring发展到现在已经形成了一种开发生态圈，提供若干项目�
 
 ![](https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302232312792.png)
 
-# 案例：数据源对象管理
+# 加载properties文件
 
+![](https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302241559575.png)
+
+![](https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302241603194.png)
+
+# 容器
+
+## 创建容器
+
+![](https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302241617686.png)
+
+## 获取bean
+
+![](https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302241618792.png)
+
+## 容器类层次结构
+
+![](https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302241626589.png)
+
+## BeanFactory
+
+![](https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302241626361.png)
+
+# 核心、容器阶段总结
+
+## 容器相关
+
+![](https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302241629753.png)
+
+## bean相关
+
+![](https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302241629589.png)
+
+## 依赖注入相关
+
+![](https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302241631928.png)
+
+# 注解开发
+
+## 注解开发定义bean
+
+## 纯注解开发
