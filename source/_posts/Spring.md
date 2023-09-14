@@ -5,7 +5,6 @@ categories:
   - Spring
 tags:
   - Spring
-cover: /img/spring.jpg
 abbrlink: 6c92115f
 date: 2023-02-15 15:13:11
 ---

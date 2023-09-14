@@ -1,7 +1,6 @@
 ---
 title: about chatGPT
 tags: chatGPT
-cover: /img/chatGPT.webp
 excerpt: chatGPT是革命？我不这么认为。
 abbrlink: 22938ae6
 date: 2023-02-15 15:13:11

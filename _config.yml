@@ -94,23 +94,6 @@ deploy:
   branch: main
 
 
-# 已探明
-
-
-# Site
-title: Code2Reality
-subtitle: '代码到现实'
-description: '体系化构建个人技术栈'
-keywords: 'Code2Reality.cn,java,android,js,Devops,spring,中间件,分布式,容器化'
-author: Siyuan Chen
-language: zh-CN
-timezone: Asia/Shanghai
 theme: butterfly
-
-
-# 主题支持代码复制功能
-highlight_copy: true
-#代码框不展开，需点击 '>' 打开
-highlight_shrink: false 
-
-
+title: 陈思源 | blog
+author: Siyuan Chen
