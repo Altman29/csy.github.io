@@ -1,7 +1,7 @@
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
 url: https://csy.plus/
-permalink: :year/:month/:day/:title/
+permalink: :year/:month/:day/:id
 permalink_defaults:
 pretty_urls:
   trailing_index: true
@@ -78,7 +78,7 @@ meta_generator: true
 date_format: YYYY-MM-DD
 time_format: HH:mm:ss
 ## updated_option supports 'mtime', 'date', 'empty'
-updated_option: 'mtime'
+# updated_option: 'mtime'
 
 # Pagination
 ## Set per_page to 0 to disable pagination
@@ -99,7 +99,7 @@ deploy:
 
 # Site
 title: Code2Reality
-subtitle: '代码到现实1'
+#subtitle: '代码到现实1'
 description: '体系化构建个人技术栈'
 keywords: 'Code2Reality.cn,java,android,js,Devops,spring,中间件,分布式,容器化'
 author: Siyuan Chen
@@ -174,3 +174,145 @@ reward:
     - img: /img/alipay.png
       link:
       text: alipay
+
+# 文章目录
+toc:
+  post: true # 文章页是否显示 TOC
+  page: false # 普通页面是否显示 TOC
+  number: true   # 是否显示章节数
+  expand: false # 是否展开 TOC
+  style_simple: false # for post 简洁模式（侧边栏只显示 TOC, 只对文章页有效 ）
+
+# 头像
+avatar:
+  img: /img/avatar.jpg
+  effect: false # true则会一直转圈
+
+
+# copy settings
+# copyright: Add the copyright information after copied content (复制的内容后面加上版权信息)
+copy:
+  enable: true  # 是否开启网站复制权限
+  copyright:  # 复制的内容后面加上版权信息
+    enable: true  # 是否开启复制版权信息添加
+    limit_count: 20 # 字数限制，当复制文字大于这个字数限制时，将在复制的内容后面加上版权信息
+
+# footer
+footer:
+  owner:
+    enable: true
+    since: 2018 # 站点起始时间
+  #custom_text: 知行合一，笃行致远。 # 是一个给你用来在页脚自定义文本的选项。通常你可以在这里写声明文本等,支持 HTML。
+  custom_text: 知行合一，笃行致远。<p><a target="_blank" href="https://hexo.io/"><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" title="博客框架为Hexo"></a>&nbsp;<a target="_blank" href="https://butterfly.js.org/"><img src="https://img.shields.io/badge/Theme-Butterfly-6513df?style=flat&logo=bitdefender" title="主题采用butterfly"></a>&nbsp;<a target="_blank" href="https://www.jsdelivr.com/"><img src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&logo=jsDelivr" title="本站使用JsDelivr为静态资源提供CDN加速"></a> &nbsp;<a target="_blank" href="https://vercel.com/ "><img src="https://img.shields.io/badge/Hosted-Vervel-brightgreen?style=flat&logo=Vercel" title="本站采用双线部署，默认线路托管于Vercel"></a>&nbsp;<a target="_blank" href="https://vercel.com/ "><img src="https://img.shields.io/badge/Hosted-Coding-0cedbe?style=flat&logo=Codio" title="本站采用双线部署，联通线路托管于Coding"></a>&nbsp;<a target="_blank" href="https://github.com/"><img src="https://img.shields.io/badge/Source-Github-d021d6?style=flat&logo=GitHub" title="本站项目由Gtihub托管"></a>&nbsp;<a target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img src="https://img.shields.io/badge/Copyright-BY--NC--SA%204.0-d42328?style=flat&logo=Claris" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p>
+  copyright: true # Copyright of theme and framework
+
+# 网站统计UV和PV
+busuanzi:
+  site_uv: true  # 本站总访客数
+  site_pv: true  # 本站总访问量 
+  page_pv: true  # 本文总阅读量
+
+
+# Time difference between publish date and now (網頁運行時間)
+# Formal: Month/Day/Year Time or Year/Month/Day Time
+runtimeshow:
+  enable: true
+  publish_date: 2/19/2018 13:43:09
+  ##网页开通时间
+  #格式: 月/日/年 时间
+  #也可以写成 年/月/日 时间
+
+
+# 最新评论
+# Aside widget - Newest Comments
+newest_comments:
+  enable: true
+  sort_order: # Don't modify the setting unless you know how it works
+  limit: 6  # 显示的数量
+  storage: 10 # 设置缓存时间，单位 分钟 
+  avatar: true # 是否显示头像
+
+# 网站背景
+# 图片格式 url(http://xxxxxx.com/xxx.jpg)
+# 颜色（HEX值/RGB值/颜色单词/渐变色)
+# 留空 不显示背景
+background: url(/img/bg.webp)
+
+
+# Typewriter Effect (打字效果)
+# https://github.com/disjukr/activate-power-mode
+activate_power_mode:
+  enable: true
+  colorful: true # open particle animation (冒光特效)
+  shake: true #  open shake (抖動特效)
+  mobile: false
+
+# footer背景
+footer_bg: linear-gradient(135deg, #E2B0FF 10%, #9F44D3 100%)
+
+# 彩带动效
+canvas_fluttering_ribbon:
+  enable: true
+  mobile: true # false 手机端不显示 true 手机端显示
+
+# 鼠标点击效果
+#fireworks:
+#  enable: true
+#  zIndex: 200 # -1 or 9999
+#  mobile: false
+
+# blog标题字体
+# Font settings for the site title and site subtitle
+# https://fonts.googleapis.com/css?family=Titillium+Web&display=swap
+# Titillium Web, 'PingFang SC' , 'Hiragino Sans GB' , 'Microsoft JhengHei' , 'Microsoft YaHei' , sans-serif
+# 左上角網站名字 主頁居中網站名字
+blog_title_font: 'Hiragino Sans GB'
+  #font_link:
+  #font-family: var(--global-font)
+
+
+# 网站副标题
+# the subtitle on homepage (主頁subtitle)
+subtitle:
+  enable: true
+  # Typewriter Effect (打字效果)
+  effect: true
+  # loop (循環打字)
+  loop: true
+  # source 調用第三方服務
+  # source: false 關閉調用
+  # source: 1  調用一言網的一句話（簡體） https://hitokoto.cn/
+  # source: 2  調用一句網（簡體） http://yijuzhan.com/
+  # source: 3  調用今日詩詞（簡體） https://www.jinrishici.com/
+  # subtitle 會先顯示 source , 再顯示 sub 的內容
+  source: false
+  # 如果關閉打字效果，subtitle 只會顯示 sub 的第一行文字
+  sub:
+    - "Welcome to Code2Reality🥝"
+    - "Hope you have a nice day!🍭🍭🍭"
+
+
+# 页面加载动画
+# 加载动画 Loading Animation
+preloader: true
+
+
+# 字数统计
+wordcount:
+  enable: true
+  post_wordcount: true
+  min2read: true
+  total_wordcount: true
+
+
+# Pjax [Beta]
+# It may contain bugs and unstable, give feedback when you find the bugs.
+# https://github.com/MoOx/pjax
+pjax: 
+  enable: true
+  # 对于一些第三方插件，有些并不支持 pjax 。
+  # 你可以把网页加入到 exclude 里，这个网页会被 pjax 排除在外。
+  # 点击该网页会重新加载网站。
+  exclude: 
+    - /music/
+    - /no-pjax/
