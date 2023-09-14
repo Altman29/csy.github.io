@@ -6,7 +6,7 @@ categories:
 - Spring
 tags:
 - Spring
-index_img: /img/spring.jpg
+cover: /img/spring.jpg
 ---
 <!-- more -->
 # Why to learn123?
@@ -43,7 +43,7 @@ Spring发展到现在已经形成了一种开发生态圈，提供若干项目�
    *  IoC容器负责对象的创建、初始化等一系列工作，被创建或被管理的对象在IoC容器中称为Bean;
 *  <font color="red">**DI(Dependency Injection)依赖注入**</font>
    *  在容器中建立Bean与Bean之间的依赖关系的整个过程，称为依赖注入。
-![](https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302141720317.png)
+   ![](https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302141720317.png)
 
 * **目标: <font color="red">充分解耦</font>**
   * 使用IoC容器管理bean(IoC)
@@ -249,6 +249,27 @@ Spring发展到现在已经形成了一种开发生态圈，提供若干项目�
 
 # 注解开发
 
-## 注解开发定义bean
 
-## 纯注解开发
+
+![](https://i.loli.net/2019/12/25/Fze9jchtnyJXMHN.jpg) 
+![](https://i.loli.net/2019/12/25/ryLVePaqkYm4TEK.jpg) 
+![](https://i.loli.net/2019/12/25/gEy5Zc1Ai6VuO4N.jpg) 
+![](https://i.loli.net/2019/12/25/d6QHbytlSYO4FBG.jpg ) 
+![](https://i.loli.net/2019/12/25/6nepIJ1xTgufatZ.jpg) 
+![](https://i.loli.net/2019/12/25/E7Jvr4eIPwUNmzq.jpg) 
+! [](https://i.loli.net/2019/12/25/mh19anwBSWIkGlH.jpg) 
+![](https://i.loli.net/2019/12/25/2tu9JC8ewpBFagv.jpg)
+
+
+
+
+
+```java
+
+public void fun(){
+    //alalla
+}
+```
+
+
+

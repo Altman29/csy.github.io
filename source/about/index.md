@@ -1,4 +1,7 @@
 ---
-title: 标题
+title: '关于'
 layout: about
+type: "about"
 ---
+
+about me.

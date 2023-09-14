@@ -99,7 +99,7 @@ deploy:
 
 # Site
 title: Code2Reality
-subtitle: '代码到现实'
+subtitle: '代码到现实1'
 description: '体系化构建个人技术栈'
 keywords: 'Code2Reality.cn,java,android,js,Devops,spring,中间件,分布式,容器化'
 author: Siyuan Chen
@@ -112,5 +112,65 @@ theme: butterfly
 highlight_copy: true
 #代码框不展开，需点击 '>' 打开
 highlight_shrink: false 
+# 高亮
+highlight_theme: mac light
+
+# 导航栏
+menu:
+  首页: / || fas fa-home
+  时间轴: /archives/ || fas fa-archive
+  标签: /tags/ || fas fa-tags
+  分类: /categories/ || fas fa-folder-open
+  # 清单||fa fa-heartbeat:
+  #   音乐: /music/ || fas fa-music
+  #   照片: /Gallery/ || fas fa-images
+  #   电影: /movies/ || fas fa-video
+  友链: /link/ || fas fa-link
+  关于: /about/ || fas fa-heart
+
+# A simple 404 page
+error_404:
+  enable: true
+  subtitle: "页面沒有找到"
+  background: /img/404.png
+
+# 社交图标
+social:
+  fab fa-github: https://github.com/altman29 || Github
+  fas fa-envelope: mailto:altman29@foxmail.com || Email
 
 
+# 首页图片资源
+index_img: /img/home_bg.webp
+
+# 文章cover配置
+cover:
+  # 是否显示文章封面
+  index_enable: true
+  aside_enable: true
+  archives_enable: true
+  # 封面显示的位置
+  # 三个值可配置 left , right , both
+  position: both
+  # 当没有设置cover时，默认的封面显示
+  default_cover: 
+    - /img/chatGPT.webp
+
+# 协议
+# post_copyright: true
+# enable: true
+# decode: false
+# author_href:
+# license: CC BY-NC-SA 4.0
+# license_url: https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+# 打赏
+reward:
+  enable: true
+  QR_code:
+    - img: /img/wechat.png
+      link:
+      text: wechat
+    - img: /img/alipay.png
+      link:
+      text: alipay
