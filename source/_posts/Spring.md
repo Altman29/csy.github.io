@@ -1,12 +1,13 @@
 ---
 title: Spring
-excerpt: 是时候重新来一波Spring了，🚗🚗🚗~~~
-date: 2023-02-15 15:13:11
+excerpt: "是时候重新来一波Spring了，\U0001F697\U0001F697\U0001F697~~~"
 categories:
-- Spring
+  - Spring
 tags:
-- Spring
+  - Spring
 cover: /img/spring.jpg
+abbrlink: 6c92115f
+date: 2023-02-15 15:13:11
 ---
 <!-- more -->
 # Why to learn123?

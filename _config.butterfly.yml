@@ -1,7 +1,7 @@
 # URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
 url: https://csy.plus/
-permalink: :year/:month/:day/:id
+permalink: :year/:month/:day/:title/
 permalink_defaults:
 pretty_urls:
   trailing_index: true
@@ -17,6 +17,7 @@ abbrlink:
   auto_title: false
   auto_date: false
   force: false
+
 
 # Directory
 source_dir: source
@@ -236,7 +237,7 @@ newest_comments:
 # 图片格式 url(http://xxxxxx.com/xxx.jpg)
 # 颜色（HEX值/RGB值/颜色单词/渐变色)
 # 留空 不显示背景
-background: url(/img/bg.webp)
+# background: url(/img/bg.webp)
 
 
 # Typewriter Effect (打字效果)
@@ -248,7 +249,7 @@ activate_power_mode:
   mobile: false
 
 # footer背景
-footer_bg: linear-gradient(135deg, #E2B0FF 10%, #9F44D3 100%)
+footer_bg: linear-gradient(135deg, #E2B0FF 10%, #9F44D3 10%)
 
 # 彩带动效
 canvas_fluttering_ribbon:
@@ -316,3 +317,11 @@ pjax:
   exclude: 
     - /music/
     - /no-pjax/
+
+
+# inject
+inject:
+  head: 
+    - <link rel="stylesheet" href="/css/progress_bar.css" media="defer" οnlοad="this.media='all'"> 
+  bottom: 
+    - <script async src="//npm.elemecdn.com/pace-js@1.2.4/pace.min.js"></script>
