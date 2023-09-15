@@ -1,22 +1,11 @@
 # URL
+# URL
 ## Set your site url here. For example, if you use GitHub Page, set url as 'https://username.github.io/project'
-url: https://csy.plus/
-permalink: :year/:month/:day/:title/
-permalink_defaults:
-pretty_urls:
-  trailing_index: true
-  trailing_html: true
+url: https://blog.13space.cn
+permalink: posts/:abbrlink/
 abbrlink:
-  alg: crc32
-  rep: hex
-  drafts: false
-  auto_category:
-    enable: true
-    depth: #3(default)
-    over_write: false
-  auto_title: false
-  auto_date: false
-  force: false
+  alg: crc32   #算法：crc16(default) and crc32
+  rep: hex     #进制：dec(default) and hex
 
 # Directory
 source_dir: source
@@ -95,5 +84,5 @@ deploy:
 
 
 theme: butterfly
-title: 陈思源 | blog
-author: Siyuan Chen
+title: 拾叁 | space
+author: 拾叁🥝
