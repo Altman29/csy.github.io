@@ -155,7 +155,7 @@ cover:
   archives_enable: true
   # 封面显示的位置
   # 三个值可配置 left , right , both
-  position: left
+  position: both
   # 当没有设置cover时，默认的封面显示
   default_cover: 
     - img/spring.jpg
@@ -300,3 +300,21 @@ inject:
     - <link rel="stylesheet" href="/css/progress_bar.css" media="defer" οnlοad="this.media='all'"> 
   bottom: 
     - <script async src="//npm.elemecdn.com/pace-js@1.2.4/pace.min.js"></script>
+
+
+
+
+# 评论
+comments:
+  use: Twikoo
+  text: true # 是否显示评论服务商的名字
+  lazyload: true
+  count: true # 是否在文章顶部显示评论数
+  card_post_count: false # 是否在首页文章卡片显示评论数
+
+# Twikoo
+twikoo:
+  envId: https://hexo-blog-twikoo-flame.vercel.app/
+  region:
+  visitor: true
+  option:
