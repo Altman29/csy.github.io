@@ -2,7 +2,7 @@
 title: '关于'
 layout: about
 type: "about"
-cover:
+comments: false
 ---
 
 
@@ -17,6 +17,8 @@ age: 30
 address: beijing
 github: https://github.com/Altman29
 blog: blog.13space.cn
-hobbies: technology,reading,photographhy,motorcycle,ride,cook
+hobbies: technology,reading,photography,motorcycle,ride,cook
+mobile: 13121195382
+wechat: chenBuChuo-89757
 ```
 
