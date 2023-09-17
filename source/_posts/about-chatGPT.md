@@ -4,6 +4,7 @@ tags: chatGPT
 excerpt: chatGPT是革命？我不这么认为。
 abbrlink: 22938ae6
 date: 2023-02-15 15:13:11
+index_img: /img/404.png
 ---
 
 chatGPT实现原理

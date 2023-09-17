@@ -1,9 +1,10 @@
 ---
 title: {{ title }}
 date: {{ date }}
-updated: {{ date }}
 tags:
 categories:
 keywords:
-cover:
+index_img:
+banner_img:
+excerpt:
 ---

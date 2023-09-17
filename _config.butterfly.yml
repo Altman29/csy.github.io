@@ -134,7 +134,7 @@ social:
 
 
 # 首页图片资源
-index_img: url(/img/bg.webp)
+index_img: blue
 
 # 网站背景
 # 图片格式 url(http://xxxxxx.com/xxx.jpg)
@@ -154,7 +154,7 @@ cover:
   position: both
   # 当没有设置cover时，默认的封面显示
   default_cover: 
-    - img/spring.jpg
+    #- img/spring.jpg
 
 # 协议
 # post_copyright: true
@@ -294,9 +294,9 @@ pjax:
 inject:
   head:
     - <link rel="stylesheet" href="/css/transpancy.css"> 
-    - <link rel="stylesheet" href="/css/progress_bar.css" media="defer" οnlοad="this.media='all'"> 
+    #- <link rel="stylesheet" href="/css/progress_bar.css" media="defer" οnlοad="this.media='all'"> 
   bottom: 
-    - <script async src="//npm.elemecdn.com/pace-js@1.2.4/pace.min.js"></script>
+    #- <script async src="//npm.elemecdn.com/pace-js@1.2.4/pace.min.js"></script>
 
 
 
@@ -315,3 +315,17 @@ twikoo:
   region:
   visitor: true
   option:
+
+
+aside:
+  card_author:
+    enable: true
+    description: 今日事，今日毕。
+    button:
+      enable: false
+      icon: fab fa-github
+      text: Follow Me
+      link: https://github.com/xxxxxx
+
+darkmode:
+  enable: false

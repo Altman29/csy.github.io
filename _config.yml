@@ -83,7 +83,6 @@ deploy:
   branch: main
 
 
-theme: butterfly
-title: 拾叁 | space
-author: 拾叁🥝
-
+theme: fluid
+author: 拾叁
+title: 拾叁的小破站
