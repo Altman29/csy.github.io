@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+  
+  
+  <entry>
+    <title>弹性部署方案</title>
+    <link href="/posts/4d2198f6/"/>
+    <url>/posts/4d2198f6/</url>
+    
+    <content type="html"><![CDATA[<h1 id="测试代码片段"><a href="#测试代码片段" class="headerlink" title="测试代码片段"></a>测试代码片段</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Test</span>&#123;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">int</span>[] args)</span>&#123;<br>sout(<span class="hljs-string">&quot;hexo fluid.&quot;</span>)<br>&#125;<br>&#125;<br></code></pre></td></tr></table></figure><h1 id="测试标签"><a href="#测试标签" class="headerlink" title="测试标签"></a>测试标签</h1><p class="note note-primary">why 标签收到收到到沙发上到沙发上地方    如果EFG '\n到沙发上地方    如果EFG '\n到沙发<span class="label label-primary">Label</span>上地方    如果EFG '\n到沙发上地方    如果EFG '\n地方    如果EFG '\n'</p><p class="note note-success">success 标签</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;btn&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;url&quot;</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;title&quot;</span>&gt;</span>text<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br></code></pre></td></tr></table></figure><h1 id="lsllsls"><a href="#lsllsls" class="headerlink" title="lsllsls"></a>lsllsls</h1><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs markdown">&#123;% mermaid %&#125;<br>gantt<br>dateFormat  YYYY-MM-DD<br>title Adding GANTT diagram to mermaid<br><br>section A section<br>Completed task            :done,    des1, 2014-01-06,2014-01-08<br>Active task               :active,  des2, 2014-01-09, 3d<br>Future task               :         des3, after des2, 5d<br>Future task2               :         des4, after des3, 5d<br>&#123;% endmermaid %&#125;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>新版aabrSD递四方速递</title>
+    <link href="/posts/8d5b1f9d/"/>
+    <url>/posts/8d5b1f9d/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>asdasdq方式东风风度电饭锅</title>
+    <link href="/posts/6941/"/>
+    <url>/posts/6941/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>这么长的中文链接的id会是什么</title>
+    <link href="/posts/54821/"/>
+    <url>/posts/54821/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>a拉拉</title>
+    <link href="/posts/8878/"/>
+    <url>/posts/8878/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>这特么</title>
+    <link href="/posts/44080/"/>
+    <url>/posts/44080/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>唯一不唯一啊</title>
+    <link href="/posts/54990/"/>
+    <url>/posts/54990/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>唯一连接行不行</title>
+    <link href="/posts/63059/"/>
+    <url>/posts/63059/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>abbrlink汉字能不能行</title>
+    <link href="/posts/d1abedcf/"/>
+    <url>/posts/d1abedcf/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>test abbrlink</title>
+    <link href="/posts/ef57ec1/"/>
+    <url>/posts/ef57ec1/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>butterfly搭建</title>
+    <link href="/posts/21e21024/"/>
+    <url>/posts/21e21024/</url>
+    
+    <content type="html"><![CDATA[<h2 id="post-front-matter-文章页配置"><a href="#post-front-matter-文章页配置" class="headerlink" title="post front-matter 文章页配置"></a>post front-matter 文章页配置</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-meta">---</span><br><span class="hljs-attr">title:</span><span class="hljs-string">【必需】文章标题</span><br><span class="hljs-attr">date:</span><span class="hljs-string">【必需】文章创建日期</span><br><span class="hljs-attr">updated:</span><span class="hljs-string">【可选】文章更新日期</span><br><span class="hljs-attr">tags:</span><span class="hljs-string">【可选】文章标签</span><br><span class="hljs-attr">categories:</span><span class="hljs-string">【可选】文章分类</span><br><span class="hljs-attr">keywords:</span><span class="hljs-string">【可选】文章关键字</span><br><span class="hljs-attr">description:</span><span class="hljs-string">【可选】文章描述</span><br><span class="hljs-attr">top_img:</span><span class="hljs-string">【可选】文章顶部图片</span><br><span class="hljs-attr">comments:</span><span class="hljs-string">【可选】显示文章评论模块(默认</span> <span class="hljs-literal">true</span><span class="hljs-string">)</span><br><span class="hljs-attr">cover:</span><span class="hljs-string">【可选】文章缩略图(如果没top_img,顶部将显示缩略图，可设为false/图片地址/留空)</span><br><span class="hljs-attr">copyright:</span><span class="hljs-string">【可选】显示文章版权模块(默认为设置中post_copyright的enable配置)</span><br><span class="hljs-attr">copyright_author:</span><span class="hljs-string">【可选】文章版权模块的文章作者</span><br><span class="hljs-attr">copyright_author_href:</span><span class="hljs-string">【可选】文章版权模块的文章作者链接</span><br><span class="hljs-attr">copyright_url:</span><span class="hljs-string">【可选】文章版权模块的文章连结链接</span><br><span class="hljs-attr">copyright_info:</span><span class="hljs-string">【可选】文章版权模块的版权声明文字</span><br><span class="hljs-attr">highlight_shrink:</span><span class="hljs-string">【可选】配置代码框是否展开(true/false)(默认为设置中highlight_shrink的配置)</span><br><span class="hljs-attr">aside:</span><span class="hljs-string">【可选】显示侧边栏</span> <span class="hljs-string">(默认</span> <span class="hljs-literal">true</span><span class="hljs-string">)</span><br><span class="hljs-meta">---</span><br></code></pre></td></tr></table></figure><h2 id="page-front-matter-页面配置"><a href="#page-front-matter-页面配置" class="headerlink" title="page front-matter 页面配置"></a>page front-matter 页面配置</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-meta">---</span><br><span class="hljs-attr">title:</span><span class="hljs-string">【必需】页面标题</span><br><span class="hljs-attr">date:</span><span class="hljs-string">【必需】页面创建日期</span><br><span class="hljs-attr">updated:</span><span class="hljs-string">【可选】页面更新日期</span><br><span class="hljs-attr">type:</span><span class="hljs-string">【必需】标签、分类和友情链接三个页面需要配置</span><br><span class="hljs-attr">comments:</span><span class="hljs-string">【可选】显示页面评论模块(默认</span> <span class="hljs-literal">true</span><span class="hljs-string">)</span><br><span class="hljs-attr">description:</span><span class="hljs-string">【可选】页面描述</span><br><span class="hljs-attr">keywords:</span><span class="hljs-string">【可选】页面关键字</span><br><span class="hljs-attr">top_img:</span><span class="hljs-string">【可选】页面顶部图片</span><br><span class="hljs-attr">aside:</span><span class="hljs-string">【可选】显示侧边栏</span> <span class="hljs-string">(默认</span> <span class="hljs-literal">true</span><span class="hljs-string">)</span><br><span class="hljs-attr">highlight_shrink:</span><span class="hljs-string">【可选】配置代码框是否展开(true/false)(默认为设置中highlight_shrink的配置)</span><br><span class="hljs-meta">---</span><br></code></pre></td></tr></table></figure><h2 id="导航栏"><a href="#导航栏" class="headerlink" title="导航栏"></a>导航栏</h2><p>修改主题配置文件_config.butterfly.yml</p><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">menu:</span><br>  <span class="hljs-string">首页:</span> <span class="hljs-string">/</span> <span class="hljs-string">||</span> <span class="hljs-string">fas</span> <span class="hljs-string">fa-home</span><br>  <span class="hljs-string">时间轴:</span> <span class="hljs-string">/archives/</span> <span class="hljs-string">||</span> <span class="hljs-string">fas</span> <span class="hljs-string">fa-archive</span><br>  <span class="hljs-string">标签:</span> <span class="hljs-string">/tags/</span> <span class="hljs-string">||</span> <span class="hljs-string">fas</span> <span class="hljs-string">fa-tags</span><br>  <span class="hljs-string">分类:</span> <span class="hljs-string">/categories/</span> <span class="hljs-string">||</span> <span class="hljs-string">fas</span> <span class="hljs-string">fa-folder-open</span><br>  <span class="hljs-string">清单||fa</span> <span class="hljs-attr">fa-heartbeat:</span><br>    <span class="hljs-string">音乐:</span> <span class="hljs-string">/music/</span> <span class="hljs-string">||</span> <span class="hljs-string">fas</span> <span class="hljs-string">fa-music</span><br>    <span class="hljs-string">照片:</span> <span class="hljs-string">/Gallery/</span> <span class="hljs-string">||</span> <span class="hljs-string">fas</span> <span class="hljs-string">fa-images</span><br>    <span class="hljs-string">电影:</span> <span class="hljs-string">/movies/</span> <span class="hljs-string">||</span> <span class="hljs-string">fas</span> <span class="hljs-string">fa-video</span><br>  <span class="hljs-string">友链:</span> <span class="hljs-string">/link/</span> <span class="hljs-string">||</span> <span class="hljs-string">fas</span> <span class="hljs-string">fa-link</span><br>  <span class="hljs-string">关于:</span> <span class="hljs-string">/about/</span> <span class="hljs-string">||</span> <span class="hljs-string">fas</span> <span class="hljs-string">fa-heart</span><br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Spring</title>
+    <link href="/posts/6c92115f/"/>
+    <url>/posts/6c92115f/</url>
+    
+    <content type="html"><![CDATA[<!-- more --><h1 id="Why-to-learn123"><a href="#Why-to-learn123" class="headerlink" title="Why to learn123?"></a>Why to learn123?</h1><ul><li>简化开发，降低企业级开发的复杂性;</li><li>框架整合，高效整合其他技术，提高企业级应用开发与运行效率;</li></ul><h1 id="How-to-learn"><a href="#How-to-learn" class="headerlink" title="How to learn?"></a>How to learn?</h1><ul><li>学习spring框架的设计思想;</li><li>学习如何操作，思考操作与思想的联系;</li><li>掌握案例熟练应用,体会思想;</li></ul><h1 id="Spring家族"><a href="#Spring家族" class="headerlink" title="Spring家族"></a>Spring家族</h1><p><strong><a href="https://spring.io/">官网&gt;&gt;&gt;spring.io&lt;&lt;&lt;</a></strong><br>Spring发展到现在已经形成了一种开发生态圈，提供若干项目，每个项目用于完成特定的功能。<br><img src="https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302141650888.png"><br>其中，<code>Spring Framework</code>、<code>Spring Boot</code>、<code>Spring Cloud</code>是必须掌握的。</p><h1 id="Spring-Framework体现架构"><a href="#Spring-Framework体现架构" class="headerlink" title="Spring Framework体现架构"></a>Spring Framework体现架构</h1><p><img src="https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302141651643.png"><br>可以看到官方没有提供5.x新架构图，掌握4.x即可。 </br><br>4.x架构如下图(<em>重要</em>)，<br><img src="https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302141652234.png"></p><h1 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a>核心概念</h1><p><img src="https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302141702545.png"><br>一段业务实现，之前依赖<code>BookDaoImpl1</code>，后来业务改变，依赖<code>BookDaoImpl2</code>，就需要重新编译，重新打包、测试、上线等等，这是一种<strong>耦合度偏高</strong>的情况。<br>所以，依赖就是写了其他对象的应用么，那不写就可以了，不用主动<code>new</code>对象，由外部提供：<br><img src="https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302141654541.png"><br>那么这种思想，就叫做<strong>IoC(Inversion of Control)控制反转，对象的创建控制权由程序转移到外部</strong>。<br>Spring就把这件事给做到了。那么它是怎么做到的呢？Spring内部提供了一个容器，称为IoC容器，用来充当IoC思想中的”外部”。(系统架构图中有一个Core Container，就是它)<br><br>那么，现在对象不需要new了，可以直接拿来用么？还是不行，还缺少依赖关系，类与类直接的依赖关系也被Spring搞定了，是通过依赖注入完成的，Bean与Bean之间会维护达到预期的依赖关系。到这，俩个核心思想就都出来了。这个重要思想的核心目的，可以看出来，就是解耦！不用new、不用维护依赖关系。通通交给Spring来完成，或者Spring的IoC容器来完成。</p><ul><li><p><font color="red"><strong>IoC(Inversion of Control)控制反转</strong></font></p><ul><li>使用对象时，由主动new产生对象转换为由外部提供，对象创建控制权转移到外部的思想称为控制反转;</li></ul></li><li><p>Spring技术对IoC思想进行了实现</p><ul><li>Spring提供了一个容器，称为IoC容器(Core Container)，用来充当IoC思想中的”外部”;</li><li>IoC容器负责对象的创建、初始化等一系列工作，被创建或被管理的对象在IoC容器中称为Bean;</li></ul></li><li><p><font color="red"><strong>DI(Dependency Injection)依赖注入</strong></font></p><ul><li>在容器中建立Bean与Bean之间的依赖关系的整个过程，称为依赖注入。<br><img src="https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302141720317.png"></li></ul></li><li><p><strong>目标: <font color="red">充分解耦</font></strong></p><ul><li>使用IoC容器管理bean(IoC)</li><li>在IoC容器内将有依赖关系的bean进行关系绑定(DI)</li></ul></li><li><p><strong>最终结果</strong></p><ul><li>使用对象时，不仅可以直接从IoC容器中获取，并且获取到的bean已经绑定了所有的依赖关系。</li></ul></li></ul><h1 id="IoC入门实例"><a href="#IoC入门实例" class="headerlink" title="IoC入门实例"></a>IoC入门实例</h1><h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><ul><li>管理什么?(Service与Dao)</li><li>如何将被管理的对象告知IoC容器?(配置)</li><li>被管理的对象交给IoC容器，如何获取到IoC容器?(接口)</li><li>IoC容器得到后，如何从容器中获取bean?(接口方法)</li><li>使用spring需要导入哪些坐标?(pom)</li></ul><h2 id="IoC实例编写"><a href="#IoC实例编写" class="headerlink" title="IoC实例编写"></a>IoC实例编写</h2><p><img src="https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302141834033.png"><br><img src="https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302141834482.png"><br><img src="https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302141834748.png"><br><img src="https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302141835797.png"><br><a href="https://github.com/Altman29/spring_ioc_demo/tree/master"><center>&#x3D;&#x3D;&#x3D;&#x3D;传送门&#x3D;&#x3D;&#x3D;&#x3D;</center></a></p><h2 id="now"><a href="#now" class="headerlink" title="now"></a>now</h2><p>此时，把bean交给Spring的IoC容器，并且可以从容器获取实例了。那么充分解耦的最终目的达到了么，目前是没有的，因为具体bean里面还存在着<code>new</code>来创建对象呢！~ 接下来就看搞定它，下面看下DI入门案例。</p><h1 id="DI入门案例"><a href="#DI入门案例" class="headerlink" title="DI入门案例"></a>DI入门案例</h1><h2 id="分析-1"><a href="#分析-1" class="headerlink" title="分析"></a>分析</h2><ul><li>首先，要基于IoC管理bean</li><li>Service中使用new形式创建的对象是否保留？（否）</li><li>Service中需要的Dao对象如何进入到Service中？（提供方法）</li><li>Service与Dao之间的关系如何描述？（配置）</li></ul><h2 id="DI入门实例编写"><a href="#DI入门实例编写" class="headerlink" title="DI入门实例编写"></a>DI入门实例编写</h2><p><img src="https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/step5.png"><br><img src="https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/step7.png"><br><img src="https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302222308558.png"><br><a href="https://github.com/Altman29/spring_ioc_demo/tree/DI_demo"><center>&#x3D;&#x3D;&#x3D;&#x3D;传送门&#x3D;&#x3D;&#x3D;&#x3D;</center></a></p><h1 id="bean配置"><a href="#bean配置" class="headerlink" title="bean配置"></a>bean配置</h1><ul><li>bean的基础配置</li><li>bean的别名配置</li><li>bean的作用范围配置</li></ul><h2 id="bean的基础配置"><a href="#bean的基础配置" class="headerlink" title="bean的基础配置"></a>bean的基础配置</h2><p><img src="https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302231517119.png"></p><h2 id="bean的别名"><a href="#bean的别名" class="headerlink" title="bean的别名"></a>bean的别名</h2><p><img src="https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302231558931.png"></p><h2 id="bean的作用范围"><a href="#bean的作用范围" class="headerlink" title="bean的作用范围"></a>bean的作用范围</h2><p>多次获取bean，就是多个对象还是一个对象呢？（默认是单例的）<br><img src="https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302231559662.png"><br>如果不想要单例呢，其实，这是可以配置的，只不过默认是单例的。<br><img src="https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302231600952.png"><br>总结如下：<br><img src="https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302231602869.png"></p><ul><li>为什么bean默认为单例的？<ul><li>是为了复用！</li></ul></li><li>什么不适合单例呢？<ul><li>有状态的对象不适合！</li></ul></li></ul><h1 id="bean的实例化-bean-instance"><a href="#bean的实例化-bean-instance" class="headerlink" title="bean的实例化(bean_instance)"></a>bean的实例化(bean_instance)</h1><h2 id="使用构造方法实例化bean"><a href="#使用构造方法实例化bean" class="headerlink" title="使用构造方法实例化bean"></a>使用构造方法实例化bean</h2><ul><li>bean本质上就是对象，创建bean使用构造方法完成</li></ul><p><img src="https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302231609926.png"><br>可以看出来，构造方法私有也不影响对象的创建。可以想到什么？   —-&gt;&gt;&gt;&gt;<font color="red">反射</font><br>但是，如果给构造方法加一个参数呢？<br><img src="https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302231612627.png"><br>很遗憾,Spring是找不到这个构造的来创建对象的。必须使用<b>无参构造方法</b>！</p><h2 id="使用静态工厂方式实例化bean"><a href="#使用静态工厂方式实例化bean" class="headerlink" title="使用静态工厂方式实例化bean"></a>使用静态工厂方式实例化bean</h2><p><img src="https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302231624175.png"></p><h2 id="使用实例工厂方式实例化bean"><a href="#使用实例工厂方式实例化bean" class="headerlink" title="使用实例工厂方式实例化bean"></a>使用实例工厂方式实例化bean</h2><p><img src="https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302231627057.png"></p><h2 id="使用FactoryBean实例化bean"><a href="#使用FactoryBean实例化bean" class="headerlink" title="使用FactoryBean实例化bean"></a>使用FactoryBean实例化bean</h2><p><img src="https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302231633024.png"></p><h1 id="bean的生命周期-bean-lifecycle"><a href="#bean的生命周期-bean-lifecycle" class="headerlink" title="bean的生命周期(bean_lifecycle)"></a>bean的生命周期(bean_lifecycle)</h1><ul><li>生命周期：从创建到消亡的完整过程；</li><li>bean的生命周期：bean从创建到销毁的整体过程；</li><li>bean的生命周期控制：在bean创建后到销毁前做一些事情；</li></ul><h2 id="配置的方式"><a href="#配置的方式" class="headerlink" title="配置的方式"></a>配置的方式</h2><p><img src="https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302231658291.png"></p><h2 id="接口的方式"><a href="#接口的方式" class="headerlink" title="接口的方式"></a>接口的方式</h2><p><img src="https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302231659677.png"></p><h2 id="生命周期描述"><a href="#生命周期描述" class="headerlink" title="生命周期描述"></a>生命周期描述</h2><ul><li>初始化容器<ul><li>1.创建对象（内存分配）</li><li>2.执行构造方法</li><li>3.执行属性注入（set操作）</li><li>4.执行bean初始化方法</li></ul></li><li>使用bean<ul><li>执行业务操作</li></ul></li><li>关闭&#x2F;销毁容器<ul><li>执行bean销毁方法</li></ul></li></ul><h2 id="bean销毁时机"><a href="#bean销毁时机" class="headerlink" title="bean销毁时机"></a>bean销毁时机</h2><p><img src="https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302231703590.png"></p><h1 id="依赖注入方式-DI"><a href="#依赖注入方式-DI" class="headerlink" title="依赖注入方式(DI)"></a>依赖注入方式(DI)</h1><h2 id="分析-2"><a href="#分析-2" class="headerlink" title="分析"></a>分析</h2><ul><li>思考：向一个类中传递数据的方式有几种？<ul><li>普通方法（set方法）</li><li>构造方法</li></ul></li><li>思考：依赖注入描述了在容器中建立bean与bean之间依赖关系的过程，如果bean运行需要的是数字或字符串呢？<ul><li>引用类型</li><li>简单类型（基本数据类型与String）</li></ul></li><li>依赖注入方式<ul><li>setter注入<ul><li>简单类型<ul><li><img src="https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302232239001.png"></li></ul></li><li><font color="red">引用类型</font>(这是上文之前实现过的方式)<ul><li><img src="https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302232234232.png"></li></ul></li></ul></li><li>构造器注入<ul><li>简单类型<ul><li>同引用类型，ref换成value即可。</li></ul></li><li>引用类型<ul><li><img src="https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302232247561.png"></li></ul></li></ul></li></ul></li></ul><h2 id="依赖注入方式选择"><a href="#依赖注入方式选择" class="headerlink" title="依赖注入方式选择"></a>依赖注入方式选择</h2><p><img src="https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302232248827.png"></p><h1 id="依赖自动装配-di-autoware"><a href="#依赖自动装配-di-autoware" class="headerlink" title="依赖自动装配(di_autoware)"></a>依赖自动装配(di_autoware)</h1><ul><li>IoC容器根据bean所y依赖的资源在容器中自动查找并注入到bean中的过程称为自动装配。</li><li>自动装配方式<ul><li><font color="red">按类型（常用）</font></li><li>按名称</li><li>按构造方法</li><li>不启用自动装配</li></ul></li></ul><p><img src="https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302232301694.png"></p><h2 id="依赖自动装配特征"><a href="#依赖自动装配特征" class="headerlink" title="依赖自动装配特征"></a>依赖自动装配特征</h2><p><img src="https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302232302419.png"></p><h1 id="集合注入-di-collection"><a href="#集合注入-di-collection" class="headerlink" title="集合注入(di_collection)"></a>集合注入(di_collection)</h1><p>包括但不限于：数组、List、Set、Map、Properties…</p><h2 id="注入数组对象"><a href="#注入数组对象" class="headerlink" title="注入数组对象"></a>注入数组对象</h2><p><img src="https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302232310777.png"></p><h2 id="注入List对象"><a href="#注入List对象" class="headerlink" title="注入List对象"></a>注入List对象</h2><p><img src="https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302232311502.png"></p><h2 id="注入Set对象"><a href="#注入Set对象" class="headerlink" title="注入Set对象"></a>注入Set对象</h2><p><img src="https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302232311240.png"></p><h2 id="注入Map对象"><a href="#注入Map对象" class="headerlink" title="注入Map对象"></a>注入Map对象</h2><p><img src="https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302232312481.png"></p><h2 id="注入Properties"><a href="#注入Properties" class="headerlink" title="注入Properties"></a>注入Properties</h2><p><img src="https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302232312792.png"></p><h1 id="加载properties文件"><a href="#加载properties文件" class="headerlink" title="加载properties文件"></a>加载properties文件</h1><p><img src="https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302241559575.png"></p><p><img src="https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302241603194.png"></p><h1 id="容器"><a href="#容器" class="headerlink" title="容器"></a>容器</h1><h2 id="创建容器"><a href="#创建容器" class="headerlink" title="创建容器"></a>创建容器</h2><p><img src="https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302241617686.png"></p><h2 id="获取bean"><a href="#获取bean" class="headerlink" title="获取bean"></a>获取bean</h2><p><img src="https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302241618792.png"></p><h2 id="容器类层次结构"><a href="#容器类层次结构" class="headerlink" title="容器类层次结构"></a>容器类层次结构</h2><p><img src="https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302241626589.png"></p><h2 id="BeanFactory"><a href="#BeanFactory" class="headerlink" title="BeanFactory"></a>BeanFactory</h2><p><img src="https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302241626361.png"></p><h1 id="核心、容器阶段总结"><a href="#核心、容器阶段总结" class="headerlink" title="核心、容器阶段总结"></a>核心、容器阶段总结</h1><h2 id="容器相关"><a href="#容器相关" class="headerlink" title="容器相关"></a>容器相关</h2><p><img src="https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302241629753.png"></p><h2 id="bean相关"><a href="#bean相关" class="headerlink" title="bean相关"></a>bean相关</h2><p><img src="https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302241629589.png"></p><h2 id="依赖注入相关"><a href="#依赖注入相关" class="headerlink" title="依赖注入相关"></a>依赖注入相关</h2><p><img src="https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/202302241631928.png"></p><h1 id="注解开发"><a href="#注解开发" class="headerlink" title="注解开发"></a>注解开发</h1><p><img src="https://i.loli.net/2019/12/25/Fze9jchtnyJXMHN.jpg"><br><img src="https://i.loli.net/2019/12/25/ryLVePaqkYm4TEK.jpg"><br><img src="https://i.loli.net/2019/12/25/gEy5Zc1Ai6VuO4N.jpg"><br><img src="https://i.loli.net/2019/12/25/d6QHbytlSYO4FBG.jpg"><br><img src="https://i.loli.net/2019/12/25/6nepIJ1xTgufatZ.jpg"><br><img src="https://i.loli.net/2019/12/25/E7Jvr4eIPwUNmzq.jpg"><br>! <a href="https://i.loli.net/2019/12/25/mh19anwBSWIkGlH.jpg"></a><br><img src="https://i.loli.net/2019/12/25/2tu9JC8ewpBFagv.jpg"></p><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">fun</span><span class="hljs-params">()</span>&#123;<br>    <span class="hljs-comment">//alalla</span><br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>Spring</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Spring</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>about chatGPT</title>
+    <link href="/posts/22938ae6/"/>
+    <url>/posts/22938ae6/</url>
+    
+    <content type="html"><![CDATA[<p>chatGPT实现原理</p><p><img src="https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/01.png"><br>基于自然语言处理技术中的预训练语言模型实现。它使用了一种叫做Transfomer的神经网络结构，通过海量语料库数据进行训练等等。除了预训练语言模型外，还有其他一些技术，如上下文编码、注意力机制等来增强模型的表现，这方面不是很专业，相信AI部门的同事有更加清晰认知。其实开发工作中，因为之前一直做移动端开发，对于AI的认知，还是在咱们公司才有幸接触到。不过也仅限于今日晴App中开放题的AI表现形式，暂时不清楚有什么其他应用。</p><hr><p>对工作和生活的影响</p><p><img src="https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/02.png"><br>官方回复已比较清晰，智能客服、智能助手、教育领域、社交娱乐。但是，个人分析，还是偏”不正规”聊天机器人，可能理解比较负面，觉得应是如Meta元宇宙之流。比如，智能客服方面，就不说智能客服了，现在的”智能”客服有大家满意的么，反正我肯定是切人工客服的，因为智能的不好用；智能助手方面，可以理解成高级siri吧，不过siri我也不怎么用，比如定个闹钟，设置个日程等？我的效率不会因为一个智能助手提高多少；社交娱乐方面，都社交了、娱乐了，我更喜欢真人，所以无趣；</p><p>作为个人，抱歉，我的认知偏负面了。可能是我相对保守，但也可能它相对保守吧。就像最近热播的狂飙中演员林家川的采访，读过史书看过三体，“经常把自己看失重了，往前看是历史洪流，筛选出不过几个名字，抬头看是宇宙深处的黑暗森林法则，那几个名字也会被抹去。再看历史，再看宇宙，然后就会觉得把自己看没了。”<br>我所理解（期待）的AI：AI应该是创造性的，应该像是新的物种起源，最起码是西部世界中那样一个人工智能机器人会突破、可以觉醒而不是我问A你答B。</p><hr><p>对开发工作中有何影响</p><p><img src="https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/03.png"><br>可以看出，官方回复包含：代码生成（已尝试过，只能生成代码”片段”）、文档生成（不需要，现有框架特别成熟）、快速回答（还是对话的一种，我只发现此功能有意义）、自动化任务（也不需要，现有的技术已经很成熟，没那么多重复工作）。</p><p>就开发工作而言，它只是一个辅助工具，比如在碰到一个从未使用过的技术，可以快速问答，获得一个思路，具体开发工作就是编码还是要看个人编码能力。<br>综上所述，我认为它是一个对未知的事或物获得初印象的好用的工具。跟浏览器差不多，但是肯定强一些，比如不像百度，搜个东西，一堆广告；再比如，对一个未知的东西，不善于使用搜索引擎的话，可能搜都搜不到，这起码有上下文编码，我觉得最终你能获取到一个信息以供参考。暂时我会把它作为搜索引擎的平替，仅此而已。</p><hr><p>另外</p><p>具备科学上网梯子的有多少个，或许我们是互联网公司，可能占多数，但普通人也就听个乐，也可能乐都不乐；</p><p>如此频繁获取用户输入，我甚至觉得进不了国内，安全性方面有待考证；</p><p>即便可以普遍使用，但是就如小度一样，”小度,给我播放个炸雷”，”对不起，没有版权，给你播放个惊雷吧”，或者如元宇宙一样，已经烧了100多亿美元了，对普通人有何影响？还有谁持续在关注？</p><p>后期发展，也就接入浏览器，提高搜索性能；再高级的，我觉得不够；</p><p>So，我对此项技术不看好，可能只是资本的狂欢；</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>chatGPT</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>test_scaffolds</title>
+    <link href="/posts/fcd5a9e3/"/>
+    <url>/posts/fcd5a9e3/</url>
+    
+    <content type="html"><![CDATA[<p>lalalallala</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>category-b</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>tag-a</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  
+</search>

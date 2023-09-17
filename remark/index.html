@@ -16,11 +16,15 @@
   <meta name="author" content="拾叁">
   <meta name="keywords" content="">
   
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Archives">
-<meta property="og:url" content="https://blog.13space.cn/archives/2023/page/2/index.html">
+    <meta name="description" content="如果有什么 想说的、想问的 或者 发现了本站的BUG，欢迎留言告知😊。  🥝欢迎探讨各种问题，那一定很有趣。🥝">
+<meta property="og:type" content="website">
+<meta property="og:title" content="remark">
+<meta property="og:url" content="https://blog.13space.cn/remark/index.html">
 <meta property="og:site_name" content="拾叁的小破站">
+<meta property="og:description" content="如果有什么 想说的、想问的 或者 发现了本站的BUG，欢迎留言告知😊。  🥝欢迎探讨各种问题，那一定很有趣。🥝">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-09-17T05:26:10.000Z">
+<meta property="article:modified_time" content="2023-09-17T07:08:57.308Z">
 <meta property="article:author" content="拾叁">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -28,7 +32,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Archives - 拾叁的小破站</title>
+  <title>remark - 拾叁的小破站</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -227,7 +231,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Archives"></span>
+            <span id="subtitle" data-typed-text="remark"></span>
           
         </div>
 
@@ -254,41 +258,45 @@
               <div class="col-12 col-md-10 m-auto">
                 
 
-<div class="list-group">
-  <p class="h4">14 posts in total</p>
-  <hr>
+<article class="page-content">
+  <p class="note note-success">如果有什么 <strong>想说的</strong>、<strong>想问的</strong> 或者 <strong>发现了本站的BUG</strong>，欢迎留言告知😊。</p>
+
+<p class="note note-primary">🥝欢迎探讨各种问题，那一定很有趣。🥝</p>
+
+
   
   
-    
+  
+    <article id="comments" lazyload>
       
-      <p class="h5">2023</p>
-    
-    <a href="/posts/21e21024/" class="list-group-item list-group-item-action">
-      <time>09-14</time>
-      <div class="list-group-item-title">butterfly搭建</div>
-    </a>
-  
-    
-    <a href="/posts/6c92115f/" class="list-group-item list-group-item-action">
-      <time>02-15</time>
-      <div class="list-group-item-title">Spring</div>
-    </a>
-  
-    
-    <a href="/posts/22938ae6/" class="list-group-item list-group-item-action">
-      <time>02-15</time>
-      <div class="list-group-item-title">about chatGPT</div>
-    </a>
-  
-</div>
+  <div id="twikoo"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/twikoo/1.6.8/twikoo.all.min.js', function() {
+        var options = Object.assign(
+          {"envId":"https://hexo-blog-twikoo-flame.vercel.app/","region":"ap-shanghai","path":"window.location.pathname"},
+          {
+            el: '#twikoo',
+            path: 'window.location.pathname',
+            onCommentLoaded: function() {
+              var imgSelector = '#twikoo .tk-content img:not(.tk-owo-emotion)';
+              Fluid.plugins.imageCaption(imgSelector);
+              Fluid.plugins.fancyBox(imgSelector);
+            }
+          }
+        )
+        twikoo.init(options)
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
 
 
-  <nav aria-label="navigation">
-    <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/archives/2023/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/archives/2023/">1</a><span class="page-number current">2</span>
-    </span>
-  </nav>
+    </article>
+  
 
+
+</article>
 
 
 

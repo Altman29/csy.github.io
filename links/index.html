@@ -17,8 +17,8 @@
   <meta name="keywords" content="">
   
     <meta property="og:type" content="website">
-<meta property="og:title" content="Archives">
-<meta property="og:url" content="https://blog.13space.cn/archives/2023/page/2/index.html">
+<meta property="og:title" content="Links">
+<meta property="og:url" content="https://blog.13space.cn/links/index.html">
 <meta property="og:site_name" content="拾叁的小破站">
 <meta property="og:locale" content="en_US">
 <meta property="article:author" content="拾叁">
@@ -28,7 +28,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Archives - 拾叁的小破站</title>
+  <title>Links - 拾叁的小破站</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -221,13 +221,13 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/banner.jpg') no-repeat center center; background-size: cover;">
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Archives"></span>
+            <span id="subtitle" data-typed-text="Links"></span>
           
         </div>
 
@@ -254,41 +254,101 @@
               <div class="col-12 col-md-10 m-auto">
                 
 
-<div class="list-group">
-  <p class="h4">14 posts in total</p>
-  <hr>
-  
+<div class="row links">
   
     
-      
-      <p class="h5">2023</p>
-    
-    <a href="/posts/21e21024/" class="list-group-item list-group-item-action">
-      <time>09-14</time>
-      <div class="list-group-item-title">butterfly搭建</div>
-    </a>
+    <div class="card col-lg-4 col-md-6 col-sm-12">
+      <a href="https://hexo.fluid-dev.com/" class="card-body hover-with-bg" target="_blank" rel="noopener">
+        <div class="card-content">
+          
+            <div class="link-avatar my-auto">
+              <img src="/img/favicon.png" srcset="/img/loading.gif" lazyload alt="Fluid Blog"
+                   onerror="this.onerror=null; this.src=this.srcset='/img/avatar.png'"/>
+            </div>
+          
+          <div class="link-text">
+            <div class="link-title">Fluid Blog</div>
+            <div class="link-intro">主题博客</div>
+          </div>
+        </div>
+      </a>
+    </div>
   
     
-    <a href="/posts/6c92115f/" class="list-group-item list-group-item-action">
-      <time>02-15</time>
-      <div class="list-group-item-title">Spring</div>
-    </a>
+    <div class="card col-lg-4 col-md-6 col-sm-12">
+      <a href="https://hexo.fluid-dev.com/docs/" class="card-body hover-with-bg" target="_blank" rel="noopener">
+        <div class="card-content">
+          
+            <div class="link-avatar my-auto">
+              <img src="/img/favicon.png" srcset="/img/loading.gif" lazyload alt="Fluid Docs"
+                   onerror="this.onerror=null; this.src=this.srcset='/img/avatar.png'"/>
+            </div>
+          
+          <div class="link-text">
+            <div class="link-title">Fluid Docs</div>
+            <div class="link-intro">主题使用指南</div>
+          </div>
+        </div>
+      </a>
+    </div>
   
     
-    <a href="/posts/22938ae6/" class="list-group-item list-group-item-action">
-      <time>02-15</time>
-      <div class="list-group-item-title">about chatGPT</div>
-    </a>
+    <div class="card col-lg-4 col-md-6 col-sm-12">
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" class="card-body hover-with-bg" target="_blank" rel="noopener">
+        <div class="card-content">
+          
+            <div class="link-avatar my-auto">
+              <img src="/img/favicon.png" srcset="/img/loading.gif" lazyload alt="Fluid Repo"
+                   onerror="this.onerror=null; this.src=this.srcset='/img/avatar.png'"/>
+            </div>
+          
+          <div class="link-text">
+            <div class="link-title">Fluid Repo</div>
+            <div class="link-intro">主题 GitHub 仓库</div>
+          </div>
+        </div>
+      </a>
+    </div>
   
 </div>
 
 
-  <nav aria-label="navigation">
-    <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/archives/2023/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/archives/2023/">1</a><span class="page-number current">2</span>
-    </span>
-  </nav>
+  <!-- Custom -->
+  <div class="custom mx-auto">
+    <hr><p>在下方留言申请加入我的友链，按如下格式提供信息：</p><ul><li>博客名：Fluid</li><li>简介：Fluid 主题官方博客</li><li>链接：https://hexo.fluid-dev.com</li><li>图片：https://hexo.fluid-dev.com/img/favicon.png</li></ul>
+  </div>
 
+
+
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="twikoo"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/twikoo/1.6.8/twikoo.all.min.js', function() {
+        var options = Object.assign(
+          {"envId":"https://hexo-blog-twikoo-flame.vercel.app/","region":"ap-shanghai","path":"window.location.pathname"},
+          {
+            el: '#twikoo',
+            path: 'window.location.pathname',
+            onCommentLoaded: function() {
+              var imgSelector = '#twikoo .tk-content img:not(.tk-owo-emotion)';
+              Fluid.plugins.imageCaption(imgSelector);
+              Fluid.plugins.fancyBox(imgSelector);
+            }
+          }
+        )
+        twikoo.init(options)
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
 
 
 

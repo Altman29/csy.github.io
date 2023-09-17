@@ -41,3 +41,7 @@
     color: royalblue;
 }
 
+/*时间轴、标签、等头部*/
+#page-header:not(.not-top-img):before{
+    background: rgba(128,128,128, .3);
+}
