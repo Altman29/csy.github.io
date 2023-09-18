@@ -4,6 +4,301 @@
   
   
   <entry>
+    <title>mybatis is good. And plus is better.</title>
+    <link href="/posts/85fa2e33/"/>
+    <url>/posts/85fa2e33/</url>
+    
+    <content type="html"><![CDATA[<p>sss1111</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>mybatis</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>mybatis</tag>
+      
+      <tag>mybatis-plus</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>关于SpringBoot</title>
+    <link href="/posts/8358769a/"/>
+    <url>/posts/8358769a/</url>
+    
+    <content type="html"><![CDATA[<p>llkkl123123</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>spring</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>springBoot</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>关于SpringMVC</title>
+    <link href="/posts/b3998b21/"/>
+    <url>/posts/b3998b21/</url>
+    
+    <content type="html"><![CDATA[<p>ss213123</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>spring</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>springMVC</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>关于Spring</title>
+    <link href="/posts/ed0120ab/"/>
+    <url>/posts/ed0120ab/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    <categories>
+      
+      <category>spring</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>spring</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Spring、SpringMVC、SpringBoot，开整</title>
+    <link href="/posts/72086715/"/>
+    <url>/posts/72086715/</url>
+    
+    <content type="html"><![CDATA[<p>事实上asdad</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>spring</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>spring</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>JVM从入门到放弃</title>
+    <link href="/posts/a4f048b3/"/>
+    <url>/posts/a4f048b3/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    <categories>
+      
+      <category>JVM</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>JVM</tag>
+      
+      <tag>垃圾回收算符</tag>
+      
+      <tag>内存模型</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>JAVA多线程编程探索</title>
+    <link href="/posts/6aabc494/"/>
+    <url>/posts/6aabc494/</url>
+    
+    <content type="html"><![CDATA[<p>多线程啦啦啦</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>多线程</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>并发</tag>
+      
+      <tag>并行</tag>
+      
+      <tag>同步</tag>
+      
+      <tag>异步</tag>
+      
+      <tag>互斥</tag>
+      
+      <tag>线程安全</tag>
+      
+      <tag>悲观锁</tag>
+      
+      <tag>乐观锁</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>重拾设计模式（三）- 行为型模式*11</title>
+    <link href="/posts/bd826a18/"/>
+    <url>/posts/bd826a18/</url>
+    
+    <content type="html"><![CDATA[<p>design_pattern<br>1111</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>设计模式</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>行为型模式</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>重拾设计模式（二）- 结构型模式*7</title>
+    <link href="/posts/509408b0/"/>
+    <url>/posts/509408b0/</url>
+    
+    <content type="html"><![CDATA[<p>ssss7</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>设计模式</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>结构性模式</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>重拾设计模式（一）- 创建者模式*5</title>
+    <link href="/posts/b138f59e/"/>
+    <url>/posts/b138f59e/</url>
+    
+    <content type="html"><![CDATA[<p>sss5</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>设计模式</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>创建者模式</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>重拾设计模式（零）- 朝花夕拾</title>
+    <link href="/posts/77e3381c/"/>
+    <url>/posts/77e3381c/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    <categories>
+      
+      <category>设计模式</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>设计模式相关</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>数据结构和算法之旅（拾叁）- 排序算法</title>
     <link href="/posts/98b3bf1e/"/>
     <url>/posts/98b3bf1e/</url>
