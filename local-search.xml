@@ -21,7 +21,7 @@
     <link href="/posts/4d2198f6/"/>
     <url>/posts/4d2198f6/</url>
     
-    <content type="html"><![CDATA[<h1 id="测试代码片段"><a href="#测试代码片段" class="headerlink" title="测试代码片段"></a>测试代码片段</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Test</span>&#123;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">int</span>[] args)</span>&#123;<br>sout(<span class="hljs-string">&quot;hexo fluid.&quot;</span>)<br>&#125;<br>&#125;<br></code></pre></td></tr></table></figure><h1 id="测试标签"><a href="#测试标签" class="headerlink" title="测试标签"></a>测试标签</h1><p class="note note-primary">why 标签收到收到到沙发上到沙发上地方    如果EFG '\n到沙发上地方    如果EFG '\n到沙发<span class="label label-primary">Label</span>上地方    如果EFG '\n到沙发上地方    如果EFG '\n地方    如果EFG '\n'</p><p class="note note-success">success 标签</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;btn&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;url&quot;</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;title&quot;</span>&gt;</span>text<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br></code></pre></td></tr></table></figure><h1 id="lsllsls"><a href="#lsllsls" class="headerlink" title="lsllsls"></a>lsllsls</h1><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs markdown">&#123;% mermaid %&#125;<br>gantt<br>dateFormat  YYYY-MM-DD<br>title Adding GANTT diagram to mermaid<br><br>section A section<br>Completed task            :done,    des1, 2014-01-06,2014-01-08<br>Active task               :active,  des2, 2014-01-09, 3d<br>Future task               :         des3, after des2, 5d<br>Future task2               :         des4, after des3, 5d<br>&#123;% endmermaid %&#125;<br></code></pre></td></tr></table></figure>]]></content>
+    <content type="html"><![CDATA[<h1 id="测试代码片段"><a href="#测试代码片段" class="headerlink" title="测试代码片段"></a>测试代码片段</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Test</span>&#123;<br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(<span class="hljs-type">int</span>[] args)</span>&#123;<br>sout(<span class="hljs-string">&quot;hexo fluid.&quot;</span>)<br>&#125;<br>&#125;<br></code></pre></td></tr></table></figure><h1 id="测试标签"><a href="#测试标签" class="headerlink" title="测试标签"></a>测试标签</h1><p class="note note-primary">why 标签收到收到到沙发上到沙发上地方    如果EFG '\n到沙发上地方    如果EFG '\n到沙发<span class="label label-primary">Label</span>上地方    如果EFG '\n到沙发上地方    如果EFG '\n地方    如果EFG '\n'</p><p class="note note-success">success 标签</p><p class="note note-primary">标签-紫</p><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs html"><span class="hljs-tag">&lt;<span class="hljs-name">a</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;btn&quot;</span> <span class="hljs-attr">href</span>=<span class="hljs-string">&quot;url&quot;</span> <span class="hljs-attr">title</span>=<span class="hljs-string">&quot;title&quot;</span>&gt;</span>text<span class="hljs-tag">&lt;/<span class="hljs-name">a</span>&gt;</span><br></code></pre></td></tr></table></figure><p class="note note-primary">标签-紫</p><p class="note note-danger">标签-红</p><h1 id="lsllsls"><a href="#lsllsls" class="headerlink" title="lsllsls"></a>lsllsls</h1><p class="note note-warning">标签-橙</p><p class="note note-info">标签-蓝</p><p class="note note-info">标签-蓝</p><p class="note note-light">标签-黑</p><p class="note note-success">标签-绿</p><p class="note note-secondary">标签-灰</p><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs markdown">&#123;% mermaid %&#125;<br>gantt<br>dateFormat  YYYY-MM-DD<br>title Adding GANTT diagram to mermaid<br><br>section A section<br>Completed task            :done,    des1, 2014-01-06,2014-01-08<br>Active task               :active,  des2, 2014-01-09, 3d<br>Future task               :         des3, after des2, 5d<br>Future task2               :         des4, after des3, 5d<br>&#123;% endmermaid %&#125;<br></code></pre></td></tr></table></figure>]]></content>
     
     
     
@@ -160,25 +160,6 @@
   
   
   <entry>
-    <title>about chatGPT</title>
-    <link href="/posts/22938ae6/"/>
-    <url>/posts/22938ae6/</url>
-    
-    <content type="html"><![CDATA[<p>chatGPT实现原理</p><p><img src="https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/01.png"><br>基于自然语言处理技术中的预训练语言模型实现。它使用了一种叫做Transfomer的神经网络结构，通过海量语料库数据进行训练等等。除了预训练语言模型外，还有其他一些技术，如上下文编码、注意力机制等来增强模型的表现，这方面不是很专业，相信AI部门的同事有更加清晰认知。其实开发工作中，因为之前一直做移动端开发，对于AI的认知，还是在咱们公司才有幸接触到。不过也仅限于今日晴App中开放题的AI表现形式，暂时不清楚有什么其他应用。</p><hr><p>对工作和生活的影响</p><p><img src="https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/02.png"><br>官方回复已比较清晰，智能客服、智能助手、教育领域、社交娱乐。但是，个人分析，还是偏”不正规”聊天机器人，可能理解比较负面，觉得应是如Meta元宇宙之流。比如，智能客服方面，就不说智能客服了，现在的”智能”客服有大家满意的么，反正我肯定是切人工客服的，因为智能的不好用；智能助手方面，可以理解成高级siri吧，不过siri我也不怎么用，比如定个闹钟，设置个日程等？我的效率不会因为一个智能助手提高多少；社交娱乐方面，都社交了、娱乐了，我更喜欢真人，所以无趣；</p><p>作为个人，抱歉，我的认知偏负面了。可能是我相对保守，但也可能它相对保守吧。就像最近热播的狂飙中演员林家川的采访，读过史书看过三体，“经常把自己看失重了，往前看是历史洪流，筛选出不过几个名字，抬头看是宇宙深处的黑暗森林法则，那几个名字也会被抹去。再看历史，再看宇宙，然后就会觉得把自己看没了。”<br>我所理解（期待）的AI：AI应该是创造性的，应该像是新的物种起源，最起码是西部世界中那样一个人工智能机器人会突破、可以觉醒而不是我问A你答B。</p><hr><p>对开发工作中有何影响</p><p><img src="https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/03.png"><br>可以看出，官方回复包含：代码生成（已尝试过，只能生成代码”片段”）、文档生成（不需要，现有框架特别成熟）、快速回答（还是对话的一种，我只发现此功能有意义）、自动化任务（也不需要，现有的技术已经很成熟，没那么多重复工作）。</p><p>就开发工作而言，它只是一个辅助工具，比如在碰到一个从未使用过的技术，可以快速问答，获得一个思路，具体开发工作就是编码还是要看个人编码能力。<br>综上所述，我认为它是一个对未知的事或物获得初印象的好用的工具。跟浏览器差不多，但是肯定强一些，比如不像百度，搜个东西，一堆广告；再比如，对一个未知的东西，不善于使用搜索引擎的话，可能搜都搜不到，这起码有上下文编码，我觉得最终你能获取到一个信息以供参考。暂时我会把它作为搜索引擎的平替，仅此而已。</p><hr><p>另外</p><p>具备科学上网梯子的有多少个，或许我们是互联网公司，可能占多数，但普通人也就听个乐，也可能乐都不乐；</p><p>如此频繁获取用户输入，我甚至觉得进不了国内，安全性方面有待考证；</p><p>即便可以普遍使用，但是就如小度一样，”小度,给我播放个炸雷”，”对不起，没有版权，给你播放个惊雷吧”，或者如元宇宙一样，已经烧了100多亿美元了，对普通人有何影响？还有谁持续在关注？</p><p>后期发展，也就接入浏览器，提高搜索性能；再高级的，我觉得不够；</p><p>So，我对此项技术不看好，可能只是资本的狂欢；</p>]]></content>
-    
-    
-    
-    <tags>
-      
-      <tag>chatGPT</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>Spring</title>
     <link href="/posts/6c92115f/"/>
     <url>/posts/6c92115f/</url>
@@ -196,6 +177,25 @@
     <tags>
       
       <tag>Spring</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>about chatGPT</title>
+    <link href="/posts/22938ae6/"/>
+    <url>/posts/22938ae6/</url>
+    
+    <content type="html"><![CDATA[<p>chatGPT实现原理</p><p><img src="https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/01.png"><br>基于自然语言处理技术中的预训练语言模型实现。它使用了一种叫做Transfomer的神经网络结构，通过海量语料库数据进行训练等等。除了预训练语言模型外，还有其他一些技术，如上下文编码、注意力机制等来增强模型的表现，这方面不是很专业，相信AI部门的同事有更加清晰认知。其实开发工作中，因为之前一直做移动端开发，对于AI的认知，还是在咱们公司才有幸接触到。不过也仅限于今日晴App中开放题的AI表现形式，暂时不清楚有什么其他应用。</p><hr><p>对工作和生活的影响</p><p><img src="https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/02.png"><br>官方回复已比较清晰，智能客服、智能助手、教育领域、社交娱乐。但是，个人分析，还是偏”不正规”聊天机器人，可能理解比较负面，觉得应是如Meta元宇宙之流。比如，智能客服方面，就不说智能客服了，现在的”智能”客服有大家满意的么，反正我肯定是切人工客服的，因为智能的不好用；智能助手方面，可以理解成高级siri吧，不过siri我也不怎么用，比如定个闹钟，设置个日程等？我的效率不会因为一个智能助手提高多少；社交娱乐方面，都社交了、娱乐了，我更喜欢真人，所以无趣；</p><p>作为个人，抱歉，我的认知偏负面了。可能是我相对保守，但也可能它相对保守吧。就像最近热播的狂飙中演员林家川的采访，读过史书看过三体，“经常把自己看失重了，往前看是历史洪流，筛选出不过几个名字，抬头看是宇宙深处的黑暗森林法则，那几个名字也会被抹去。再看历史，再看宇宙，然后就会觉得把自己看没了。”<br>我所理解（期待）的AI：AI应该是创造性的，应该像是新的物种起源，最起码是西部世界中那样一个人工智能机器人会突破、可以觉醒而不是我问A你答B。</p><hr><p>对开发工作中有何影响</p><p><img src="https://cdn.jsdelivr.net/gh/Altman29/ImgHost/BLOG_PIC/03.png"><br>可以看出，官方回复包含：代码生成（已尝试过，只能生成代码”片段”）、文档生成（不需要，现有框架特别成熟）、快速回答（还是对话的一种，我只发现此功能有意义）、自动化任务（也不需要，现有的技术已经很成熟，没那么多重复工作）。</p><p>就开发工作而言，它只是一个辅助工具，比如在碰到一个从未使用过的技术，可以快速问答，获得一个思路，具体开发工作就是编码还是要看个人编码能力。<br>综上所述，我认为它是一个对未知的事或物获得初印象的好用的工具。跟浏览器差不多，但是肯定强一些，比如不像百度，搜个东西，一堆广告；再比如，对一个未知的东西，不善于使用搜索引擎的话，可能搜都搜不到，这起码有上下文编码，我觉得最终你能获取到一个信息以供参考。暂时我会把它作为搜索引擎的平替，仅此而已。</p><hr><p>另外</p><p>具备科学上网梯子的有多少个，或许我们是互联网公司，可能占多数，但普通人也就听个乐，也可能乐都不乐；</p><p>如此频繁获取用户输入，我甚至觉得进不了国内，安全性方面有待考证；</p><p>即便可以普遍使用，但是就如小度一样，”小度,给我播放个炸雷”，”对不起，没有版权，给你播放个惊雷吧”，或者如元宇宙一样，已经烧了100多亿美元了，对普通人有何影响？还有谁持续在关注？</p><p>后期发展，也就接入浏览器，提高搜索性能；再高级的，我觉得不够；</p><p>So，我对此项技术不看好，可能只是资本的狂欢；</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>chatGPT</tag>
       
     </tags>
     
