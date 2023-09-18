@@ -3,7 +3,7 @@ title: '关于'
 layout: about
 type: "about"
 comments: false
-banner_img: /img/banner.jpg
+banner_img: /img/about_bg.jpg
 ---
 
 

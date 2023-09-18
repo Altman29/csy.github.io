@@ -1,0 +1,164 @@
+{
+  "main": {
+    "id": "0b351ff5a2a4a636",
+    "type": "split",
+    "children": [
+      {
+        "id": "8f3fa3a8248319d3",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "b1231a24d9f1ac18",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "butterfly搭建.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "ab5d0421542e6166",
+    "type": "split",
+    "children": [
+      {
+        "id": "ddb490bafe72c8d1",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "ab6b3f180e5eae8d",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "37f34ded267f308c",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "c6ab3880f4790bcf",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "d8ed194db2219337",
+    "type": "split",
+    "children": [
+      {
+        "id": "289869f57676a403",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "4d550a0826eb04cd",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "butterfly搭建.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "c451d585e1062990",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "butterfly搭建.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "4b9db6eb1b3962bd",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "3d7823f7ed8a7783",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "butterfly搭建.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false
+    }
+  },
+  "active": "b1231a24d9f1ac18",
+  "lastOpenFiles": [
+    "data-algorithm.md",
+    "butterfly搭建.md",
+    "Spring.md",
+    "hashpost.md",
+    "asdasdq方式东风风度电饭锅.md",
+    "about-chatGPT.md",
+    "abbrlink汉字能不能行.md",
+    "这特么.md",
+    "弹性部署方案.md",
+    "newpost1.md",
+    "这么长的中文链接的id会是什么.md",
+    "唯一连接行不行.md"
+  ]
+}

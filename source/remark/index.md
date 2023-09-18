@@ -1,8 +1,9 @@
 ---
-title: remark
+title: 留言板
+subtitle: 欲穷千里目，更上一层楼。
 date: 2023-09-17 13:26:10
 type: "remark"
-banner_img: /img/banner.jpg
+banner_img: /img/remark_bg.jpg
 comment: true
 ---
 
