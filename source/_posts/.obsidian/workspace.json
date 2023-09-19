@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2020终章.md",
+                "file": "通关微服务-sentinel.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "2020终章.md",
+                "file": "通关微服务-sentinel.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "2020终章.md",
+                "file": "通关微服务-sentinel.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "2020终章.md"
+                "file": "通关微服务-sentinel.md"
               }
             }
           }
@@ -148,31 +148,31 @@
   },
   "active": "b1231a24d9f1ac18",
   "lastOpenFiles": [
+    "云原生之DevOps.md",
+    "云原生之kubeSphere.md",
+    "云原生之k8s.md",
+    "备忘系列-nginx.md",
+    "备忘系列-netty.md",
+    "备忘系列-mongodb.md",
+    "备忘系列-solr.md",
+    "备忘系列-xxl-job.md",
+    "通关微服务-mysql.md",
+    "通关微服务-redis.md",
+    "通关微服务-seata.md",
+    "通关微服务-sentinel.md",
+    "通关微服务-ELK.md",
+    "通关微服务-SpringAMQP.md",
+    "通关微服务-rabbitMQ.md",
+    "通关微服务-gateway.md",
+    "通关微服务-nacos.md",
+    "通关微服务-dubbo.md",
+    "认识微服务体系.md",
+    "单体应用的困境.md",
     "angular case.md",
     "2020终章.md",
-    "elementUI case.md",
-    "vue case.md",
-    "bootstrap case.md",
-    "重构法则-下.md",
-    "重构法则-上.md",
-    "备忘系列-swagger.md",
     "备忘系列-docker.md",
-    "leetcode-以德服人HARD合集.md",
     "leetcode-自暴自弃MEDIUM合集.md",
     "leetcode-相爱相杀EASY合集.md",
-    "备忘系列-maven使用指北.md",
-    "备忘系列-git使用指北.md",
-    "备忘系列-jenkins自动化与持续集成.md",
-    "mybatis-is-good-And-plus-is-better.md",
-    "关于SpringBoot.md",
-    "关于SpringMVC.md",
-    "关于Spring.md",
-    "Spring、SpringMVC、SpringBoot，开整.md",
-    "JVM从入门到放弃.md",
-    "JAVA多线程编程探索.md",
-    "重拾设计模式（三）-行为型模式-11.md",
-    "重拾设计模式（二）-结构型模式-7.md",
-    "重拾设计模式（一）-创建者模式-5.md",
-    "重拾设计模式（零）-朝花夕拾.md"
+    "备忘系列-maven使用指北.md"
   ]
 }
