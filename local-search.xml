@@ -4,6 +4,516 @@
   
   
   <entry>
+    <title>云原生之DevOps</title>
+    <link href="/posts/9393e822/"/>
+    <url>/posts/9393e822/</url>
+    
+    <content type="html"><![CDATA[<p>123123ss拾叁</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>云原生</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>DevOps</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>云原生之kubeSphere</title>
+    <link href="/posts/68893475/"/>
+    <url>/posts/68893475/</url>
+    
+    <content type="html"><![CDATA[<p>1111222</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>云原生</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>kubeSphere</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>云原生之k8s</title>
+    <link href="/posts/7b28abd7/"/>
+    <url>/posts/7b28abd7/</url>
+    
+    <content type="html"><![CDATA[<p>kkk8s<br>11</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>云原生</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>kubernetes</tag>
+      
+      <tag>k8s</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>备忘系列-nginx</title>
+    <link href="/posts/c06c050/"/>
+    <url>/posts/c06c050/</url>
+    
+    <content type="html"><![CDATA[<p>2323</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>网络应用组件</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>线程安全</tag>
+      
+      <tag>nginx</tag>
+      
+      <tag>反向代理</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>备忘系列-netty</title>
+    <link href="/posts/75dbf2b5/"/>
+    <url>/posts/75dbf2b5/</url>
+    
+    <content type="html"><![CDATA[<p>是sadasd</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>网络应用组件</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>netty</tag>
+      
+      <tag>io</tag>
+      
+      <tag>nio</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>备忘系列-mongodb</title>
+    <link href="/posts/c9d19155/"/>
+    <url>/posts/c9d19155/</url>
+    
+    <content type="html"><![CDATA[<p>1212</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>nosql</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>mongodb</tag>
+      
+      <tag>nosql</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>备忘系列-solr</title>
+    <link href="/posts/7aa76e65/"/>
+    <url>/posts/7aa76e65/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    <categories>
+      
+      <category>nosql</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>nosql</tag>
+      
+      <tag>solr</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>备忘系列-xxl-job</title>
+    <link href="/posts/89b2e006/"/>
+    <url>/posts/89b2e006/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    <categories>
+      
+      <category>微服务</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>xxl-job</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>通关微服务-mysql</title>
+    <link href="/posts/bb4eda82/"/>
+    <url>/posts/bb4eda82/</url>
+    
+    <content type="html"><![CDATA[<p>333311</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>微服务</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>mysql</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>通关微服务-redis</title>
+    <link href="/posts/554b12af/"/>
+    <url>/posts/554b12af/</url>
+    
+    <content type="html"><![CDATA[<p>redis is good<br>2333</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>微服务</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>redis</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>通关微服务-seata</title>
+    <link href="/posts/6235e4a0/"/>
+    <url>/posts/6235e4a0/</url>
+    
+    <content type="html"><![CDATA[<p>asd221</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>微服务</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>seata</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>通关微服务-sentinel</title>
+    <link href="/posts/60bdb85a/"/>
+    <url>/posts/60bdb85a/</url>
+    
+    <content type="html"><![CDATA[<p>收到22111</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>微服务</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>sentinel</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>通关微服务-ELK</title>
+    <link href="/posts/9b53a343/"/>
+    <url>/posts/9b53a343/</url>
+    
+    <content type="html"><![CDATA[<p>elk…ss</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>微服务</category>
+      
+      <category>nosql</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>nosql</tag>
+      
+      <tag>elasticsearch</tag>
+      
+      <tag>logstash</tag>
+      
+      <tag>kibana</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>通关微服务-SpringAMQP</title>
+    <link href="/posts/8e215a30/"/>
+    <url>/posts/8e215a30/</url>
+    
+    <content type="html"><![CDATA[<p>11ss</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>微服务</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>AMQP</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>通关微服务-rabbitMQ</title>
+    <link href="/posts/d4befa93/"/>
+    <url>/posts/d4befa93/</url>
+    
+    <content type="html"><![CDATA[<p>啊啊啊啊啊啊</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>微服务</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>rabbitMQ</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>通关微服务-gateway</title>
+    <link href="/posts/4d88743d/"/>
+    <url>/posts/4d88743d/</url>
+    
+    <content type="html"><![CDATA[<p>112</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>微服务</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>gateway</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>通关微服务-nacos</title>
+    <link href="/posts/2c2c4e78/"/>
+    <url>/posts/2c2c4e78/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    <categories>
+      
+      <category>微服务</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>nacos</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>通关微服务-dubbo</title>
+    <link href="/posts/198ade24/"/>
+    <url>/posts/198ade24/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    <categories>
+      
+      <category>微服务</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>dubbo</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>认识微服务体系</title>
+    <link href="/posts/ffffd0ab/"/>
+    <url>/posts/ffffd0ab/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    <categories>
+      
+      <category>微服务</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>单体应用的困境</title>
+    <link href="/posts/6fe0354c/"/>
+    <url>/posts/6fe0354c/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    <categories>
+      
+      <category>微服务</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>2020终章</title>
     <link href="/posts/bd0587f7/"/>
     <url>/posts/bd0587f7/</url>
