@@ -6,7 +6,7 @@ categories:
   - git
 keywords: git
 index_img: /img/git/git.png
-excerpt: git使用adasd
+excerpt: 软件开发必备~
 abbrlink: 2581ce52
 date: 2019-10-18 21:06:13
 ---

@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "angular case.md",
+                "file": "2020终章.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "angular case.md",
+                "file": "2020终章.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "angular case.md",
+                "file": "2020终章.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "angular case.md"
+                "file": "2020终章.md"
               }
             }
           }
@@ -148,21 +148,21 @@
   },
   "active": "b1231a24d9f1ac18",
   "lastOpenFiles": [
-    "leetcode-以德服人HARD合集.md",
-    "重构法则-下.md",
-    "bootstrap case.md",
-    "elementUI case.md",
-    "2020终章.md",
     "angular case.md",
-    "备忘系列-git使用指北.md",
+    "2020终章.md",
+    "elementUI case.md",
     "vue case.md",
-    "leetcode-相爱相杀EASY合集.md",
-    "leetcode-自暴自弃MEDIUM合集.md",
+    "bootstrap case.md",
+    "重构法则-下.md",
+    "重构法则-上.md",
     "备忘系列-swagger.md",
     "备忘系列-docker.md",
+    "leetcode-以德服人HARD合集.md",
+    "leetcode-自暴自弃MEDIUM合集.md",
+    "leetcode-相爱相杀EASY合集.md",
     "备忘系列-maven使用指北.md",
+    "备忘系列-git使用指北.md",
     "备忘系列-jenkins自动化与持续集成.md",
-    "重构法则-上.md",
     "mybatis-is-good-And-plus-is-better.md",
     "关于SpringBoot.md",
     "关于SpringMVC.md",
