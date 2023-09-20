@@ -27,10 +27,11 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://blog.13space.cn/img/data_math/index.png">
 <meta property="article:published_time" content="2018-09-01T13:36:02.000Z">
-<meta property="article:modified_time" content="2023-09-19T03:37:11.441Z">
+<meta property="article:modified_time" content="2023-09-20T11:57:53.677Z">
 <meta property="article:author" content="拾叁">
 <meta property="article:tag" content="递归">
 <meta property="article:tag" content="多路递归">
+<meta property="article:tag" content="尾递归">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://blog.13space.cn/img/data_math/index.png">
   
@@ -271,7 +272,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          0 words
+          4.7k words
         
       </span>
     
@@ -282,7 +283,7 @@
         
         
         
-          1 mins
+          40 mins
         
       </span>
     
@@ -327,7 +328,109 @@
             
               <div class="markdown-body">
                 
-                
+                <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p class="note note-primary">在计算机科学中，递归是一种解决计算问题的方法，其中解决方案取决于同一类问题的更小子集。<br>
+比如，单链表递归遍历的例子。<br>
+void f(Node node){<br>
+&nbsp;&nbsp;f(node.next);<br>
+}<br>
+说明：<br>
+1.自己调用自己，如果每个函数对应着一种解决方案，自己调用自己意味着解决方案是一样的（有规律的）<br>
+2.每次调用，函数处理的数据会比上次缩减（子集），而且最后会缩减至无需继续递归。<br>
+3.内存函数调用（子集处理）完成，外层函数才能算调用完成！
+</p>
+
+<h2 id="单链表递归分析"><a href="#单链表递归分析" class="headerlink" title="单链表递归分析"></a>单链表递归分析</h2><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202309201838927.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202309201839255.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202309201839734.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="递归思路"><a href="#递归思路" class="headerlink" title="递归思路"></a>递归思路</h2><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202309201840039.png" srcset="/img/loading.gif" lazyload></p>
+<p class="note note-primary">
+深入到最里面叫做递。<br>
+从最里面出来叫做归。<br>
+在递的过程中，外层函数的局部变量以及方法参数并未消失，归的时候还可以使用。
+</p>
+
+<h2 id="阶乘"><a href="#阶乘" class="headerlink" title="阶乘"></a>阶乘</h2><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202309201841987.png" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-type">int</span> <span class="hljs-title function_">f</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span>&#123;<br>	<span class="hljs-keyword">if</span>(n == <span class="hljs-number">1</span>)<br>		<span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>	<span class="hljs-keyword">return</span> n * f(n-<span class="hljs-number">1</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p class="note note-secondary">伪代码，分析执行流程如下：</p>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java">f(<span class="hljs-type">int</span> <span class="hljs-variable">n</span> <span class="hljs-operator">=</span> <span class="hljs-number">3</span>)&#123;<br>	<span class="hljs-keyword">return</span> <span class="hljs-number">3</span> * f(<span class="hljs-type">int</span> <span class="hljs-variable">n</span> <span class="hljs-operator">=</span> <span class="hljs-number">2</span>)&#123;<br>		<span class="hljs-keyword">return</span> <span class="hljs-number">2</span> * f(<span class="hljs-type">int</span> <span class="hljs-variable">n</span> <span class="hljs-operator">=</span> <span class="hljs-number">1</span>)&#123;<br>			<span class="hljs-keyword">if</span>(n == <span class="hljs-number">1</span>)&#123;<br>				<span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>		&#125;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+<h2 id="反向打印字符串"><a href="#反向打印字符串" class="headerlink" title="反向打印字符串"></a>反向打印字符串</h2><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202309201844478.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202309201845599.png" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/*</span><br><span class="hljs-comment">因为递的时候是正序的，归的时候逆序的，所以把递归调用放在前面，打印放在后面，即可实现</span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ReversePrintString</span>&#123;<br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">f</span><span class="hljs-params">(<span class="hljs-type">int</span> n, String str)</span>&#123;<br>		<span class="hljs-keyword">if</span>(n == str.length()) <span class="hljs-keyword">return</span>;<br>		f(n + <span class="hljs-number">1</span>, str);<span class="hljs-comment">//递</span><br>		System.out.println(str.charAt(n));<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="二分查找"><a href="#二分查找" class="headerlink" title="二分查找"></a>二分查找</h2><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202309201848656.png" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">/*</span><br><span class="hljs-comment">递归实现二分查找</span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">RecursionBinarySearch</span>&#123;<br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span>&#123;<br>		<span class="hljs-type">int</span>[] a = &#123;<span class="hljs-number">7</span>,<span class="hljs-number">13</span>,<span class="hljs-number">21</span>,<span class="hljs-number">30</span>,<span class="hljs-number">38</span>,<span class="hljs-number">44</span>,<span class="hljs-number">52</span>,<span class="hljs-number">53</span>&#125;;<br>		System.out.println(search(a, <span class="hljs-number">7</span>)); <span class="hljs-comment">//0</span><br>		System.out.println(search(a, <span class="hljs-number">13</span>));<span class="hljs-comment">//1</span><br>		System.out.println(search(a, <span class="hljs-number">21</span>));<span class="hljs-comment">//2</span><br>		System.out.println(search(a, <span class="hljs-number">53</span>));<span class="hljs-comment">//7</span><br>	&#125;<br><br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">int</span> <span class="hljs-title function_">search</span><span class="hljs-params">(<span class="hljs-type">int</span>[] a, <span class="hljs-type">int</span> target)</span>&#123;<br>		<span class="hljs-comment">//让调用者少传参数, 隐藏具体实现</span><br>		<span class="hljs-keyword">return</span> f(a, target, <span class="hljs-number">0</span>, a.length - <span class="hljs-number">1</span>);<br>	&#125;<br><br>	<span class="hljs-comment">/**</span><br><span class="hljs-comment">	* left和right不对外暴露，让调用者使用更简单</span><br><span class="hljs-comment">	* 返回目标索引</span><br><span class="hljs-comment">	* 找不到返回-1</span><br><span class="hljs-comment">	*/</span><br>	priavte <span class="hljs-keyword">static</span> <span class="hljs-type">int</span> <span class="hljs-title function_">f</span><span class="hljs-params">(<span class="hljs-type">int</span>[] a, <span class="hljs-type">int</span> target, <span class="hljs-type">int</span> left, <span class="hljs-type">int</span> right)</span>&#123;<br>		<span class="hljs-keyword">if</span>(left &gt; right) <span class="hljs-keyword">return</span> -<span class="hljs-number">1</span>; <span class="hljs-comment">//递归终止条件</span><br>		<span class="hljs-type">int</span> <span class="hljs-variable">m</span> <span class="hljs-operator">=</span> (left + right) &gt;&gt;&gt; <span class="hljs-number">1</span>;<br>		<span class="hljs-keyword">if</span>(target &lt; a[m])&#123;<br>			<span class="hljs-keyword">return</span> f(a, target, left, m - <span class="hljs-number">1</span>);<br>		&#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(a[m] &lt; target)&#123;<br>			<span class="hljs-keyword">return</span> f(a, targetm m + <span class="hljs-number">1</span>, right);<br>		&#125;<span class="hljs-keyword">else</span>&#123;<br>			<span class="hljs-keyword">return</span> m;<br>		&#125;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="冒泡排序0-n-2"><a href="#冒泡排序0-n-2" class="headerlink" title="冒泡排序0(n^2)"></a>冒泡排序0(n^2)</h2><p>以下是冒泡排序的实现原理步骤：</p>
+<ol>
+<li>从列表的第一个元素开始，比较它与下一个元素的大小。</li>
+<li>如果第一个元素大于第二个元素（逆序），则交换它们的位置。</li>
+<li>移动到下一个元素，重复步骤1和步骤2，直到列表的末尾。</li>
+<li>重复上述步骤，每次内部循环将最大的元素 “冒泡” 到列表的最后一个位置。</li>
+<li>外部循环减小待排序元素的范围，直到没有需要交换的元素为止，表示排序完成。</li>
+</ol>
+<p>冒泡排序的特点是每一轮内部循环都将当前未排序部分中的最大元素移动到了最后。这意味着在每一轮后，最后的元素都会是当前未排序部分的最大值。排序过程中，如果一轮内部循环没有发生任何交换，就可以提前结束排序，因为列表已经是有序的。</p>
+<p class="note note-info">
+用递归实现冒泡过程分析：<br>
+1.将数组划分成俩部分 [0..j]，[j+1 .. a.length-1]。<br>
+2.左边[0..j] 是未排序的部分。<br>
+3.右边[j+1 .. a.length-1]是已排序部分。<br>
+4.未排序区间内，相邻俩个元素比较，如果前一个大，则交换位置。
+</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">BubbleSort</span>&#123;<br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">sort</span><span class="hljs-params">(<span class="hljs-type">int</span>[] a)</span>&#123;<br>		bubble(a, a.length-<span class="hljs-number">1</span>);<br>	&#125;<br><br>	<span class="hljs-comment">//j 代表未排序区域的右边界</span><br>	<span class="hljs-comment">//bubble内部首先是递归结束条件，然后for循环是一次冒泡，然后调用自身</span><br>	<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">bubble</span><span class="hljs-params">(<span class="hljs-type">int</span>[] a, <span class="hljs-type">int</span> j)</span>&#123;<br>		<span class="hljs-keyword">if</span>(j == <span class="hljs-number">0</span>)&#123;<br>			<span class="hljs-keyword">return</span>;<br>		&#125;<br>		<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; j; i++)&#123;<br>			<span class="hljs-keyword">if</span>(a[i] &gt; a[i+<span class="hljs-number">1</span>])&#123;<br>				<span class="hljs-type">int</span> <span class="hljs-variable">t</span> <span class="hljs-operator">=</span> a[i];<br>				a[i] = a[i+<span class="hljs-number">1</span>];<br>				a[i+<span class="hljs-number">1</span>] = t;<br>			&#125;<br>		&#125;<br>		bubble(a, j-<span class="hljs-number">1</span>);<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h3><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202309201908139.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>这种情况下，未排序区域还很大，但是只需要在冒泡一次，把2和1交换就达到目的了，但是未排序边界 j 还没有到 0 ，会做很多无用功。尝试优化一下。</p>
+</blockquote>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202309201910581.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>可以搞一个 x ，初始为0，如果当次产生交换，就让所以 i 的索引赋给 x，如果没有产生交换，x 就保持上一次的不变，那么 x 就能当做无序和有序的边界了，下次递归就不用 j 去递减了。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">BubbleSort</span>&#123;<br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">sort</span><span class="hljs-params">(<span class="hljs-type">int</span>[] a)</span>&#123;<br>		bubble(a, a.length-<span class="hljs-number">1</span>);<br>	&#125;<br><br>	<span class="hljs-comment">//j 代表未排序区域的右边界</span><br>	<span class="hljs-comment">//bubble内部首先是递归结束条件，然后for循环是一次冒泡，然后调用自身</span><br>	<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">bubble</span><span class="hljs-params">(<span class="hljs-type">int</span>[] a, <span class="hljs-type">int</span> j)</span>&#123;<br>		<span class="hljs-keyword">if</span>(j == <span class="hljs-number">0</span>)&#123;<br>			<span class="hljs-keyword">return</span>;<br>		&#125;<br>		<span class="hljs-type">int</span> <span class="hljs-variable">x</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br>		<span class="hljs-keyword">for</span>(<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; j; i++)&#123;<br>			<span class="hljs-keyword">if</span>(a[i] &gt; a[i+<span class="hljs-number">1</span>])&#123;<br>				<span class="hljs-type">int</span> <span class="hljs-variable">t</span> <span class="hljs-operator">=</span> a[i];<br>				a[i] = a[i+<span class="hljs-number">1</span>];<br>				a[i+<span class="hljs-number">1</span>] = t;<br>				x = i;<br>			&#125;<br>		&#125;<br>		bubble(a, x);<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+<h2 id="插入排序O-n-2"><a href="#插入排序O-n-2" class="headerlink" title="插入排序O(n^2)"></a>插入排序O(n^2)</h2><p>它的工作方式优点像整理一手扑克牌，以下是插入排序的实现原理步骤：</p>
+<ol>
+<li>从第二个元素开始（索引为1），将当前元素视为待插入的元素。</li>
+<li>将待插入的元素与已排序部分的元素逐个比较，直到找到一个比待插入元素小的元素，或者已经遍历完已排序部分。</li>
+<li>将待插入元素插入到找到的位置，使得已排序部分仍然保持有序。</li>
+<li>重复上述步骤，逐个处理未排序部分的元素，直到整个列表都有序。</li>
+</ol>
+<p>插入排序的特点是在每一轮内部循环中，将当前未排序元素插入到已排序部分的合适位置，逐步扩展已排序部分。这使得已排序部分始终保持有序。插入排序适用于小型数据集或基本有序的数据集，因为它的时间复杂度为 O(n^2)，在大型数据集上性能较差。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs java"><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">sort</span><span class="hljs-params">(<span class="hljs-type">int</span>[] a)</span>&#123;<br>	insertion(a, <span class="hljs-number">1</span>);<br>&#125;<br><br><span class="hljs-comment">/*</span><br><span class="hljs-comment">用递归实现</span><br><span class="hljs-comment">low是未排序的左边界，从1开始</span><br><span class="hljs-comment">*/</span><br><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">insertion</span><span class="hljs-params">(<span class="hljs-type">int</span>[] a, <span class="hljs-type">int</span> low)</span>&#123;<br>	<span class="hljs-keyword">if</span>(low == a.length)&#123;<br>		<span class="hljs-keyword">return</span>;<br>	&#125;<br>	<span class="hljs-type">int</span> <span class="hljs-variable">t</span> <span class="hljs-operator">=</span> a[low];<br>	<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> low - <span class="hljs-number">1</span>;<span class="hljs-comment">//已排序区域指针</span><br>	<span class="hljs-keyword">while</span>(i&gt;=<span class="hljs-number">0</span> &amp;&amp; a[i]&gt;t)&#123;<span class="hljs-comment">//没有找到插入位置</span><br>		a[i+<span class="hljs-number">1</span>] = a[i];<span class="hljs-comment">//空出插入位置</span><br>		i--;<br>	&#125;<br>	<span class="hljs-comment">//找到插入位置</span><br>	a[i+<span class="hljs-number">1</span>] = t;<br><br>	insertion(a, low+<span class="hljs-number">1</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="斐波那契数列-多路递归"><a href="#斐波那契数列-多路递归" class="headerlink" title="斐波那契数列(多路递归)"></a>斐波那契数列(多路递归)</h2><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202309201931055.png" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Fibonacci</span>&#123;<br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">int</span> <span class="hljs-title function_">f</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span>&#123;<br>		<span class="hljs-keyword">if</span>(n == <span class="hljs-number">0</span>)&#123;<br>			<span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<br>		&#125;<br>		<span class="hljs-keyword">if</span>(n == <span class="hljs-number">1</span>)&#123;<br>			<span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>		&#125;<br><br>		<span class="hljs-type">int</span> <span class="hljs-variable">x</span> <span class="hljs-operator">=</span> f(n - <span class="hljs-number">1</span>);<br>		<span class="hljs-type">int</span> <span class="hljs-variable">y</span> <span class="hljs-operator">=</span> f(n - <span class="hljs-number">2</span>)；<br>		<span class="hljs-keyword">return</span> x + y;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p class="note note-danger">斐波那契是多路递归的典型案例，整个计算过程相当于二叉树了，其中很多重复的步骤，造成时间复杂度很差。</p>
+
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202309201934609.png" srcset="/img/loading.gif" lazyload></p>
+<p class="note note-success">可以看出，上面计算过程有很多重复，可以定义一个数组，存储 f(n) 的解，将来计算到哪一项的时候，如果数组有就直接从数组取，可以大大优化；<br>
+这种方式称为记忆法，也称为备忘录，其实就是剪枝的过程。<br>
+改进之后时间复杂度从O(1.68n)优化为O(n)。但因额外产生数组，这就是空间换时间。
+</p>
+
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202309201936305.png" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">int</span> <span class="hljs-title function_">fbonacci</span><span class="hljs-params">(<span class="hljs-type">int</span> n)</span>&#123;<br>	<span class="hljs-type">int</span>[] cache = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[n + <span class="hljs-number">1</span>];<br>	Arrays.fill(cache, -<span class="hljs-number">1</span>);<span class="hljs-comment">//都填充-1</span><br>	cache[<span class="hljs-number">0</span>] = <span class="hljs-number">0</span>;<br>	cache[<span class="hljs-number">1</span>] = <span class="hljs-number">1</span>;<br>	<span class="hljs-keyword">return</span> f(n, cache);<br>&#125;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">int</span> <span class="hljs-title function_">f</span><span class="hljs-params">(<span class="hljs-type">int</span> n, <span class="hljs-type">int</span>[] cache)</span>&#123;<br>	<span class="hljs-keyword">if</span>(cache[n] != -<span class="hljs-number">1</span>)&#123;<br>		<span class="hljs-keyword">return</span> cache[n];<br>	&#125;<br><br>	<span class="hljs-type">int</span> <span class="hljs-variable">x</span> <span class="hljs-operator">=</span> f(n-<span class="hljs-number">1</span>, cache);<br>	<span class="hljs-type">int</span> <span class="hljs-variable">y</span> <span class="hljs-operator">=</span> f(n-<span class="hljs-number">2</span>, cache);<br>	cache[n] = x + y;<span class="hljs-comment">//存入数组</span><br>	<span class="hljs-keyword">return</span> cache[n];<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="递归求和"><a href="#递归求和" class="headerlink" title="递归求和"></a>递归求和</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Sum</span>&#123;<br>	<span class="hljs-comment">//f(n) = f(n-1) + n;</span><br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-type">long</span> <span class="hljs-title function_">sum</span><span class="hljs-params">(<span class="hljs-type">long</span> n)</span>&#123;<br>		<span class="hljs-keyword">if</span>(n == <span class="hljs-number">1</span>)&#123;<br>			<span class="hljs-keyword">return</span> <span class="hljs-number">1</span>;<br>		&#125;<br>		<span class="hljs-keyword">return</span> sum(n-<span class="hljs-number">1</span>) + n;<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202309201948253.png" srcset="/img/loading.gif" lazyload></p>
+<p class="note note-danger">递归求和，属于单路递归，很容易就想到了思路，为什么贴上这个呢。可以把n等于15000试一下，就很发现为什么了。因为栈内存溢出了！也就是爆栈了！<br>只有最内层的sum(n = 1)的函数执行完了，才能一层一层往外归。也就是说递的过程必须递到最深处才能归！！！每个方法调用是需要消耗内存的，需要存储方法的相关信息，比如说方法的参数信息，方法内的局部变量，方法的返回地址，这些信息都需要存放在栈内存中，在最内层n = 1没有结束之前，前面14999个方法都需要等着！！它们占用的内存也不能得到释放。所以会导致占内存溢出。</p>
+
+<h3 id="尾调用-amp-尾递归"><a href="#尾调用-amp-尾递归" class="headerlink" title="尾调用&amp;尾递归"></a>尾调用&amp;尾递归</h3><p class="note note-success">
+在解决爆栈问题之前，需要掌握几个其他知识。<br>
+尾调用：如果函数的最后一步是调用一个函数，称为尾调用。<br>
+尾递归：在函数内部最后调用自己，称为尾递归。<br>
+能对尾递归优化的语言有c++、scala，它们会把逐级递归的方式改成平级的形式。scala也属于java的近亲，也是编译成class类在JVM上运行，有幸了解过一些。<br>
+当然，从根本上避免爆栈问题，就是避免使用递归。把递归代码改成循环代码。理论上所有递归都能改写成循环代码。
+</p>
+
+<p class="note note-secondary">经典白学，哈哈哈哈</p>
                 
               </div>
             
@@ -363,6 +466,8 @@
         <a href="/tags/%E9%80%92%E5%BD%92/">#递归</a>
       
         <a href="/tags/%E5%A4%9A%E8%B7%AF%E9%80%92%E5%BD%92/">#多路递归</a>
+      
+        <a href="/tags/%E5%B0%BE%E9%80%92%E5%BD%92/">#尾递归</a>
       
     </div>
   

@@ -27,10 +27,11 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://blog.13space.cn/img/data_math/index.png">
 <meta property="article:published_time" content="2018-07-19T11:20:14.000Z">
-<meta property="article:modified_time" content="2023-09-19T03:36:48.965Z">
+<meta property="article:modified_time" content="2023-09-20T06:33:33.801Z">
 <meta property="article:author" content="拾叁">
 <meta property="article:tag" content="数组">
 <meta property="article:tag" content="二维数组">
+<meta property="article:tag" content="函数式接口">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://blog.13space.cn/img/data_math/index.png">
   
@@ -271,7 +272,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          7 words
+          5.4k words
         
       </span>
     
@@ -282,7 +283,7 @@
         
         
         
-          1 mins
+          46 mins
         
       </span>
     
@@ -327,8 +328,85 @@
             
               <div class="markdown-body">
                 
-                <p>test111</p>
+                <blockquote>
+<p>在计算机科学中，数组是由一组元素(值或变量)组成的数据结构，每个元素有至少一个索引来标识；因为数组内元素是连续存储的，所以数组中的元素的地址，可以通过其索引计算出来，例如：<img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202309201048552.png" srcset="/img/loading.gif" lazyload></p>
+<p>数组的特点：随机访问。即根据索引查找元素，时间复杂度是O(1)。</p>
+</blockquote>
+<h2 id="自定义动态数组"><a href="#自定义动态数组" class="headerlink" title="自定义动态数组"></a>自定义动态数组</h2><p class="note note-info">
+数组是静态数组，不能够动态调整大小。Java是有提供好的动态数组，其实就是ArrayList，但目前是为了学习数据结构，下面自己来实现一个动态数组。
+</p>
 
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> org.example.datastructure;<br><br><span class="hljs-keyword">import</span> java.util.Arrays;<br><span class="hljs-keyword">import</span> java.util.Iterator;<br><span class="hljs-keyword">import</span> java.util.function.Consumer;<br><span class="hljs-keyword">import</span> java.util.stream.IntStream;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 动态数组</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">DynamicArray</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Iterable</span>&lt;Integer&gt; &#123;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> <span class="hljs-variable">size</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<span class="hljs-comment">//逻辑大小</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> <span class="hljs-variable">capacity</span> <span class="hljs-operator">=</span> <span class="hljs-number">8</span>;<span class="hljs-comment">//容量 ,java中arraylist默认是10</span><br><br>    <span class="hljs-comment">//    private int[] array = new int[capacity];//延迟加载</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-type">int</span>[] array = &#123;&#125;;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 添加元素到数组末尾</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> element 待添加的元素</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">addLast</span><span class="hljs-params">(<span class="hljs-type">int</span> element)</span> &#123;<br>        <span class="hljs-comment">//array[size] = element;</span><br>        <span class="hljs-comment">//size++;</span><br>        add(size, element);<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 添加元素到指定位置</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> index   索引位置</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> element 待添加的元素</span><br><span class="hljs-comment">     * 时间复杂度</span><br><span class="hljs-comment">     *    头部插入：O(n)</span><br><span class="hljs-comment">     *    中间插入：O(n)</span><br><span class="hljs-comment">     *    尾部插入：O(1)</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">add</span><span class="hljs-params">(<span class="hljs-type">int</span> index, <span class="hljs-type">int</span> element)</span> &#123;<br>        <span class="hljs-comment">//扩容检查</span><br>        checkAndGrow();<br>        <span class="hljs-comment">//检查index是否合法</span><br>        <span class="hljs-keyword">if</span> (index &lt; <span class="hljs-number">0</span> || index &gt; size) &#123;<br>            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">IndexOutOfBoundsException</span>(<span class="hljs-string">&quot;index:&quot;</span> + index + <span class="hljs-string">&quot;,size:&quot;</span> + size);<br>        &#125;<br>        <span class="hljs-comment">//拷贝，把目标index后的元素都往后移动一位</span><br>        System.arraycopy(array, index, array, index + <span class="hljs-number">1</span>, size - index);<br>        array[index] = element;<br>        size++;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 扩容检查</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">checkAndGrow</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">if</span> (size == <span class="hljs-number">0</span>) &#123;<br>            array = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[capacity];<br>        &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (size == capacity) &#123;<br>            <span class="hljs-comment">//扩容，1.5倍、1.618倍、2倍：建议这些</span><br>            capacity += capacity &gt;&gt; <span class="hljs-number">1</span>;<br>            <span class="hljs-type">int</span>[] newArray = <span class="hljs-keyword">new</span> <span class="hljs-title class_">int</span>[capacity];<br>            <span class="hljs-comment">//拷贝</span><br>            System.arraycopy(array, <span class="hljs-number">0</span>, newArray, <span class="hljs-number">0</span>, size);<br>            <span class="hljs-comment">//替换</span><br>            array = newArray;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 删除指定位置的元素</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> index</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span></span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">remove</span><span class="hljs-params">(<span class="hljs-type">int</span> index)</span> &#123;<span class="hljs-comment">//[0..size)</span><br>        <span class="hljs-type">int</span> <span class="hljs-variable">removed</span> <span class="hljs-operator">=</span> array[index];<br>        <span class="hljs-keyword">if</span> (index &lt; size - <span class="hljs-number">1</span>) &#123;<br>            <span class="hljs-comment">//拷贝，把目标index后的元素都往前移动一位</span><br>            System.arraycopy(array, index + <span class="hljs-number">1</span>, array, index, size - index - <span class="hljs-number">1</span>);<br>            size--;<br>        &#125;<br>        <span class="hljs-keyword">return</span> removed;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 查询指定位置的元素</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> index 索引</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * 时间复杂度：O(1)</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">int</span> <span class="hljs-title function_">get</span><span class="hljs-params">(<span class="hljs-type">int</span> index)</span> &#123;<span class="hljs-comment">// [0..size)</span><br>        <span class="hljs-keyword">return</span> array[index];<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 使用函数式接口Consumer,遍历数组，</span><br><span class="hljs-comment">     * 对每个元素执行consumer.accept(array[i])，令调用方执行自定义的操作</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> consumer</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">foreach</span><span class="hljs-params">(Consumer&lt;Integer&gt; consumer)</span> &#123;<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; size; i++) &#123;<br>            <span class="hljs-comment">// 提供array[i]</span><br>            <span class="hljs-comment">// 返回void</span><br>            consumer.accept(array[i]);<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 迭代器遍历</span><br><span class="hljs-comment">     * 实现Iterable接口，使得DynamicArray可以使用foreach语法</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> Iterator&lt;Integer&gt; <span class="hljs-title function_">iterator</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Iterator</span>&lt;Integer&gt;() &#123;<br>            <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> <span class="hljs-variable">index</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br><br>            <span class="hljs-meta">@Override</span><br>            <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">hasNext</span><span class="hljs-params">()</span> &#123;<br>                <span class="hljs-keyword">return</span> index &lt; size;<span class="hljs-comment">//index &lt; size表示还有元素</span><br>            &#125;<br><br>            <span class="hljs-meta">@Override</span><br>            <span class="hljs-keyword">public</span> Integer <span class="hljs-title function_">next</span><span class="hljs-params">()</span> &#123;<br>                <span class="hljs-keyword">return</span> array[index++];<br>            &#125;<br>        &#125;;<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 获取流对象</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> IntStream <span class="hljs-title function_">stream</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-keyword">return</span> IntStream.of(Arrays.copyOfRange(array, <span class="hljs-number">0</span>, size));<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="System-arraycopy"><a href="#System-arraycopy" class="headerlink" title="System.arraycopy"></a>System.arraycopy</h2><p class="note note-warning">
+注：
+System.arraycopy(Object src, int srcPos, Object dest, int destPos, int length);</br>
+- src：源数组，即要复制的数组。</br>
+- srcPos：源数组的起始位置，从源数组的哪个索引开始复制。</br>
+- dest：目标数组，即复制到的数组。</br>
+- destPos：目标数组的起始位置，复制到目标数组的哪个索引位置。</br>
+- length：要复制的元素数量。</br>
+</br>
+System.arrayCopy 的主要特点和注意事项：</br>
+1. **低级别操作：** 这是一种低级别的数组操作，直接在内存中复制数组内容，效率较高。
+    </br>
+2. **复制范围控制：** 你可以控制复制的范围，包括源数组的起始位置、目标数组的起始位置和要复制的元素数量。
+    </br>
+3. **原地复制：** 它允许在不创建新数组的情况下，将源数组的一部分复制到目标数组中，适用于需要在原地进行数据移动的情况。
+    </br>
+4. **数据类型检查：** `System.arrayCopy` 不会进行数据类型检查，因此要确保源和目标数组的数据类型一致，否则可能会导致运行时异常。
+    </br>
+5. **不会自动扩展：** 它不会自动扩展目标数组，如果目标数组长度不足以容纳复制的数据，会导致数组越界异常。
+    </br>
+6. **效率高：** 由于是底层操作，因此通常情况下比使用迭代或循环来复制数组要更高效
+</p>
+
+<h2 id="函数式接口"><a href="#函数式接口" class="headerlink" title="函数式接口"></a>函数式接口</h2><p class="note note-primary">这个很有趣，推荐平常多使用函数式接口来优化代码，这里总结汇总一下吧。</p>
+
+<h3 id="Runnable-和-Callable"><a href="#Runnable-和-Callable" class="headerlink" title="Runnable 和 Callable"></a>Runnable 和 Callable</h3><ul>
+<li><code>Runnable</code> 通常用于<strong>多线程编程，用于定义线程要执行的任务</strong>。它没有输入参数，也没有返回值。</li>
+<li><code>Callable</code> 类似于 <code>Runnable</code>，但<strong>允许任务返回结果</strong>。通常与线程池一起使用，可以获得任务执行的结果。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">// 使用Runnable创建线程任务</span><br><span class="hljs-type">Runnable</span> <span class="hljs-variable">runnable</span> <span class="hljs-operator">=</span> () -&gt; &#123;<br>    System.out.println(<span class="hljs-string">&quot;Hello from Runnable&quot;</span>);<br>&#125;;<br><span class="hljs-type">Thread</span> <span class="hljs-variable">thread</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(runnable);<br>thread.start();<br><br><span class="hljs-comment">// 使用Callable和ExecutorService获取线程任务的返回值</span><br>Callable&lt;Integer&gt; callable = () -&gt; &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-number">42</span>;<br>&#125;;<br><span class="hljs-type">ExecutorService</span> <span class="hljs-variable">executorService</span> <span class="hljs-operator">=</span> Executors.newSingleThreadExecutor();<br>Future&lt;Integer&gt; result = executorService.submit(callable);<br>System.out.println(<span class="hljs-string">&quot;Result from Callable: &quot;</span> + result.get());<br>executorService.shutdown();<br></code></pre></td></tr></table></figure>
+
+<h3 id="Comparator"><a href="#Comparator" class="headerlink" title="Comparator"></a>Comparator</h3><ul>
+<li><code>Comparator</code> 用于<strong>比较两个对象的顺序</strong>。它通常用于集合的排序操作。</li>
+<li>可以使用 <code>Comparator</code> 的 <code>comparing</code> 方法创建比较器，也可以使用 <code>reversed</code> 方法反转比较器的顺序。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java">List&lt;String&gt; names = Arrays.asList(<span class="hljs-string">&quot;Alice&quot;</span>, <span class="hljs-string">&quot;Bob&quot;</span>, <span class="hljs-string">&quot;Charlie&quot;</span>);<br>names.sort((s1, s2) -&gt; s1.compareTo(s2));<br><span class="hljs-comment">// 或者使用Comparator.comparing方法</span><br>names.sort(Comparator.comparing(String::length));<br></code></pre></td></tr></table></figure>
+
+<h3 id="Consumer"><a href="#Consumer" class="headerlink" title="Consumer"></a>Consumer</h3><ul>
+<li>直译有”消费者”的含义。</li>
+<li><code>Consumer</code> 用于<strong>接受一个参数并执行操作，通常没有返回值</strong>。它常用于集合的遍历和元素处理。</li>
+<li>可以使用 <code>andThen</code> 方法组合多个 <code>Consumer</code>，形成一个连续的操作链。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">List&lt;Integer&gt; numbers = Arrays.asList(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>);<br>Consumer&lt;Integer&gt; printSquare = (num) -&gt; System.out.println(num * num);<br>numbers.forEach(printSquare);<br></code></pre></td></tr></table></figure>
+
+<h3 id="Supplier"><a href="#Supplier" class="headerlink" title="Supplier"></a>Supplier</h3><ul>
+<li>直译有“供应者”的含义。</li>
+<li><code>Supplier</code> <strong>通常不接受参数，用于生成一个值</strong>。它可以用于延迟加载或惰性计算。</li>
+<li>可以在需要值的地方<strong>调用 <code>get</code> 方法来获取值</strong>。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">Supplier&lt;Double&gt; randomNumberSupplier = () -&gt; Math.random();<br><span class="hljs-type">double</span> <span class="hljs-variable">randomValue</span> <span class="hljs-operator">=</span> randomNumberSupplier.get();<br>System.out.println(<span class="hljs-string">&quot;Random Value: &quot;</span> + randomValue);<br></code></pre></td></tr></table></figure>
+
+<h3 id="Predicate"><a href="#Predicate" class="headerlink" title="Predicate"></a>Predicate</h3><ul>
+<li>直译有”谓语”的含义。</li>
+<li><code>Predicate</code> <strong>接受一个参数并返回布尔值，用于进行条件判断</strong>。它通常用于过滤和筛选数据。</li>
+<li>可以使用 <code>and</code>、<code>or</code> 和 <code>negate</code> 方法来组合多个谓词。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">List&lt;Integer&gt; numbers = Arrays.asList(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>);<br>Predicate&lt;Integer&gt; isEven = (num) -&gt; num % <span class="hljs-number">2</span> == <span class="hljs-number">0</span>;<br>List&lt;Integer&gt; evenNumbers = numbers.stream().filter(isEven).collect(Collectors.toList());<br></code></pre></td></tr></table></figure>
+
+<h3 id="Function"><a href="#Function" class="headerlink" title="Function"></a>Function</h3><ul>
+<li><code>Function</code> <strong>接受一个参数并返回一个值，用于将输入映射到输出</strong>。它通常用于数据转换和处理。</li>
+<li>可以使用 <code>andThen</code> 和 <code>compose</code> 方法来组合多个函数，形成一个函数链。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">Function&lt;Integer, String&gt; intToString = (i) -&gt; String.valueOf(i);<br><span class="hljs-type">String</span> <span class="hljs-variable">stringValue</span> <span class="hljs-operator">=</span> intToString.apply(<span class="hljs-number">42</span>);<br>System.out.println(<span class="hljs-string">&quot;String Value: &quot;</span> + stringValue);<br></code></pre></td></tr></table></figure>
+
+<h3 id="BiFunction"><a href="#BiFunction" class="headerlink" title="BiFunction"></a>BiFunction</h3><ul>
+<li><code>BiFunction</code> <strong>接受两个参数并返回一个值，用于处理两个输入并产生一个输出</strong>。它通常用于需要两个输入的操作。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">BiFunction&lt;Integer, Integer, Integer&gt; add = (a, b) -&gt; a + b;<br><span class="hljs-type">int</span> <span class="hljs-variable">sum</span> <span class="hljs-operator">=</span> add.apply(<span class="hljs-number">3</span>, <span class="hljs-number">5</span>);<br>System.out.println(<span class="hljs-string">&quot;Sum: &quot;</span> + sum);<br></code></pre></td></tr></table></figure>
                 
               </div>
             
@@ -364,6 +442,8 @@
         <a href="/tags/%E6%95%B0%E7%BB%84/">#数组</a>
       
         <a href="/tags/%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84/">#二维数组</a>
+      
+        <a href="/tags/%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3/">#函数式接口</a>
       
     </div>
   
