@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "8f3fa3a8248319d3",
+        "id": "b1102eff365018ce",
         "type": "tabs",
         "children": [
           {
-            "id": "b1231a24d9f1ac18",
+            "id": "328e8036e85dcdd1",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "通关微服务-sentinel.md",
+                "file": "数据结构和算法之旅（四）-队列.md",
                 "mode": "source",
                 "source": false
               }
@@ -69,7 +69,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 331.5
+    "width": 331.5,
+    "collapsed": true
   },
   "right": {
     "id": "d8ed194db2219337",
@@ -85,7 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "通关微服务-sentinel.md",
+                "file": "数据结构和算法之旅（四）-队列.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "通关微服务-sentinel.md",
+                "file": "数据结构和算法之旅（四）-队列.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,16 +126,16 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "通关微服务-sentinel.md"
+                "file": "数据结构和算法之旅（四）-队列.md"
               }
             }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -146,8 +147,18 @@
       "command-palette:打开命令面板": false
     }
   },
-  "active": "b1231a24d9f1ac18",
+  "active": "328e8036e85dcdd1",
   "lastOpenFiles": [
+    "Pasted image 20230920222652.png",
+    "Pasted image 20230920222416.png",
+    "数据结构和算法之旅（五）-栈.md",
+    "Pasted image 20230920220452.png",
+    "数据结构和算法之旅（四）-队列.md",
+    "数据结构和算法之旅（三）-递归.md",
+    "数据结构和算法之旅（二）-链表.md",
+    "数据结构和算法之旅（一）-数组.md",
+    "数据结构和算法之旅（零）-认识算法.md",
+    "通关微服务-sentinel.md",
     "云原生之DevOps.md",
     "云原生之kubeSphere.md",
     "云原生之k8s.md",
@@ -159,20 +170,12 @@
     "通关微服务-mysql.md",
     "通关微服务-redis.md",
     "通关微服务-seata.md",
-    "通关微服务-sentinel.md",
     "通关微服务-ELK.md",
     "通关微服务-SpringAMQP.md",
     "通关微服务-rabbitMQ.md",
     "通关微服务-gateway.md",
     "通关微服务-nacos.md",
     "通关微服务-dubbo.md",
-    "认识微服务体系.md",
-    "单体应用的困境.md",
-    "angular case.md",
-    "2020终章.md",
-    "备忘系列-docker.md",
-    "leetcode-自暴自弃MEDIUM合集.md",
-    "leetcode-相爱相杀EASY合集.md",
-    "备忘系列-maven使用指北.md"
+    "认识微服务体系.md"
   ]
 }
