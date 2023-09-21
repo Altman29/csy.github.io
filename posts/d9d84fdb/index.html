@@ -27,9 +27,14 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://blog.13space.cn/img/data_math/index.png">
 <meta property="article:published_time" content="2018-11-23T12:51:00.000Z">
-<meta property="article:modified_time" content="2023-09-19T03:37:53.761Z">
+<meta property="article:modified_time" content="2023-09-21T07:07:49.409Z">
 <meta property="article:author" content="拾叁">
 <meta property="article:tag" content="二叉树">
+<meta property="article:tag" content="深度优先遍历">
+<meta property="article:tag" content="广度优先遍历">
+<meta property="article:tag" content="前序">
+<meta property="article:tag" content="中序">
+<meta property="article:tag" content="后序">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://blog.13space.cn/img/data_math/index.png">
   
@@ -270,7 +275,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3 words
+          1.2k words
         
       </span>
     
@@ -281,7 +286,7 @@
         
         
         
-          1 mins
+          11 mins
         
       </span>
     
@@ -326,7 +331,29 @@
             
               <div class="markdown-body">
                 
-                <p>中大大</p>
+                <h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p class="note note-light">
+树中每个节点最多俩个子节点，不同于完全二叉树，不需要每层都满。
+</p>
+
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202309211458897.png" srcset="/img/loading.gif" lazyload></p>
+<p class="note note-secondary">
+这种数据结构表示方式有俩种：<br>
+一种是TreeNode。<br>
+一种是数组。
+</p>
+
+<h3 id="TreeNode"><a href="#TreeNode" class="headerlink" title="TreeNode"></a>TreeNode</h3><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202309211459204.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202309211459847.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="二叉树的遍历"><a href="#二叉树的遍历" class="headerlink" title="二叉树的遍历"></a>二叉树的遍历</h2><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202309211500904.png" srcset="/img/loading.gif" lazyload></p>
+<p class="note note-secondary">层序遍历即是广度优先遍历，需要配合队列实现。<br>
+注：<br>
+以队列来层序遍历时针对TreeNode这种方式表示的二叉树。<br>
+如果用数组形式实现二叉树，则直接遍历数组即可，自然为层序遍历。
+</p>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> org.example.datastructure.treetraversal;<br><br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * 递归方式遍历二叉树，前序、中序、后序</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">TreeTraversal</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        <span class="hljs-comment">/**</span><br><span class="hljs-comment">         *         1</span><br><span class="hljs-comment">         *       /  \</span><br><span class="hljs-comment">         *      2    3</span><br><span class="hljs-comment">         *    /     /\</span><br><span class="hljs-comment">         *   4      5  6</span><br><span class="hljs-comment">         *</span><br><span class="hljs-comment">         */</span><br><br>        <span class="hljs-type">TreeNode</span> <span class="hljs-variable">root</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">TreeNode</span>(<br>                <span class="hljs-keyword">new</span> <span class="hljs-title class_">TreeNode</span>(<br>                        <span class="hljs-keyword">new</span> <span class="hljs-title class_">TreeNode</span>(<span class="hljs-number">4</span>), <span class="hljs-number">2</span>, <span class="hljs-literal">null</span>), <span class="hljs-number">1</span>,<br>                <span class="hljs-keyword">new</span> <span class="hljs-title class_">TreeNode</span>(<span class="hljs-keyword">new</span> <span class="hljs-title class_">TreeNode</span>(<span class="hljs-number">5</span>), <span class="hljs-number">3</span>, <span class="hljs-keyword">new</span> <span class="hljs-title class_">TreeNode</span>(<span class="hljs-number">6</span>)<br>                )<br>        );<br><br>        System.out.println(<span class="hljs-string">&quot;前序遍历：&quot;</span>);<br>        preOrder(root);<br>        System.out.println(<span class="hljs-string">&quot;\n中序遍历：&quot;</span>);<br>        inOrder(root);<br>        System.out.println(<span class="hljs-string">&quot;\n后序遍历：&quot;</span>);<br>        postOrder(root);<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 前序遍历</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">preOrder</span><span class="hljs-params">(TreeNode node)</span> &#123;<br>        <span class="hljs-keyword">if</span> (node == <span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span>;<br>        System.out.print(node.val + <span class="hljs-string">&quot;\t&quot;</span>);<br>        preOrder(node.left);<br>        preOrder(node.right);<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 中序遍历</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">inOrder</span><span class="hljs-params">(TreeNode node)</span> &#123;<br>        <span class="hljs-keyword">if</span> (node == <span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span>;<br>        inOrder(node.left);<br>        System.out.print(node.val + <span class="hljs-string">&quot;\t&quot;</span>);<br>        inOrder(node.right);<br>    &#125;<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 后序遍历</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">postOrder</span><span class="hljs-params">(TreeNode node)</span> &#123;<br>        <span class="hljs-keyword">if</span> (node == <span class="hljs-literal">null</span>) <span class="hljs-keyword">return</span>;<br>        postOrder(node.left);<br>        postOrder(node.right);<br>        System.out.print(node.val + <span class="hljs-string">&quot;\t&quot;</span>);<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+
+
 
                 
               </div>
@@ -361,6 +388,16 @@
       <i class="iconfont icon-tags"></i>
       
         <a href="/tags/%E4%BA%8C%E5%8F%89%E6%A0%91/">#二叉树</a>
+      
+        <a href="/tags/%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E9%81%8D%E5%8E%86/">#深度优先遍历</a>
+      
+        <a href="/tags/%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E9%81%8D%E5%8E%86/">#广度优先遍历</a>
+      
+        <a href="/tags/%E5%89%8D%E5%BA%8F/">#前序</a>
+      
+        <a href="/tags/%E4%B8%AD%E5%BA%8F/">#中序</a>
+      
+        <a href="/tags/%E5%90%8E%E5%BA%8F/">#后序</a>
       
     </div>
   
