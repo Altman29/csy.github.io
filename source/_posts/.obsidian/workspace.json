@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "数据结构和算法之旅（四）-队列.md",
+                "file": "数据结构和算法之旅（九）-AVL树.md",
                 "mode": "source",
                 "source": false
               }
@@ -86,7 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "数据结构和算法之旅（四）-队列.md",
+                "file": "数据结构和算法之旅（九）-AVL树.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "数据结构和算法之旅（四）-队列.md",
+                "file": "数据结构和算法之旅（九）-AVL树.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -126,7 +126,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "数据结构和算法之旅（四）-队列.md"
+                "file": "数据结构和算法之旅（九）-AVL树.md"
               }
             }
           }
@@ -149,14 +149,18 @@
   },
   "active": "328e8036e85dcdd1",
   "lastOpenFiles": [
-    "Pasted image 20230920222652.png",
-    "Pasted image 20230920222416.png",
-    "数据结构和算法之旅（五）-栈.md",
-    "Pasted image 20230920220452.png",
+    "数据结构和算法之旅（八）-二叉搜索树.md",
+    "数据结构和算法之旅（七）-二叉树.md",
+    "数据结构和算法之旅（六）-堆.md",
     "数据结构和算法之旅（四）-队列.md",
-    "数据结构和算法之旅（三）-递归.md",
     "数据结构和算法之旅（二）-链表.md",
     "数据结构和算法之旅（一）-数组.md",
+    "数据结构和算法之旅（三）-递归.md",
+    "数据结构和算法之旅（五）-栈.md",
+    "Pasted image 20230921113254.png",
+    "Pasted image 20230920222652.png",
+    "Pasted image 20230920222416.png",
+    "Pasted image 20230920220452.png",
     "数据结构和算法之旅（零）-认识算法.md",
     "通关微服务-sentinel.md",
     "云原生之DevOps.md",
@@ -174,8 +178,6 @@
     "通关微服务-SpringAMQP.md",
     "通关微服务-rabbitMQ.md",
     "通关微服务-gateway.md",
-    "通关微服务-nacos.md",
-    "通关微服务-dubbo.md",
-    "认识微服务体系.md"
+    "通关微服务-nacos.md"
   ]
 }
