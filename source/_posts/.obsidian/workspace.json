@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "数据结构和算法之旅（十）-红黑树.md",
+                "file": "数据结构和算法之旅（十一）-B、B+树.md",
                 "mode": "source",
                 "source": false
               }
@@ -86,7 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "数据结构和算法之旅（十）-红黑树.md",
+                "file": "数据结构和算法之旅（十一）-B、B+树.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "数据结构和算法之旅（十）-红黑树.md",
+                "file": "数据结构和算法之旅（十一）-B、B+树.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -126,7 +126,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "数据结构和算法之旅（十）-红黑树.md"
+                "file": "数据结构和算法之旅（十一）-B、B+树.md"
               }
             }
           }
@@ -149,6 +149,9 @@
   },
   "active": "328e8036e85dcdd1",
   "lastOpenFiles": [
+    "Pasted image 20230923150631.png",
+    "D0BF0629C43E3DC46CBE9DD54F4E453C.png",
+    "数据结构和算法之旅（十）-红黑树.md",
     "Pasted image 20230922152849.png",
     "数据结构和算法之旅（九）-AVL树.md",
     "数据结构和算法之旅（八）-二叉搜索树.md",
@@ -177,7 +180,6 @@
     "通关微服务-redis.md",
     "通关微服务-seata.md",
     "通关微服务-ELK.md",
-    "通关微服务-SpringAMQP.md",
-    "通关微服务-rabbitMQ.md"
+    "通关微服务-SpringAMQP.md"
   ]
 }
