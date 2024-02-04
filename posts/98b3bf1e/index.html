@@ -18,16 +18,16 @@
   <meta name="author" content="拾叁">
   <meta name="keywords" content="排序算法">
   
-    <meta name="description" content="排序算法汇总：冒泡排序、选择排序、堆排序、插入排序、希尔排序、归并排序、单边快排、双边快排、计数排序、桶排序、基数排序。震惊！好多排序算法要看啊。">
+    <meta name="description" content="算法图解图书笔记。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="数据结构和算法之旅（拾叁）- 排序算法">
+<meta property="og:title" content="数据结构和算法之旅（十二）- 排序算法">
 <meta property="og:url" content="https://blog.13space.cn/posts/98b3bf1e/index.html">
 <meta property="og:site_name" content="拾叁的小破站">
-<meta property="og:description" content="排序算法汇总：冒泡排序、选择排序、堆排序、插入排序、希尔排序、归并排序、单边快排、双边快排、计数排序、桶排序、基数排序。震惊！好多排序算法要看啊。">
+<meta property="og:description" content="算法图解图书笔记。">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://blog.13space.cn/img/data_math/index.png">
 <meta property="article:published_time" content="2019-01-25T07:23:29.000Z">
-<meta property="article:modified_time" content="2023-09-19T03:38:46.009Z">
+<meta property="article:modified_time" content="2024-02-04T09:50:31.531Z">
 <meta property="article:author" content="拾叁">
 <meta property="article:tag" content="排序算法">
 <meta name="twitter:card" content="summary_large_image">
@@ -37,7 +37,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>数据结构和算法之旅（拾叁）- 排序算法 - 拾叁的小破站</title>
+  <title>数据结构和算法之旅（十二）- 排序算法 - 拾叁的小破站</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -242,7 +242,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="数据结构和算法之旅（拾叁）- 排序算法"></span>
+            <span id="subtitle" data-typed-text="数据结构和算法之旅（十二）- 排序算法"></span>
           
         </div>
 
@@ -270,7 +270,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          10 words
+          1.7k words
         
       </span>
     
@@ -281,7 +281,7 @@
         
         
         
-          1 mins
+          15 mins
         
       </span>
     
@@ -321,12 +321,81 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">数据结构和算法之旅（拾叁）- 排序算法</h1>
+            <h1 style="display: none">数据结构和算法之旅（十二）- 排序算法</h1>
             
             
               <div class="markdown-body">
                 
-                <p>班上的哪说的代收代付</p>
+                <blockquote>
+<p>最近看到一本很有趣的书，《算法图解》。对一些算法描述的非常清晰、直观、有趣。这里简单记录一些读书笔记。</p>
+</blockquote>
+<h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><p>假设你的计算机存储了很多乐曲。对于每个乐队，你都记录了其作品被播放的次数。</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202402041629883.png" srcset="/img/loading.gif" lazyload></p>
+<p>你要将这个列表按播放次数从多到少的顺序排列，从而将你喜欢的乐队排序。该如何做呢？一种办法是遍历这个列表，找出作品播放次数最多的乐队，并将该乐队添加到一个新列表中。</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202402041630942.png" srcset="/img/loading.gif" lazyload><br>继续这样做，找出播放次数第二多的乐队。</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202402041631736.png" srcset="/img/loading.gif" lazyload></p>
+<p>继续这样做，将得到一个有序的列表。</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202402041631559.png" srcset="/img/loading.gif" lazyload></p>
+<p>接下来，分析一下它时间复杂度。要找出播放次数最多的乐队，必须检查列表中的每个元素。正如你刚才看到的，这需要的时间为O(n)。因此对于这种时间为O(n)的操作，你需要执行n次。</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202402041634338.png" srcset="/img/loading.gif" lazyload><br>需要的总时间为O(n×n)，即O(n²)。</p>
+<p>排序算法很有用。你现在可以对如下内容进行排序：</p>
+<ul>
+<li>电话薄中的人名</li>
+<li>旅行日期</li>
+<li>电子邮件，从新到旧</li>
+<li>等等</li>
+</ul>
+<p>示例代码</p>
+<p>将数组元素按从小到大的顺序排列。先编写一个用于找出数组中最小元素的函数。</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202402041639433.png" srcset="/img/loading.gif" lazyload></p>
+<p>现在可以使用这个函数来编写选择排序算法了。</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202402041640898.png" srcset="/img/loading.gif" lazyload></p>
+<p>选择排序是一种灵巧的算法，但是速度不是很快。快速排序是一种更快的排序算法，其运行时间为O(n log n)。</p>
+<h2 id="分而治之D-amp-C"><a href="#分而治之D-amp-C" class="headerlink" title="分而治之D&amp;C"></a>分而治之D&amp;C</h2><blockquote>
+<p>一种著名的递归式问题解决方法。</p>
+<p>分而治之的原理：<br>1.找出简单的基线条件；<br>2.确定如何缩小问题的规模，使其符合基线条件；<br>D&amp;C并非用于解决问题的算法，而是一种解决问题的思路。</p>
+</blockquote>
+<p>一个简单的例子，给定一个数组，</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202402041646083.png" srcset="/img/loading.gif" lazyload><br>需要将这些数字相加，并返回结果。使用循环很容易完成这种任务。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs python">defsum(arr): <br>	total=<span class="hljs-number">0</span> <br>	forx <span class="hljs-keyword">in</span> arr: <br>		total+= x <br>		<span class="hljs-keyword">return</span> total <br><span class="hljs-built_in">print</span> <span class="hljs-built_in">sum</span>([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>])<br></code></pre></td></tr></table></figure>
+
+
+<p>但如何使用递归函数来完成这种任务呢？</p>
+<p><strong>第一步</strong>：找出基线条件。最简单的数组什么样呢？请想想这个问题，再接着往下读。如果数组不包含任何元素或只包含一个元素，计算总和将非常容易。</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202402041649064.png" srcset="/img/loading.gif" lazyload><br>因此，这就是基线条件。</p>
+<p><strong>第二步</strong>：每次递归调用都必须离空数组更近一步。如何缩小问题的规模呢？下面是一种办法。</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202402041650285.png" srcset="/img/loading.gif" lazyload></p>
+<p>这两个版本的结果都为12，但在第二个版本中，给函数sum传递的数组更短。换言之，这缩小了问题的规模！</p>
+<p>函数sum的工作原理类似于下面这样。</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202402041651529.png" srcset="/img/loading.gif" lazyload></p>
+<p>这个函数的运行过程如下。</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202402041651359.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h2><blockquote>
+<p>快速排序是一种常用的排序算法，比选择排序快得多。例如，C语言标准库中的函数qsort实现的就是快速排序。快速排序也使用了D&amp;C。</p>
+</blockquote>
+<p>下面来使用快速排序对数组进行排序。对排序算法来说，最简单的数组什么样呢？还记得前一节的“提示”吗？就是根本不需要排序的数组。</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202402041657372.png" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">def</span> <span class="hljs-title function_">quicksort</span>(<span class="hljs-params">array</span>): <br>	<span class="hljs-keyword">if</span> <span class="hljs-built_in">len</span>(array)&lt;<span class="hljs-number">2</span>: <br>		<span class="hljs-keyword">return</span> array<br></code></pre></td></tr></table></figure>
+
+<p>因此，基线条件为数组为空或只包含<strong>一</strong>个元素。在这种情况下，只需原样返回数组——根本就不用排序。</p>
+<p>我们来看看更长的数组。对包含<strong>两</strong>个元素的数组进行排序也很容易。</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202402041659123.png" srcset="/img/loading.gif" lazyload><br>包含三个元素的数组呢？</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202402041700889.png" srcset="/img/loading.gif" lazyload></p>
+<p>别忘了，你要使用D&amp;C，因此需要将数组分解，直到满足基线条件。下面介绍<strong>快速排序的工作原理</strong>。首先，从数组中<strong>选择一个元素</strong>，这个元素被称为<strong>基准值</strong>(pivot)。稍后再介绍如何选择合适的基准值。我们暂时将数组的第一个元素用作基准值。接下来，找出比基准值小的元素以及比基准值大的元素。</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202402041701782.png" srcset="/img/loading.gif" lazyload><br><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202402041701748.png" srcset="/img/loading.gif" lazyload></p>
+<p>这被称为分区(partitioning)。现在你有：</p>
+<ul>
+<li>一个由所有小于基准值的数字组成的子数组；</li>
+<li>基准值；</li>
+<li>一个由所有大于基准值的数组组成的子数组。</li>
+</ul>
+<p>这里只是进行了分区，得到的两个子数组是无序的。但如果这两个数组是有序的，对整个数组进行排序将非常容易。</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202402041702668.png" srcset="/img/loading.gif" lazyload></p>
+<p>如果子数组是有序的，就可以像下面这样合并得到一个有序的数组：左边的数组+基准值+右边的数组。在这里，就是[10,15]+[33]+[]，结果为有序数组[10,15,33]。</p>
+<p>如何对子数组进行排序呢？对于包含两个元素的数组（左边的子数组）以及空数组（右边的子数组），快速排序知道如何将它们排序，因此只要对这两个子数组进行快速排序，再合并结果，就能得到一个有序数组！</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202402041704511.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202402041705539.png" srcset="/img/loading.gif" lazyload></p>
+<p>快速排序的性能高度依赖于你选择的基准值。假设你总是将第一个元素用作基准值，且要处理的数组是有序的。由于快速排序算法不检查输入数组是否有序，因此它依然尝试对其进行排序。最糟糕的情况运行时间是O(n²)。</p>
 
                 
               </div>
@@ -372,7 +441,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>数据结构和算法之旅（拾叁）- 排序算法</div>
+      <div>数据结构和算法之旅（十二）- 排序算法</div>
       <div>https://blog.13space.cn/posts/98b3bf1e/</div>
     </div>
     <div class="license-meta">
@@ -427,8 +496,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/posts/3cbe22a9/" title="数据结构和算法之旅（十二）- 哈希表">
-                        <span class="hidden-mobile">数据结构和算法之旅（十二）- 哈希表</span>
+                      <a href="/posts/3cbe22a9/" title="数据结构和算法之旅（十一）- 哈希表">
+                        <span class="hidden-mobile">数据结构和算法之旅（十一）- 哈希表</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
