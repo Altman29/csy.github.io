@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "重拾设计模式（一）.md",
+                "file": "重拾设计模式（二）.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "重拾设计模式（一）.md",
+                "file": "重拾设计模式（二）.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "重拾设计模式（一）.md",
+                "file": "重拾设计模式（二）.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "重拾设计模式（一）.md"
+                "file": "重拾设计模式（二）.md"
               }
             }
           }
@@ -149,8 +149,10 @@
   "active": "a6d87e143040f394",
   "lastOpenFiles": [
     "重拾设计模式（三）.md",
-    "重拾设计模式（一）.md",
     "重拾设计模式（二）.md",
+    "重拾设计模式（一）.md",
+    "Pasted image 20240220161508.png",
+    "Pasted image 20240220154351.png",
     "重拾设计模式（零）-朝花夕拾.md",
     "数据结构和算法之旅（十二）-其他.md",
     "数据结构和算法之旅（零）-认识算法.md",
@@ -178,10 +180,8 @@
     "D0BF0629C43E3DC46CBE9DD54F4E453C.png",
     "Pasted image 20230923150631.png",
     "Pasted image 20231111164256.png",
-    "Pasted image 20231111163912.png",
     "通关微服务-dubbo.md",
     "云原生之DevOps.md",
-    "备忘系列-zookeeper.md",
-    "备忘系列-nginx.md"
+    "备忘系列-zookeeper.md"
   ]
 }
