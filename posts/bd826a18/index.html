@@ -18,16 +18,16 @@
   <meta name="author" content="拾叁">
   <meta name="keywords" content="行为型模式;">
   
-    <meta name="description" content="关注对象之间的通信、协作和责任分配，用于定义对象的行为，提高系统的灵活性、可扩展性，以及对象之间的松耦合。">
+    <meta name="description" content="补充">
 <meta property="og:type" content="article">
-<meta property="og:title" content="重拾设计模式（三）- 行为型模式*11">
+<meta property="og:title" content="重拾设计模式（三）">
 <meta property="og:url" content="https://blog.13space.cn/posts/bd826a18/index.html">
 <meta property="og:site_name" content="拾叁的小破站">
-<meta property="og:description" content="关注对象之间的通信、协作和责任分配，用于定义对象的行为，提高系统的灵活性、可扩展性，以及对象之间的松耦合。">
+<meta property="og:description" content="补充">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://blog.13space.cn/img/design_pattern/designpattern.png">
 <meta property="article:published_time" content="2019-04-16T11:06:03.000Z">
-<meta property="article:modified_time" content="2023-09-19T03:39:41.468Z">
+<meta property="article:modified_time" content="2024-02-20T07:34:01.660Z">
 <meta property="article:author" content="拾叁">
 <meta property="article:tag" content="行为型模式">
 <meta name="twitter:card" content="summary_large_image">
@@ -37,7 +37,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>重拾设计模式（三）- 行为型模式*11 - 拾叁的小破站</title>
+  <title>重拾设计模式（三） - 拾叁的小破站</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -242,7 +242,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="重拾设计模式（三）- 行为型模式*11"></span>
+            <span id="subtitle" data-typed-text="重拾设计模式（三）"></span>
           
         </div>
 
@@ -270,7 +270,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          18 words
+          1.3k words
         
       </span>
     
@@ -281,7 +281,7 @@
         
         
         
-          1 mins
+          11 mins
         
       </span>
     
@@ -321,13 +321,67 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">重拾设计模式（三）- 行为型模式*11</h1>
+            <h1 style="display: none">重拾设计模式（三）</h1>
             
             
               <div class="markdown-body">
                 
-                <p>design_pattern<br>1111</p>
-
+                <h2 id="策略模式"><a href="#策略模式" class="headerlink" title="策略模式"></a>策略模式</h2><blockquote>
+<p>实现一个商场收银软件，营业员根据客户购买的商品单价和数量收费。</p>
+</blockquote>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202402201056028.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202402201057372.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>如果要去商场对商品搞活动，所有商品打八折呢。<br>那不就是totalPrices后面乘以0.8么？<br>那难道商场活动结束了，再改造一次代码么？然后再用改后的程序把所有机器全部安装一次么？还有可能周年庆，打五折的情况，如何处理？<br>那再加一个下拉框，选择商品活动呢？</p>
+</blockquote>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202402201100218.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202402201059095.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>这比刚才灵活性上是好多了，不过重复代码很多，像Convert.ToDouble()，你这里就写了8遍，而且4个分支要执行的语句除了打折多少以外几乎没什么不同，应该考虑重构一下。不过这还不是最主要的，现在我的需求又来了，商场的活动加大，需要有满300返100的促销算法，怎么办？</p>
+</blockquote>
+<h3 id="简单工厂实现"><a href="#简单工厂实现" class="headerlink" title="简单工厂实现"></a>简单工厂实现</h3><blockquote>
+<p>面向对象的编程，并不是类越多越好，类的划分是为了封装，但分类的基础是抽象，具有相同属性和功能的对象的抽象集合才是类。打一折和打九折只是形式的不同，抽象分析出来，所有的打折算法都是一样的，所以打折算法应该是一个类。好了，空话已说了太多，写出来才是真的懂。</p>
+</blockquote>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202402201104978.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202402201105121.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202402201105619.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202402201105338.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202402201105903.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202402201106421.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202402201106166.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>简单工厂模式虽然也能解决这个问题，但这个模式只是解决对象的创建问题，而且由于工厂本身包括了所有的收费方式，商场是可能经常性地更改打折额度和返利额度，每次维护或扩展收费方式都要改动这个工厂，以致代码需重新编译部署，这真的是很糟糕的处理方式，所以用它不是最好的办法。面对算法的时常变动，应该有更好的办法。</p>
+</blockquote>
+<h3 id="策略模式实现"><a href="#策略模式实现" class="headerlink" title="策略模式实现"></a>策略模式实现</h3><blockquote>
+<p>策略模式（Strategy）：它定义了算法家族，分别封装起来，让它们之间可以互相替换，此模式让算法的变化，不会影响到使用算法的客户。</p>
+</blockquote>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202402201114498.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202402201115485.png" srcset="/img/loading.gif" lazyload><br><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202402201115807.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202402201115497.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202402201116484.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>写的CashSuper就是抽象策略，而正常收费CashNormal、打折收费CashRebate和返利收费CashReturn就是三个具体策略，也就是策略模式中说的具体算法。</p>
+<p>模仿策略模式的基本代码，改写一下你的程序。<br>其实不麻烦，原来写的CashSuper、CashNormal、CashRebate和CashReturn都不用更改了，只要加一个CashContext类，并改写一下客户端就行了。</p>
+</blockquote>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202402201118128.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202402201119104.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202402201119863.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>代码是模仿着写出来了。但我感觉这样子做不又回到了原来的老路了吗，在客户端去判断用哪一个算法？<br>有没有什么好办法，把这个判断的过程从客户端程序转移走呢？<br>难道简单工厂就一定要是一个单独的类吗？难道不可以与策略模式的Context结合？</p>
+</blockquote>
+<h3 id="策略与简单工厂结合"><a href="#策略与简单工厂结合" class="headerlink" title="策略与简单工厂结合"></a>策略与简单工厂结合</h3><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202402201121336.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202402201122776.png" srcset="/img/loading.gif" lazyload></p>
+<blockquote>
+<p>原来简单工厂模式并非只有建一个工厂类的做法，还可以这样子做。此时比刚才的模仿策略模式的写法要清楚多了，客户端代码简单明了。</p>
+</blockquote>
+<blockquote>
+<p>观察一下，找出它们的不同之处。<br><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202402201123227.png" srcset="/img/loading.gif" lazyload></p>
+</blockquote>
+<blockquote>
+<p>简单工厂模式我需要让客户端认识两个类， CashSuper和CashFactory，而策略模式与简单工厂结合的用法，客户端就只需要认识一个类CashContext就可以了。耦合更加降低。</p>
+<p>在客户端实例化的是CashContext的对象，调用的是CashContext的方法GetResult，这使得具体的收费算法彻底地与客户端分离。连算法的父类CashSuper都不让客户端认识了。</p>
+</blockquote>
+<h2 id="观察者模式"><a href="#观察者模式" class="headerlink" title="观察者模式"></a>观察者模式</h2><h2 id="命令模式"><a href="#命令模式" class="headerlink" title="命令模式"></a>命令模式</h2><h2 id="模板方法模式"><a href="#模板方法模式" class="headerlink" title="模板方法模式"></a>模板方法模式</h2><h2 id="状态模式"><a href="#状态模式" class="headerlink" title="状态模式"></a>状态模式</h2><h2 id="责任链模式"><a href="#责任链模式" class="headerlink" title="责任链模式"></a>责任链模式</h2><h2 id="解释器模式"><a href="#解释器模式" class="headerlink" title="解释器模式"></a>解释器模式</h2><h2 id="中介者模式"><a href="#中介者模式" class="headerlink" title="中介者模式"></a>中介者模式</h2><h2 id="访问者模式"><a href="#访问者模式" class="headerlink" title="访问者模式"></a>访问者模式</h2><h2 id="备忘录模式"><a href="#备忘录模式" class="headerlink" title="备忘录模式"></a>备忘录模式</h2>
                 
               </div>
             
@@ -372,7 +426,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>重拾设计模式（三）- 行为型模式*11</div>
+      <div>重拾设计模式（三）</div>
       <div>https://blog.13space.cn/posts/bd826a18/</div>
     </div>
     <div class="license-meta">
@@ -427,8 +481,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/posts/509408b0/" title="重拾设计模式（二）- 结构型模式*7">
-                        <span class="hidden-mobile">重拾设计模式（二）- 结构型模式*7</span>
+                      <a href="/posts/509408b0/" title="重拾设计模式（二）">
+                        <span class="hidden-mobile">重拾设计模式（二）</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
