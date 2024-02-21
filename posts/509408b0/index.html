@@ -18,16 +18,16 @@
   <meta name="author" content="拾叁">
   <meta name="keywords" content="结构性模式;">
   
-    <meta name="description" content="大话设计模式读书笔记(下)">
+    <meta name="description" content="结构性型设计模式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="重拾设计模式（二）">
 <meta property="og:url" content="https://blog.13space.cn/posts/509408b0/index.html">
 <meta property="og:site_name" content="拾叁的小破站">
-<meta property="og:description" content="大话设计模式读书笔记(下)">
+<meta property="og:description" content="结构性型设计模式">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://blog.13space.cn/img/design_pattern/designpattern.png">
 <meta property="article:published_time" content="2019-03-02T09:26:19.000Z">
-<meta property="article:modified_time" content="2024-02-20T13:27:20.240Z">
+<meta property="article:modified_time" content="2024-02-21T05:58:14.983Z">
 <meta property="article:author" content="拾叁">
 <meta property="article:tag" content="结构性模式">
 <meta name="twitter:card" content="summary_large_image">
@@ -335,10 +335,9 @@
 <p>适配器模式有<strong>类的适配器模式</strong>和<strong>对象的适配器模式</strong>两种不同的形式。</p>
 <h3 id="类的适配器模式"><a href="#类的适配器模式" class="headerlink" title="类的适配器模式"></a>类的适配器模式</h3><p class="note note-primary">类的适配器模式把适配的类的API转换成为目标类的API。</p>
 
+
 <p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202402201630926.png" srcset="/img/loading.gif" lazyload></p>
-<blockquote>
 <p>在上图中可以看出，Adaptee类并没有sampleOperation2()方法，而客户端则期待这个方法。为使客户端能够使用Adaptee类，提供一个中间环节，即类Adapter，把Adaptee的API与Target类的API衔接起来。Adapter与Adaptee是继承关系，这决定了这个适配器模式是类的。</p>
-</blockquote>
 <p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202402201631845.png" srcset="/img/loading.gif" lazyload></p>
 <p><strong>Target</strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">Target</span> &#123;<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 这是源类Adaptee也有的方法</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">sampleOperation1</span><span class="hljs-params">()</span>; <br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 这是源类Adapteee没有的方法</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">sampleOperation2</span><span class="hljs-params">()</span>; <br>&#125;<br></code></pre></td></tr></table></figure>
@@ -353,11 +352,9 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Adapter</span> <span class="hljs-keyword">extends</span> <span class="hljs-title class_">Adaptee</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">Target</span> &#123;<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 由于源类Adaptee没有方法sampleOperation2()</span><br><span class="hljs-comment">     * 因此适配器补充上这个方法</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">sampleOperation2</span><span class="hljs-params">()</span> &#123;<br>        <span class="hljs-comment">//写相关的代码</span><br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h3 id="对象的适配器模式"><a href="#对象的适配器模式" class="headerlink" title="对象的适配器模式"></a>对象的适配器模式</h3><p class="note note-primary">与类的适配器模式一样，对象的适配器模式把被适配的类的API转换成为目标类的API，与类的适配器模式不同的是，对象的适配器模式不是使用继承关系连接到Adaptee类，而是使用委派关系连接到Adaptee类</p>
-![](https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202402201634934.png)
 
-<blockquote>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202402201634934.png" srcset="/img/loading.gif" lazyload></p>
 <p>从上图可以看出，Adaptee类并没有sampleOperation2()方法，而客户端则期待这个方法。为使客户端能够使用Adaptee类，需要提供一个包装(Wrapper)类Adapter。这个包装类包装了一个Adaptee的实例，从而此包装类能够把Adaptee的API与Target类的API衔接起来。Adapter与Adaptee是委派关系，这决定了适配器模式是对象的。</p>
-</blockquote>
 <p><strong>Target</strong></p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">Target</span> &#123;<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 这是源类Adaptee也有的方法</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">sampleOperation1</span><span class="hljs-params">()</span>; <br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * 这是源类Adapteee没有的方法</span><br><span class="hljs-comment">     */</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">sampleOperation2</span><span class="hljs-params">()</span>; <br>&#125;<br></code></pre></td></tr></table></figure>
 
