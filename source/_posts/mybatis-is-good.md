@@ -1,5 +1,5 @@
 ---
-title: mybatis is good. And plus is better.
+title: mybatis is good.
 tags:
   - mybatis
   - mybatis-plus
