@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "重构法则节选-下.md",
+                "file": "认识微服务体系.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "重构法则节选-下.md",
+                "file": "认识微服务体系.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "重构法则节选-下.md",
+                "file": "认识微服务体系.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "重构法则节选-下.md"
+                "file": "认识微服务体系.md"
               }
             }
           }
@@ -148,8 +148,11 @@
   },
   "active": "60b66de191b8374f",
   "lastOpenFiles": [
-    "重构法则节选-上.md",
+    "单体应用的困境.md",
+    "认识微服务体系.md",
+    "vue&elementUI使用总结.md",
     "重构法则节选-下.md",
+    "重构法则节选-上.md",
     "docker.md",
     "备忘系列-swagger.md",
     "maven使用教程.md",
@@ -173,9 +176,6 @@
     "备忘系列-netty.md",
     "备忘系列-mongodb.md",
     "备忘系列-solr.md",
-    "备忘系列-xxl-job.md",
-    "通关微服务-mysql.md",
-    "通关微服务-redis.md",
     "attachment",
     "Pasted image 20240220161508.png",
     "Pasted image 20240304181242.png",
