@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "git使用指北.md",
+                "file": "maven使用教程.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "git使用指北.md",
+                "file": "maven使用教程.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "git使用指北.md",
+                "file": "maven使用教程.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "git使用指北.md"
+                "file": "maven使用教程.md"
               }
             }
           }
@@ -148,8 +148,9 @@
   },
   "active": "60b66de191b8374f",
   "lastOpenFiles": [
-    "jenkins自动化与持续集成.md",
     "git使用指北.md",
+    "maven使用教程.md",
+    "jenkins自动化与持续集成.md",
     "mybatis and plus.md",
     "Pasted image 20240314222410.png",
     "Pasted image 20240314184223.png",
@@ -175,7 +176,6 @@
     "通关微服务-sentinel.md",
     "通关微服务-ELK.md",
     "通关微服务-SpringAMQP.md",
-    "通关微服务-gateway.md",
     "attachment",
     "Pasted image 20240220161508.png",
     "Pasted image 20240304181242.png",
