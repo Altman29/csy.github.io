@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "mybatis and plus.md",
+                "file": "git使用指北.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "mybatis and plus.md",
+                "file": "git使用指北.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "mybatis and plus.md",
+                "file": "git使用指北.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "mybatis and plus.md"
+                "file": "git使用指北.md"
               }
             }
           }
@@ -148,6 +148,9 @@
   },
   "active": "60b66de191b8374f",
   "lastOpenFiles": [
+    "jenkins自动化与持续集成.md",
+    "git使用指北.md",
+    "mybatis and plus.md",
     "Pasted image 20240314222410.png",
     "Pasted image 20240314184223.png",
     "Spring深入理解.md",
@@ -173,8 +176,6 @@
     "通关微服务-ELK.md",
     "通关微服务-SpringAMQP.md",
     "通关微服务-gateway.md",
-    "通关微服务-nacos.md",
-    "通关微服务-dubbo.md",
     "attachment",
     "Pasted image 20240220161508.png",
     "Pasted image 20240304181242.png",
@@ -183,7 +184,6 @@
     "Pasted image 20230920222416.png",
     "Pasted image 20230920222652.png",
     "Pasted image 20230921113254.png",
-    "Pasted image 20230922152849.png",
-    "D0BF0629C43E3DC46CBE9DD54F4E453C.png"
+    "Pasted image 20230922152849.png"
   ]
 }
