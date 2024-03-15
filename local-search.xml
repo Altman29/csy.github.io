@@ -493,7 +493,7 @@
     <link href="/posts/ffffd0ab/"/>
     <url>/posts/ffffd0ab/</url>
     
-    <content type="html"><![CDATA[]]></content>
+    <content type="html"><![CDATA[<p>单体应用的困境</p>]]></content>
     
     
     <categories>
@@ -508,55 +508,11 @@
   
   
   <entry>
-    <title>单体应用的困境</title>
-    <link href="/posts/6fe0354c/"/>
-    <url>/posts/6fe0354c/</url>
+    <title>vue&amp;elementUI使用总结</title>
+    <link href="/posts/888f2d51/"/>
+    <url>/posts/888f2d51/</url>
     
-    <content type="html"><![CDATA[]]></content>
-    
-    
-    <categories>
-      
-      <category>微服务</category>
-      
-    </categories>
-    
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>2020终章</title>
-    <link href="/posts/bd0587f7/"/>
-    <url>/posts/bd0587f7/</url>
-    
-    <content type="html"><![CDATA[<p>奥术大师发的</p>]]></content>
-    
-    
-    <categories>
-      
-      <category>年度总结</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>2020年度总结</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>elementUI case</title>
-    <link href="/posts/2c7fc5c1/"/>
-    <url>/posts/2c7fc5c1/</url>
-    
-    <content type="html"><![CDATA[<p>爱上大时代elementUI</p>]]></content>
+    <content type="html"><![CDATA[<blockquote><p>由于工作需要，最近简单使用了vue参与了前端的开发工作，因为有Android开发经验，稍微补充了前端知识后，已经可以应对基础的后台管理项目需求开发了，基本掌握了vue的用法、element UI组件、路由组件、axios等。当然，目前是前端初学者，虽然只看了不到一周，至少能参与公司内部的后台管理前端开发需求了，还挺有自豪感的。简单总结下。</p></blockquote><hr><p>Vues一款用于构建用户界面的渐进式的JavaScript框架。</p><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403151728471.png"></p><h1 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h1><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403151729541.png"></p><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403151729479.png"></p><h1 id="常用指令"><a href="#常用指令" class="headerlink" title="常用指令"></a>常用指令</h1><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403151730577.png"></p><h2 id="v-for"><a href="#v-for" class="headerlink" title="v-for"></a>v-for</h2><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403151730170.png"></p><h2 id="v-bind"><a href="#v-bind" class="headerlink" title="v-bind"></a>v-bind</h2><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403151730509.png"></p><h2 id="v-if-amp-v-show"><a href="#v-if-amp-v-show" class="headerlink" title="v-if&amp;v-show"></a>v-if&amp;v-show</h2><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403151731436.png"></p><h2 id="v-on"><a href="#v-on" class="headerlink" title="v-on"></a>v-on</h2><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403151731708.png"></p><h2 id="v-model"><a href="#v-model" class="headerlink" title="v-model"></a>v-model</h2><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403151732325.png"></p><h1 id="vue生命周期"><a href="#vue生命周期" class="headerlink" title="vue生命周期"></a>vue生命周期</h1><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403151732617.png"></p><h1 id="Axios"><a href="#Axios" class="headerlink" title="Axios"></a>Axios</h1><p>Axios对原生Ajax进行了封装，简化书写，快速开发。</p><p>官网: <a href="https://www.axios-http.cn/">https://www.axios-http.cn/</a></p><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403151734525.png"></p><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403151734234.png"></p><h1 id="Vue项目创建"><a href="#Vue项目创建" class="headerlink" title="Vue项目创建"></a>Vue项目创建</h1><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403151735996.png"></p><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403151735533.png"></p><p>然后通过 <code>code .</code> 通过vscode打开当前项目。</p><h1 id="vue项目结构"><a href="#vue项目结构" class="headerlink" title="vue项目结构"></a>vue项目结构</h1><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403151736513.png"></p><h1 id="项目启动"><a href="#项目启动" class="headerlink" title="项目启动"></a>项目启动</h1><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403151736457.png"></p><h1 id="Vue开发流程"><a href="#Vue开发流程" class="headerlink" title="Vue开发流程"></a>Vue开发流程</h1><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403151737741.png"></p><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403151737491.png"></p><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403151737613.png"></p><p><strong>重点就是编写.vue文件。</strong></p><h1 id="API-风格"><a href="#API-风格" class="headerlink" title="API 风格"></a>API 风格</h1><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403151738494.png"></p><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403151738149.png"></p><h1 id="Element-Plus"><a href="#Element-Plus" class="headerlink" title="Element Plus"></a>Element Plus</h1><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403151739356.png"></p><p>官网： <a href="https://element-plus.org/zh-CN/#/zh-CN">https://element-plus.org/zh-CN/#/zh-CN</a></p><p>这个就是一个前端UI组件库，看菜做饭，需要什么直接拿来用，调整成需求需要的形式即可。</p><h1 id="router组件"><a href="#router组件" class="headerlink" title="router组件"></a>router组件</h1><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403151740663.png"></p><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403151740061.png"></p><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403151740956.png"></p><h1 id="Pinia状态管理库"><a href="#Pinia状态管理库" class="headerlink" title="Pinia状态管理库"></a>Pinia状态管理库</h1><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403151741388.png"></p><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403151741400.png"></p><h1 id="Pinia持久化插件-persist"><a href="#Pinia持久化插件-persist" class="headerlink" title="Pinia持久化插件-persist"></a>Pinia持久化插件-persist</h1><p>网页一刷新，就不再携带Authorization，就会报错。</p><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403151742534.png"></p>]]></content>
     
     
     <categories>
@@ -570,80 +526,11 @@
       
       <tag>elementUI</tag>
       
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>vue case</title>
-    <link href="/posts/888f2d51/"/>
-    <url>/posts/888f2d51/</url>
-    
-    <content type="html"><![CDATA[<p>是vueasdad</p>]]></content>
-    
-    
-    <categories>
-      
-      <category>前端</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
       <tag>vue</tag>
       
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>bootstrap case</title>
-    <link href="/posts/acf88edb/"/>
-    <url>/posts/acf88edb/</url>
-    
-    <content type="html"><![CDATA[<p>bootstrapss112</p>]]></content>
-    
-    
-    <categories>
+      <tag>axios</tag>
       
-      <category>前端</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>bootstrap</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>angular case</title>
-    <link href="/posts/2f5c2e2e/"/>
-    <url>/posts/2f5c2e2e/</url>
-    
-    <content type="html"><![CDATA[<p>爱上大时代sss</p>]]></content>
-    
-    
-    <categories>
-      
-      <category>前端</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>angular</tag>
+      <tag>router</tag>
       
     </tags>
     

@@ -20,16 +20,19 @@
   
     <meta name="description" content="一个流行的开源JavaScript前端框架，用于构建现代化的用户界面和单页面应用（SPA），它注重易用性、灵活性和性能，提供了数据驱动的视图组件、双向数据绑定和简洁的语法，使开发者能够快速开发交互性强、响应迅速的Web应用。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="vue case">
+<meta property="og:title" content="vue&amp;elementUI使用总结">
 <meta property="og:url" content="https://blog.13space.cn/posts/888f2d51/index.html">
 <meta property="og:site_name" content="拾叁的小破站">
 <meta property="og:description" content="一个流行的开源JavaScript前端框架，用于构建现代化的用户界面和单页面应用（SPA），它注重易用性、灵活性和性能，提供了数据驱动的视图组件、双向数据绑定和简洁的语法，使开发者能够快速开发交互性强、响应迅速的Web应用。">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://blog.13space.cn/img/vue/vue.png">
 <meta property="article:published_time" content="2020-10-09T12:41:26.000Z">
-<meta property="article:modified_time" content="2023-09-19T08:34:07.706Z">
+<meta property="article:modified_time" content="2024-03-15T09:42:03.591Z">
 <meta property="article:author" content="拾叁">
+<meta property="article:tag" content="elementUI">
 <meta property="article:tag" content="vue">
+<meta property="article:tag" content="axios">
+<meta property="article:tag" content="router">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://blog.13space.cn/img/vue/vue.png">
   
@@ -37,7 +40,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>vue case - 拾叁的小破站</title>
+  <title>vue&amp;elementUI使用总结 - 拾叁的小破站</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -242,7 +245,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="vue case"></span>
+            <span id="subtitle" data-typed-text="vue&amp;elementUI使用总结"></span>
           
         </div>
 
@@ -270,7 +273,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          9 words
+          542 words
         
       </span>
     
@@ -281,7 +284,7 @@
         
         
         
-          1 mins
+          5 mins
         
       </span>
     
@@ -321,12 +324,51 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">vue case</h1>
+            <h1 style="display: none">vue&amp;elementUI使用总结</h1>
             
             
               <div class="markdown-body">
                 
-                <p>是vueasdad</p>
+                <blockquote>
+<p>由于工作需要，最近简单使用了vue参与了前端的开发工作，因为有Android开发经验，稍微补充了前端知识后，已经可以应对基础的后台管理项目需求开发了，基本掌握了vue的用法、element UI组件、路由组件、axios等。当然，目前是前端初学者，虽然只看了不到一周，至少能参与公司内部的后台管理前端开发需求了，还挺有自豪感的。简单总结下。</p>
+</blockquote>
+<hr>
+<p>Vues一款用于构建用户界面的渐进式的JavaScript框架。</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403151728471.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h1><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403151729541.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403151729479.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="常用指令"><a href="#常用指令" class="headerlink" title="常用指令"></a>常用指令</h1><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403151730577.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="v-for"><a href="#v-for" class="headerlink" title="v-for"></a>v-for</h2><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403151730170.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="v-bind"><a href="#v-bind" class="headerlink" title="v-bind"></a>v-bind</h2><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403151730509.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="v-if-amp-v-show"><a href="#v-if-amp-v-show" class="headerlink" title="v-if&amp;v-show"></a>v-if&amp;v-show</h2><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403151731436.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="v-on"><a href="#v-on" class="headerlink" title="v-on"></a>v-on</h2><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403151731708.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="v-model"><a href="#v-model" class="headerlink" title="v-model"></a>v-model</h2><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403151732325.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="vue生命周期"><a href="#vue生命周期" class="headerlink" title="vue生命周期"></a>vue生命周期</h1><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403151732617.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="Axios"><a href="#Axios" class="headerlink" title="Axios"></a>Axios</h1><p>Axios对原生Ajax进行了封装，简化书写，快速开发。</p>
+<p>官网: <a target="_blank" rel="noopener" href="https://www.axios-http.cn/">https://www.axios-http.cn/</a></p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403151734525.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403151734234.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="Vue项目创建"><a href="#Vue项目创建" class="headerlink" title="Vue项目创建"></a>Vue项目创建</h1><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403151735996.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403151735533.png" srcset="/img/loading.gif" lazyload></p>
+<p>然后通过 <code>code .</code> 通过vscode打开当前项目。</p>
+<h1 id="vue项目结构"><a href="#vue项目结构" class="headerlink" title="vue项目结构"></a>vue项目结构</h1><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403151736513.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="项目启动"><a href="#项目启动" class="headerlink" title="项目启动"></a>项目启动</h1><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403151736457.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="Vue开发流程"><a href="#Vue开发流程" class="headerlink" title="Vue开发流程"></a>Vue开发流程</h1><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403151737741.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403151737491.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403151737613.png" srcset="/img/loading.gif" lazyload></p>
+<p><strong>重点就是编写.vue文件。</strong></p>
+<h1 id="API-风格"><a href="#API-风格" class="headerlink" title="API 风格"></a>API 风格</h1><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403151738494.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403151738149.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="Element-Plus"><a href="#Element-Plus" class="headerlink" title="Element Plus"></a>Element Plus</h1><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403151739356.png" srcset="/img/loading.gif" lazyload></p>
+<p>官网： <a target="_blank" rel="noopener" href="https://element-plus.org/zh-CN/#/zh-CN">https://element-plus.org/zh-CN/#/zh-CN</a></p>
+<p>这个就是一个前端UI组件库，看菜做饭，需要什么直接拿来用，调整成需求需要的形式即可。</p>
+<h1 id="router组件"><a href="#router组件" class="headerlink" title="router组件"></a>router组件</h1><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403151740663.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403151740061.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403151740956.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="Pinia状态管理库"><a href="#Pinia状态管理库" class="headerlink" title="Pinia状态管理库"></a>Pinia状态管理库</h1><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403151741388.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403151741400.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="Pinia持久化插件-persist"><a href="#Pinia持久化插件-persist" class="headerlink" title="Pinia持久化插件-persist"></a>Pinia持久化插件-persist</h1><p>网页一刷新，就不再携带Authorization，就会报错。</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403151742534.png" srcset="/img/loading.gif" lazyload></p>
 
                 
               </div>
@@ -360,7 +402,13 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
+        <a href="/tags/elementUI/">#elementUI</a>
+      
         <a href="/tags/vue/">#vue</a>
+      
+        <a href="/tags/axios/">#axios</a>
+      
+        <a href="/tags/router/">#router</a>
       
     </div>
   
@@ -372,7 +420,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>vue case</div>
+      <div>vue&amp;elementUI使用总结</div>
       <div>https://blog.13space.cn/posts/888f2d51/</div>
     </div>
     <div class="license-meta">
@@ -417,9 +465,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/posts/2c7fc5c1/" title="elementUI case">
+                      <a href="/posts/ffffd0ab/" title="认识微服务体系">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">elementUI case</span>
+                        <span class="hidden-mobile">认识微服务体系</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -427,8 +475,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/posts/acf88edb/" title="bootstrap case">
-                        <span class="hidden-mobile">bootstrap case</span>
+                      <a href="/posts/915cdc75/" title="重构法则节选(下)">
+                        <span class="hidden-mobile">重构法则节选(下)</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
