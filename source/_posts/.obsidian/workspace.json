@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "maven使用教程.md",
+                "file": "重构法则节选-下.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "maven使用教程.md",
+                "file": "重构法则节选-下.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "maven使用教程.md",
+                "file": "重构法则节选-下.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "maven使用教程.md"
+                "file": "重构法则节选-下.md"
               }
             }
           }
@@ -148,8 +148,12 @@
   },
   "active": "60b66de191b8374f",
   "lastOpenFiles": [
-    "git使用指北.md",
+    "重构法则节选-上.md",
+    "重构法则节选-下.md",
+    "docker.md",
+    "备忘系列-swagger.md",
     "maven使用教程.md",
+    "git使用指北.md",
     "jenkins自动化与持续集成.md",
     "mybatis and plus.md",
     "Pasted image 20240314222410.png",
@@ -172,10 +176,6 @@
     "备忘系列-xxl-job.md",
     "通关微服务-mysql.md",
     "通关微服务-redis.md",
-    "通关微服务-seata.md",
-    "通关微服务-sentinel.md",
-    "通关微服务-ELK.md",
-    "通关微服务-SpringAMQP.md",
     "attachment",
     "Pasted image 20240220161508.png",
     "Pasted image 20240304181242.png",
