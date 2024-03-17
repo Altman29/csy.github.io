@@ -118,6 +118,14 @@ Spring Boot 只是简化了配置，如果你需要构建 MVC 架构的 Web 程�
 
 Spring 时代我们一般通过 XML 文件来配置 Bean，后来开发人员觉得 XML 文件来配置不太好，于是 SpringBoot 注解配置就慢慢开始流行起来。
 
+### IOC容器启动流程
+
+![](https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403171310656.png)
+
+![](https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403171311724.png)
+
+![](https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403171311253.png)
+
 ### 什么是 Spring Bean？
 
 简单来说，Bean 代指的就是那些被 IoC 容器所管理的对象。
@@ -325,7 +333,25 @@ public Person personPrototype() {
 
 ![](https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403141107712.png)
 
+### Bean循环依赖
 
+![](https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403171312607.png)
+
+![](https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403171312858.png)
+
+spring默认是不让循环依赖的，但也可以增加配置，让spring解决循环依赖的问题。这里的核心就是了解掌握spring是如何解决循环依赖的。
+
+![](https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403171313094.png)
+
+增加这个配置，就解决了，AB互相依赖的问题。
+先说结论，DefaultSingletonBeanRegistry是解决循环依赖的核心。**核心就是三个缓存区**。
+
+![](https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403171313983.png)
+第三个缓存器其实也是为了解决动态代理的问题，不然两层缓存就可以了。
+
+![](https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403171314890.png)
+
+![](https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403171314672.png)
 
 ## Spring AOP
 
@@ -602,4 +628,12 @@ Spring Boot应用打成的jar和普通的jar包在打包的方式和使用方式
 
 最后，Spring Boot打成的jar包可以使用spring-boot-maven-plugin插件来打包，该插件可以帮助我们将应用程序的依赖项、配置文件等全部打包进一个可执行的jar包中，方便部署和运行。而普通的jar包需要手动处理依赖项、配置文件等，比较繁琐。
 
+
+### springboot启动流程
+
+![](https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403171309407.png)
+
+![](https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403171309936.png)
+
+![](https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403171309299.png)
 
