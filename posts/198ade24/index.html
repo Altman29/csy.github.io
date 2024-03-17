@@ -27,7 +27,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://blog.13space.cn/img/micro/dubbo.png">
 <meta property="article:published_time" content="2021-07-09T12:21:15.000Z">
-<meta property="article:modified_time" content="2023-09-19T15:38:12.742Z">
+<meta property="article:modified_time" content="2024-03-17T09:10:52.804Z">
 <meta property="article:author" content="拾叁">
 <meta property="article:tag" content="dubbo">
 <meta name="twitter:card" content="summary_large_image">
@@ -270,7 +270,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          0 words
+          11k words
         
       </span>
     
@@ -281,7 +281,7 @@
         
         
         
-          1 mins
+          91 mins
         
       </span>
     
@@ -326,7 +326,204 @@
             
               <div class="markdown-body">
                 
-                
+                <h1 id="分布式系统中相关概念"><a href="#分布式系统中相关概念" class="headerlink" title="分布式系统中相关概念"></a>分布式系统中相关概念</h1><h2 id="大型互联网项目架构特点"><a href="#大型互联网项目架构特点" class="headerlink" title="大型互联网项目架构特点"></a>大型互联网项目架构特点</h2><ul>
+<li>用户多</li>
+<li>流量大，并发高</li>
+<li>海量数据</li>
+<li>易受攻击</li>
+<li>功能繁琐</li>
+<li>变更快</li>
+</ul>
+<h2 id="大型互联网项目架构目标"><a href="#大型互联网项目架构目标" class="headerlink" title="大型互联网项目架构目标"></a>大型互联网项目架构目标</h2><ul>
+<li>高性能：提供快速的访问体验</li>
+<li>高可用：网站服务一直可以正常访问</li>
+<li>可伸缩：通过硬件增加&#x2F;减少，提高&#x2F;降低处理能力</li>
+<li>高可扩展：系统间耦合低，方便通过新增&#x2F;移除方式，增加&#x2F;减少功能&#x2F;模块</li>
+<li>安全性：提供网站安全访问和数据加密，安全存储等策略</li>
+<li>敏捷性：随需应变，快速响应</li>
+</ul>
+<h2 id="集群和分布式"><a href="#集群和分布式" class="headerlink" title="集群和分布式"></a>集群和分布式</h2><ul>
+<li>集群：很多”人”一起，干一样的事<ul>
+<li>一个业务模块，部署在多台服务器上。</li>
+</ul>
+</li>
+<li>分布式：很多”人”一起，干不一样的事。这些不一样的事，合起来是一件大事<ul>
+<li>一个大的业务系统，拆分为小的业务模块，分别部署在不同机器上。</li>
+</ul>
+</li>
+</ul>
+<p>（eg.饭店，厨师，洗菜、切菜、炒菜）</p>
+<h2 id="架构演进"><a href="#架构演进" class="headerlink" title="架构演进"></a>架构演进</h2><h3 id="单体架构"><a href="#单体架构" class="headerlink" title="单体架构"></a>单体架构</h3><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403171445668.png" srcset="/img/loading.gif" lazyload><br>优点：</p>
+<ul>
+<li>简单：开发部署都很方便，小型项目首选</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>项目启动慢</li>
+<li>可靠性差</li>
+<li>可伸缩性差</li>
+<li>扩展性和可维护性差</li>
+<li>性能低</li>
+</ul>
+<h3 id="垂直架构"><a href="#垂直架构" class="headerlink" title="垂直架构"></a>垂直架构</h3><p>在某个领域细分就是垂直的意思。<br>垂直架构是指单体架构中的多个模块拆分为多个独立的项目。行程多个独立的单体架构。</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403171449282.png" srcset="/img/loading.gif" lazyload></p>
+<p>垂直架构存在的问题：</p>
+<ul>
+<li>重复功能多</li>
+</ul>
+<h3 id="分布式架构"><a href="#分布式架构" class="headerlink" title="分布式架构"></a>分布式架构</h3><p>分布式架构是指在垂直架构的基础上，将公共业务模块抽取出来，作为独立的服务，供其他调用者消费，以实现服务的共享和重用。</p>
+<p>RPC：Remote Procedure Call远程过程调用。有非常多的协议和技术都来实现了RPC过程。比如：HTTP REST风格，Java RMI规范等等。</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403171453372.png" srcset="/img/loading.gif" lazyload></p>
+<p>分布式架构存在的问题：</p>
+<ul>
+<li>服务的提供方一旦产生变更，所有消费方都需要变更</li>
+</ul>
+<h3 id="SOA架构"><a href="#SOA架构" class="headerlink" title="SOA架构"></a>SOA架构</h3><p>![[Pasted image 20240317145745.png]]</p>
+<p>SOA：Service-Oriented Architecture，面向服务的架构。是一个组件模型，它将应用程序的不同功能单元（称为服务）进行拆分，并通过这些服务之间定义良好的接口和契约联系起来。</p>
+<p>ESB：Enterparise Service Bus企业服务总线，服务中介。主要提供了一个服务于服务之间的交互。ESB包含的功能包含：负载均衡，流量控制，加密处理，服务的监控，异常处理，监控告急等等。</p>
+<h3 id="微服务架构"><a href="#微服务架构" class="headerlink" title="微服务架构"></a>微服务架构</h3><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403171502998.png" srcset="/img/loading.gif" lazyload></p>
+<p>微服务架构是在SOA上做的升华，微服务架构强调的一个重点是”业务需要彻底的组件化和服务化”，原有的单个业务系统会拆分为多个可以独立开发、设计、运行的小应用。这些小应用之间通过服务完成交互和集成。</p>
+<p>微服务架构 &#x3D; 80%SOA服务架构思想 + 100%的组件化思想 + 80%的领域建模思想。</p>
+<p>特点：</p>
+<ul>
+<li>服务实现组件化：开发者可以自由选择开发技术，也不需要协调其他团队</li>
+<li>服务之间交互一般采用REST API</li>
+<li>去中心化：每个微服务有自己私有的数据库持久化业务数据</li>
+<li>自动化部署：把应用拆分成为一个一个独立的单个服务，方便自动化部署、测试、运维</li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403171504101.png" srcset="/img/loading.gif" lazyload></p>
+<p><font color="#ffc000">注：</font> Dubbo是SOA时代的产物，SpringCloud是微服务时代的产物。</p>
+<h1 id="Dubbo概述"><a href="#Dubbo概述" class="headerlink" title="Dubbo概述"></a>Dubbo概述</h1><h2 id="Dubbo概念"><a href="#Dubbo概念" class="headerlink" title="Dubbo概念"></a>Dubbo概念</h2><ul>
+<li>Dubbo是阿里开源的一个高性能、轻量级的Java RPC框架，现已收录到apache了。</li>
+<li>致力于提供高性能和透明化的RPC<font color="#0070c0"><strong>远程调用方案</strong></font>，已经SOA服务治理方案。</li>
+<li><a target="_blank" rel="noopener" href="https://cn.dubbo.apache.org/zh-cn/">dubbo官网</a></li>
+</ul>
+<h2 id="Dubbo架构"><a href="#Dubbo架构" class="headerlink" title="Dubbo架构"></a>Dubbo架构</h2><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403171511719.png" srcset="/img/loading.gif" lazyload><br>编号标注了使用流程，很清晰<br>0.start：服务的提供者需要运行在容器里，比如tomcat里。<br>1.register：服务启动后，会注册到注册中心，相当于把服务的IP、端口等信息放到注册中心上。<br>2.subscribe：消费者想要调用服务，就需要订阅，向注册中心要，把服务提供者的IP、端口地址给我。<br>3.notify：消费者向注册中心要，注册中心提供信息。<br>4.invoke：这个时候消费者就拿到了目标服务的信息，就可以调用了，就是RPC的过程。这个过程不用管，这是dubbo内部自动实现。<br>5.monitor：管理者，是做服务监控的，比如某个服务调用了多少次。</p>
+<h1 id="Dubbo快速入门"><a href="#Dubbo快速入门" class="headerlink" title="Dubbo快速入门"></a>Dubbo快速入门</h1><h2 id="Zookeeper安装"><a href="#Zookeeper安装" class="headerlink" title="Zookeeper安装"></a>Zookeeper安装</h2><p>其实zookeeper就是dubbo推荐使用的注册中心。</p>
+<h2 id="Dubbo快速入门-1"><a href="#Dubbo快速入门-1" class="headerlink" title="Dubbo快速入门"></a>Dubbo快速入门</h2><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403171559190.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="启动注册中心"><a href="#启动注册中心" class="headerlink" title="启动注册中心"></a>启动注册中心</h3><p>对于一个微服务化的应用来说，注册中心是不可或缺的一个组件。只有通过注册中心，消费端才可以成功发现服务端的地址信息，进而进行调用。通过官方教程获取一个基于 Apache Zookeeper 注册中心的简易启动器。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs bash">Windows:<br>git <span class="hljs-built_in">clone</span> --depth=1 --branch master git@github.com:apache/dubbo-samples.git<br><span class="hljs-built_in">cd</span> dubbo-samples<br>./mvnw.cmd clean compile <span class="hljs-built_in">exec</span>:java -pl tools/embedded-zookeeper<br><br>Linux / MacOS:<br>git <span class="hljs-built_in">clone</span> --depth=1 --branch master git@github.com:apache/dubbo-samples.git<br><span class="hljs-built_in">cd</span> dubbo-samples<br>./mvnw clean compile <span class="hljs-built_in">exec</span>:java -pl tools/embedded-zookeeper<br><br>Docker:<br>docker run --name some-zookeeper -p 2181:2181 --restart always -d zookeeper<br></code></pre></td></tr></table></figure>
+
+<h3 id="初始化项目"><a href="#初始化项目" class="headerlink" title="初始化项目"></a>初始化项目</h3><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403171606809.png" srcset="/img/loading.gif" lazyload></p>
+<p>如上图所示，可以建立一个基础的项目。</p>
+<p>搭建了基础项目之后，我们还需要创建 <code>dubbo-spring-boot-demo-interface</code> 、<code>dubbo-spring-boot-demo-provider</code> 和 <code>dubbo-spring-boot-demo-consumer</code> 三个子模块。</p>
+<p>创建了三个子模块之后，需要创建一下几个文件夹：</p>
+<ol>
+<li>在 <code>dubbo-spring-boot-demo-consumer/src/main/java</code> 下创建 <code>org.apache.dubbo.springboot.demo.consumer</code> package</li>
+<li>在 <code>dubbo-spring-boot-demo-interface/src/main/java</code> 下创建 <code>org.apache.dubbo.springboot.demo</code> package</li>
+<li>在 <code>dubbo-spring-boot-demo-provider/src/main/java</code> 下创建 <code>org.apache.dubbo.springboot.demo.provider</code> package</li>
+</ol>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403171607781.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="添加Maven依赖"><a href="#添加Maven依赖" class="headerlink" title="添加Maven依赖"></a>添加Maven依赖</h3><p>在初始化完项目以后，我们需要先添加 Dubbo 相关的 maven 依赖。</p>
+<p>对于多模块项目，首先需要在父项目的 <code>pom.xml</code> 里面配置依赖信息。</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403171608057.png" srcset="/img/loading.gif" lazyload></p>
+<p>编辑 <code>./pom.xml</code> 这个文件，添加下列配置。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">properties</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">dubbo.version</span>&gt;</span>3.2.0-beta.4<span class="hljs-tag">&lt;/<span class="hljs-name">dubbo.version</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">spring-boot.version</span>&gt;</span>2.7.8<span class="hljs-tag">&lt;/<span class="hljs-name">spring-boot.version</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">maven.compiler.source</span>&gt;</span>17<span class="hljs-tag">&lt;/<span class="hljs-name">maven.compiler.source</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">maven.compiler.target</span>&gt;</span>17<span class="hljs-tag">&lt;/<span class="hljs-name">maven.compiler.target</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">project.build.sourceEncoding</span>&gt;</span>UTF-8<span class="hljs-tag">&lt;/<span class="hljs-name">project.build.sourceEncoding</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">properties</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">dependencyManagement</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span><br>            <span class="hljs-comment">&lt;!-- Spring Boot --&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-dependencies<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>$&#123;spring-boot.version&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">type</span>&gt;</span>pom<span class="hljs-tag">&lt;/<span class="hljs-name">type</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>import<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br>            <span class="hljs-comment">&lt;!-- Dubbo --&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache.dubbo<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>dubbo-bom<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>$&#123;dubbo.version&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">type</span>&gt;</span>pom<span class="hljs-tag">&lt;/<span class="hljs-name">type</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>import<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br>            <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache.dubbo<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>dubbo-dependencies-zookeeper-curator5<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>$&#123;dubbo.version&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">type</span>&gt;</span>pom<span class="hljs-tag">&lt;/<span class="hljs-name">type</span>&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependencyManagement</span>&gt;</span><br><br><br>    <span class="hljs-tag">&lt;<span class="hljs-name">build</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">pluginManagement</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">plugins</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">plugin</span>&gt;</span><br>                    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>                    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-maven-plugin<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>                    <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>$&#123;spring-boot.version&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>                <span class="hljs-tag">&lt;/<span class="hljs-name">plugin</span>&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">plugins</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">pluginManagement</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">build</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>然后在 <code>dubbo-spring-boot-consumer</code> 和 <code>dubbo-spring-boot-provider</code> 两个模块 <code>pom.xml</code> 中进行具体依赖的配置。</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403171609745.png" srcset="/img/loading.gif" lazyload></p>
+<p>编辑 <code>./dubbo-spring-boot-consumer/pom.xml</code> 和 <code>./dubbo-spring-boot-provider/pom.xml</code> 这两文件，都添加下列配置。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">dependencies</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache.dubbo<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>dubbo-samples-spring-boot-interface<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>$&#123;project.parent.version&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br>        <span class="hljs-comment">&lt;!-- dubbo --&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache.dubbo<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>dubbo-spring-boot-starter<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.apache.dubbo<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>dubbo-dependencies-zookeeper-curator5<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">type</span>&gt;</span>pom<span class="hljs-tag">&lt;/<span class="hljs-name">type</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">exclusions</span>&gt;</span><br>                <span class="hljs-tag">&lt;<span class="hljs-name">exclusion</span>&gt;</span><br>                    <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>slf4j-reload4j<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>                    <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.slf4j<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>                <span class="hljs-tag">&lt;/<span class="hljs-name">exclusion</span>&gt;</span><br>            <span class="hljs-tag">&lt;/<span class="hljs-name">exclusions</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br>        <span class="hljs-comment">&lt;!-- spring boot starter --&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">dependency</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>org.springframework.boot<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span><br>            <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>spring-boot-starter<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span><br>        <span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span><br><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">dependencies</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>在这份配置中，定义了 dubbo 和 zookeeper（以及对应的连接器 curator）的依赖。</p>
+<p>添加了上述的配置以后，可以通过 IDEA 的 <code>Maven - Reload All Maven Projects</code> 刷新依赖</p>
+<h3 id="定义服务接口"><a href="#定义服务接口" class="headerlink" title="定义服务接口"></a>定义服务接口</h3><p>服务接口 Dubbo 中沟通消费端和服务端的桥梁。</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403171610622.png" srcset="/img/loading.gif" lazyload></p>
+<p>在 <code>dubbo-spring-boot-demo-interface</code> 模块的 <code>org.apache.dubbo.samples.api</code> 下建立 <code>DemoService</code> 接口，定义如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> org.apache.dubbo.springboot.demo;<br><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">DemoService</span> &#123;<br><br>    String <span class="hljs-title function_">sayHello</span><span class="hljs-params">(String name)</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>在 <code>DemoService</code> 中，定义了 <code>sayHello</code> 这个方法。后续服务端发布的服务，消费端订阅的服务都是围绕着 <code>DemoService</code> 接口展开的。</p>
+<h3 id="定义服务端实现"><a href="#定义服务端实现" class="headerlink" title="定义服务端实现"></a>定义服务端实现</h3><p>定义了服务接口之后，可以在服务端这一侧定义对应的实现，这部分的实现相对于消费端来说是远端的实现，本地没有相关的信息。</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403171611053.png" srcset="/img/loading.gif" lazyload></p>
+<p>在<code>dubbo-spring-boot-demo-provider</code> 模块的 <code>org.apache.dubbo.samples.provider</code> 下建立 <code>DemoServiceImpl</code> 类，定义如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> org.apache.dubbo.springboot.demo.provider;<br><br><span class="hljs-keyword">import</span> org.apache.dubbo.config.annotation.DubboService;<br><span class="hljs-keyword">import</span> org.apache.dubbo.springboot.demo.DemoService;<br><br><span class="hljs-meta">@DubboService</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">DemoServiceImpl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">DemoService</span> &#123;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> String <span class="hljs-title function_">sayHello</span><span class="hljs-params">(String name)</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;Hello &quot;</span> + name;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>在 <code>DemoServiceImpl</code> 中，实现了 <code>DemoService</code> 接口，对于 <code>sayHello</code> 方法返回 <code>Hello name</code>。</p>
+<p>注：在<code>DemoServiceImpl</code> 类中添加了 <code>@DubboService</code> 注解，通过这个配置可以基于 Spring Boot 去发布 Dubbo 服务。</p>
+<h3 id="配置服务端配置文件"><a href="#配置服务端配置文件" class="headerlink" title="配置服务端配置文件"></a>配置服务端配置文件</h3><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403171612651.png" srcset="/img/loading.gif" lazyload></p>
+<p>在 <code>dubbo-spring-boot-demo-provider</code> 模块的 <code>resources</code> 资源文件夹下建立 <code>application.yml</code> 文件，定义如下：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">dubbo:</span><br>  <span class="hljs-attr">application:</span><br>    <span class="hljs-attr">name:</span> <span class="hljs-string">dubbo-springboot-demo-provider</span><br>  <span class="hljs-attr">protocol:</span><br>    <span class="hljs-attr">name:</span> <span class="hljs-string">dubbo</span><br>    <span class="hljs-attr">port:</span> <span class="hljs-number">-1</span><br>  <span class="hljs-attr">registry:</span><br>    <span class="hljs-attr">address:</span> <span class="hljs-string">zookeeper://$&#123;zookeeper.address:127.0.0.1&#125;:2181</span><br></code></pre></td></tr></table></figure>
+
+<p>在这个配置文件中，定义了 Dubbo 的应用名、Dubbo 协议信息、Dubbo 使用的注册中心地址。</p>
+<h3 id="配置消费端配置文件"><a href="#配置消费端配置文件" class="headerlink" title="配置消费端配置文件"></a>配置消费端配置文件</h3><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403171612573.png" srcset="/img/loading.gif" lazyload></p>
+<p>在 <code>dubbo-spring-boot-demo-consumer</code> 模块的 <code>resources</code> 资源文件夹下建立 <code>application.yml</code> 文件，定义如下：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-attr">dubbo:</span><br>  <span class="hljs-attr">application:</span><br>    <span class="hljs-attr">name:</span> <span class="hljs-string">dubbo-springboot-demo-consumer</span><br>  <span class="hljs-attr">protocol:</span><br>    <span class="hljs-attr">name:</span> <span class="hljs-string">dubbo</span><br>    <span class="hljs-attr">port:</span> <span class="hljs-number">-1</span><br>  <span class="hljs-attr">registry:</span><br>    <span class="hljs-attr">address:</span> <span class="hljs-string">zookeeper://$&#123;zookeeper.address:127.0.0.1&#125;:2181</span><br></code></pre></td></tr></table></figure>
+
+<p>在这个配置文件中，定义了 Dubbo 的应用名、Dubbo 协议信息、Dubbo 使用的注册中心地址。</p>
+<h3 id="配置服务端启动类"><a href="#配置服务端启动类" class="headerlink" title="配置服务端启动类"></a>配置服务端启动类</h3><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403171613225.png" srcset="/img/loading.gif" lazyload></p>
+<p>在 <code>dubbo-spring-boot-demo-provider</code> 模块的 <code>org.apache.dubbo.springboot.demo.provider</code> 下建立 <code>Application</code> 类，定义如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> org.apache.dubbo.springboot.demo.provider;<br><br><span class="hljs-keyword">import</span> org.apache.dubbo.config.spring.context.annotation.EnableDubbo;<br><span class="hljs-keyword">import</span> org.springframework.boot.SpringApplication;<br><span class="hljs-keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;<br><br><span class="hljs-meta">@SpringBootApplication</span><br><span class="hljs-meta">@EnableDubbo</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ProviderApplication</span> &#123;<br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        SpringApplication.run(ProviderApplication.class, args);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>在这个启动类中，配置了一个 <code>ProviderApplication</code> 去读取我们前面第 6 步中定义的 <code>application.yml</code> 配置文件并启动应用。</p>
+<h3 id="配置消费端启动类"><a href="#配置消费端启动类" class="headerlink" title="配置消费端启动类"></a>配置消费端启动类</h3><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403171614281.png" srcset="/img/loading.gif" lazyload></p>
+<p>在 <code>dubbo-spring-boot-demo-consumer</code> 模块的 <code>org.apache.dubbo.springboot.demo.consumer</code> 下建立 <code>Application</code> 类，定义如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> org.apache.dubbo.springboot.demo.consumer;<br><br><span class="hljs-keyword">import</span> org.apache.dubbo.config.spring.context.annotation.EnableDubbo;<br><span class="hljs-keyword">import</span> org.springframework.boot.SpringApplication;<br><span class="hljs-keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;<br><br><span class="hljs-meta">@SpringBootApplication</span><br><span class="hljs-meta">@EnableDubbo</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">ConsumerApplication</span> &#123;<br><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>        SpringApplication.run(ConsumerApplication.class, args);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>在这个启动类中，配置了一个 <code>ConsumerApplication</code> 去读取我们前面第 7 步中定义的 <code>application.yml</code> 配置文件并启动应用。</p>
+<h3 id="配置消费端请求任务"><a href="#配置消费端请求任务" class="headerlink" title="配置消费端请求任务"></a>配置消费端请求任务</h3><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403171614249.png" srcset="/img/loading.gif" lazyload></p>
+<p>在 <code>dubbo-spring-boot-demo-consumer</code> 模块的 <code>org.apache.dubbo.springboot.demo.consumer</code> 下建立 <code>Task</code> 类，定义如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> org.apache.dubbo.springboot.demo.consumer;<br><br><span class="hljs-keyword">import</span> java.util.Date;<br><br><span class="hljs-keyword">import</span> org.apache.dubbo.config.annotation.DubboReference;<br><span class="hljs-keyword">import</span> org.apache.dubbo.springboot.demo.DemoService;<br><span class="hljs-keyword">import</span> org.springframework.boot.CommandLineRunner;<br><span class="hljs-keyword">import</span> org.springframework.stereotype.Component;<br><br><span class="hljs-meta">@Component</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Task</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">CommandLineRunner</span> &#123;<br>    <span class="hljs-meta">@DubboReference</span><br>    <span class="hljs-keyword">private</span> DemoService demoService;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">run</span><span class="hljs-params">(String... args)</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>        <span class="hljs-type">String</span> <span class="hljs-variable">result</span> <span class="hljs-operator">=</span> demoService.sayHello(<span class="hljs-string">&quot;world&quot;</span>);<br>        System.out.println(<span class="hljs-string">&quot;Receive result ======&gt; &quot;</span> + result);<br><br>        <span class="hljs-keyword">new</span> <span class="hljs-title class_">Thread</span>(()-&gt; &#123;<br>            <span class="hljs-keyword">while</span> (<span class="hljs-literal">true</span>) &#123;<br>                <span class="hljs-keyword">try</span> &#123;<br>                    Thread.sleep(<span class="hljs-number">1000</span>);<br>                    System.out.println(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Date</span>() + <span class="hljs-string">&quot; Receive result ======&gt; &quot;</span> + demoService.sayHello(<span class="hljs-string">&quot;world&quot;</span>));<br>                &#125; <span class="hljs-keyword">catch</span> (InterruptedException e) &#123;<br>                    e.printStackTrace();<br>                    Thread.currentThread().interrupt();<br>                &#125;<br>            &#125;<br>        &#125;).start();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>在 <code>Task</code> 类中，通过<code>@DubboReference</code> 从 Dubbo 获取了一个 RPC 订阅，这个 <code>demoService</code> 可以像本地调用一样直接调用。在 <code>run</code>方法中创建了一个线程进行调用。</p>
+<h3 id="启动应用"><a href="#启动应用" class="headerlink" title="启动应用"></a>启动应用</h3><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403171615752.png" srcset="/img/loading.gif" lazyload></p>
+<p>首先是启动 <code>org.apache.dubbo.samples.provider.Application</code> ，等待一会出现如下图所示的日志（<code>Current Spring Boot Application is await</code>）即代表服务提供者启动完毕，标志着该服务提供者可以对外提供服务了。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs fallback">[Dubbo] Current Spring Boot Application is await...<br></code></pre></td></tr></table></figure>
+
+<p>然后是启动<code>org.apache.dubbo.samples.client.Application</code> ，等待一会出现如下图所示的日志（<code>Hello world</code> ）即代表服务消费端启动完毕并调用到服务端成功获取结果。</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403171615579.png" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs fallback">Receive result ======&gt; Hello world<br></code></pre></td></tr></table></figure>
+
+<h1 id="Dubbo高级特性"><a href="#Dubbo高级特性" class="headerlink" title="Dubbo高级特性"></a>Dubbo高级特性</h1><h2 id="序列化"><a href="#序列化" class="headerlink" title="序列化"></a>序列化</h2><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403171628734.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>dubbo内部已经将序列化和反序列化的过程内部封装了</li>
+<li>只需要在定义pojo类时<strong>实现Serializable接口</strong>即可</li>
+<li>一般会定义一个公共的pojo模块，让生产者和消费者都依赖该模块</li>
+</ul>
+<h2 id="地址缓存"><a href="#地址缓存" class="headerlink" title="地址缓存"></a>地址缓存</h2><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403171638042.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="超时"><a href="#超时" class="headerlink" title="超时"></a>超时</h2><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403171640671.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>服务消费者在调用服务提供者的时候发生了阻塞、等待的情形，服务消费者会一直等待下去。</li>
+<li>在峰值时刻，大量请求同时到达，会造成线程的大量堆积，会造成服务雪崩。</li>
+<li>dubbo利用超时机制来解决，设置一个超时时间，在时间段内无法完成访问，则自动断开。</li>
+<li>使用timeout属性配置超时时间，默认值是1000，单位毫秒。</li>
+</ul>
+<p>注：推荐配置在服务的提供方。</p>
+<h2 id="重试"><a href="#重试" class="headerlink" title="重试"></a>重试</h2><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403171648389.png" srcset="/img/loading.gif" lazyload></p>
+<ul>
+<li>如果出现了网络抖动，则这一次请求就会失败。</li>
+<li>dubbo提供重试机制来避免类似问题。</li>
+<li>通过retries属性来设置重试次数，默认是2次。</li>
+</ul>
+<h2 id="多版本"><a href="#多版本" class="headerlink" title="多版本"></a>多版本</h2><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403171651383.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403171651129.png" srcset="/img/loading.gif" lazyload></p>
+<p><font color="#0070c0"><strong>灰度发布</strong></font>：当出现新功能时，会让一部分用户先使用新功能，用户反馈没有问题，再将所有用户迁移到新功能。</p>
+<p>dubbo中使用version属性来设置和调用同一个接口的不同版本。</p>
+<h2 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h2><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403171659466.png" srcset="/img/loading.gif" lazyload></p>
+<p>负载均衡策略：</p>
+<ul>
+<li>Random：按权重随机。</li>
+<li>RoundRobin：按权重轮询。</li>
+<li>LeastActive：最少活跃调用，相同活跃是随机。</li>
+<li>ConsistentHash：一致性Hash，相同参数额请求总是发到同一个提供者。</li>
+</ul>
+<h2 id="集群容错"><a href="#集群容错" class="headerlink" title="集群容错"></a>集群容错</h2><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403171703357.png" srcset="/img/loading.gif" lazyload></p>
+<p>集群容错模式：</p>
+<ul>
+<li>Failover Cluster：失败重试。默认值。当出现失败，重试其他服务器，默认重试2次，使用retries配置，一般用于<font color="#0070c0">读操作</font>。</li>
+<li>Failfast Cluster：快速失败，只发起一次调用，失败立即报错。通常用于<font color="#0070c0">写操作</font>。</li>
+<li>Failsafe Cluster：失败安全，出现异常时，直接忽略。返回一个空结果。</li>
+<li>Failback Cluster：失败自动回复，后台记录失败请求时，定时重发。</li>
+<li>Forking Cluster：并行调用多个服务器，只要一个成功即返回。比较耗费性能。</li>
+<li>Broadcast Cluster：广播调用所有提供者，逐个调用，任意一台报错则报错。同步要求性比较高的情形。</li>
+</ul>
+<h2 id="服务降级"><a href="#服务降级" class="headerlink" title="服务降级"></a>服务降级</h2><p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403171705376.png" srcset="/img/loading.gif" lazyload></p>
+<p>在B上，同时存在广告服务，日志服务，支付服务。很明显支付服务较为重要，当B机器cpu达到90%时，除了定位异常外，最先考虑的应该是服务降级，要确保支付服务正常，不重要的广告服务、日志服务可以先停掉。这就是服务降级。</p>
+<p>dubbo服务降级方式：</p>
+<ul>
+<li><code>mock=force:return null</code> 表示消费方对该服务的方法调用都直接返回null，不发起远程调用。用来屏蔽不重要服务可不用时对调用方的影响。</li>
+<li><code>mock=fail:return null</code> 表示消费方对该服务的方法调用在失败后，再返回null，不抛异常。用来容忍不重要服务不稳定时对调用方的影响。</li>
+</ul>
+
                 
               </div>
             
