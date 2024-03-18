@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "通关微服务-dubbo.md",
+                "file": "通关微服务-nacos.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "通关微服务-dubbo.md",
+                "file": "通关微服务-nacos.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "通关微服务-dubbo.md",
+                "file": "通关微服务-nacos.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "通关微服务-dubbo.md"
+                "file": "通关微服务-nacos.md"
               }
             }
           }
@@ -148,8 +148,8 @@
   },
   "active": "60b66de191b8374f",
   "lastOpenFiles": [
-    "重构法则节选-下.md",
     "通关微服务-dubbo.md",
+    "重构法则节选-下.md",
     "Pasted image 20240317145745.png",
     "dubbo.apache.org.md",
     "Pasted image 20240314222410.png",
