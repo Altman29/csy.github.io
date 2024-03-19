@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "通关微服务-nacos.md",
+                "file": "elasticsearch-分布式搜索引擎.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "通关微服务-nacos.md",
+                "file": "elasticsearch-分布式搜索引擎.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "通关微服务-nacos.md",
+                "file": "elasticsearch-分布式搜索引擎.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "通关微服务-nacos.md"
+                "file": "elasticsearch-分布式搜索引擎.md"
               }
             }
           }
@@ -148,7 +148,15 @@
   },
   "active": "60b66de191b8374f",
   "lastOpenFiles": [
+    "elasticseatch-安装小记.md",
+    "Pasted image 20240319133509.png",
+    "elasticsearch-分布式搜索引擎.md",
+    "通关微服务-rabbitMQ.md",
+    "通关微服务-gateway.md",
+    "通关微服务-feign.md",
+    "通关微服务-dubbo - 副本.md",
     "通关微服务-dubbo.md",
+    "通关微服务-nacos.md",
     "重构法则节选-下.md",
     "Pasted image 20240317145745.png",
     "dubbo.apache.org.md",
@@ -170,19 +178,11 @@
     "attachment/Pasted image 20230626183731.png.md",
     "关于Spring.md",
     "关于并发编程（下）.md",
-    "关于并发编程（上）.md",
-    "数据结构和算法之旅（三）-递归.md",
-    "备忘系列-zookeeper.md",
-    "云原生之DevOps.md",
-    "云原生之kubeSphere.md",
-    "云原生之k8s.md",
-    "备忘系列-nginx.md",
     "attachment",
     "Pasted image 20240220161508.png",
     "Pasted image 20240304181242.png",
     "Pasted image 20240220154351.png",
     "Pasted image 20230920220452.png",
-    "Pasted image 20230920222416.png",
-    "Pasted image 20230920222652.png"
+    "Pasted image 20230920222416.png"
   ]
 }
