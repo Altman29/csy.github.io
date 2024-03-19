@@ -27,7 +27,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://blog.13space.cn/img/micro/gateway.png">
 <meta property="article:published_time" content="2021-08-09T13:01:30.000Z">
-<meta property="article:modified_time" content="2023-09-19T15:45:45.982Z">
+<meta property="article:modified_time" content="2024-03-19T04:19:15.071Z">
 <meta property="article:author" content="拾叁">
 <meta property="article:tag" content="gateway">
 <meta name="twitter:card" content="summary_large_image">
@@ -270,7 +270,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          3 words
+          6.8k words
         
       </span>
     
@@ -281,7 +281,7 @@
         
         
         
-          1 mins
+          58 mins
         
       </span>
     
@@ -326,7 +326,222 @@
             
               <div class="markdown-body">
                 
-                <p>112</p>
+                <blockquote>
+<p>Spring Cloud Gateway 是 Spring Cloud 的一个全新项目，该项目是基于 Spring 5.0，Spring Boot 2.0 和 Project Reactor 等响应式编程和事件流技术开发的网关，它旨在为微服务架构提供一种简单有效的统一的 API 路由管理方式。</p>
+</blockquote>
+<hr>
+<h1 id="为什么需要网关"><a href="#为什么需要网关" class="headerlink" title="为什么需要网关"></a>为什么需要网关</h1><p>Gateway网关是我们服务的守门神，所有微服务的统一入口。</p>
+<p>网关的<strong>核心功能特性</strong>：</p>
+<ul>
+<li>请求路由</li>
+<li>权限控制</li>
+<li>限流</li>
+</ul>
+<p>架构图：</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403190959597.png" srcset="/img/loading.gif" lazyload></p>
+<p><strong>权限控制</strong>：网关作为微服务入口，需要校验用户是是否有请求资格，如果没有则进行拦截。</p>
+<p><strong>路由和负载均衡</strong>：一切请求都必须先经过gateway，但网关不处理业务，而是根据某种规则，把请求转发到某个微服务，这个过程叫做路由。当然路由的目标服务有多个时，还需要做负载均衡。</p>
+<p><strong>限流</strong>：当请求流量过高时，在网关中按照下流的微服务能够接受的速度来放行请求，避免服务压力过大。</p>
+<p>在SpringCloud中网关的实现包括两种：</p>
+<ul>
+<li>gateway</li>
+<li>zuul</li>
+</ul>
+<p>Zuul是基于Servlet的实现，属于<strong>阻塞式编程</strong>。而SpringCloudGateway则是基于Spring5中提供的WebFlux，属于<strong>响应式编程</strong>的实现，具备更好的性能。</p>
+<h1 id="gateway快速入门"><a href="#gateway快速入门" class="headerlink" title="gateway快速入门"></a>gateway快速入门</h1><p>下面，我们就演示下网关的基本路由功能。基本步骤如下：</p>
+<ol>
+<li>创建SpringBoot工程gateway，引入网关依赖</li>
+<li>编写启动类</li>
+<li>编写基础配置和路由规则</li>
+<li>启动网关服务进行测试</li>
+</ol>
+<h2 id="创建gateway服务"><a href="#创建gateway服务" class="headerlink" title="创建gateway服务"></a>创建gateway服务</h2><p>创建服务：</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403191000330.png" srcset="/img/loading.gif" lazyload></p>
+<p>引入依赖：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs pom">&lt;!--网关--&gt;<br>&lt;dependency&gt;<br>    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;<br>    &lt;artifactId&gt;spring-cloud-starter-gateway&lt;/artifactId&gt;<br>&lt;/dependency&gt;<br>&lt;!--nacos服务发现依赖--&gt;<br>&lt;dependency&gt;<br>    &lt;groupId&gt;com.alibaba.cloud&lt;/groupId&gt;<br>    &lt;artifactId&gt;spring-cloud-starter-alibaba-nacos-discovery&lt;/artifactId&gt;<br>&lt;/dependency&gt;<br></code></pre></td></tr></table></figure>
+
+<h2 id="编写启动类"><a href="#编写启动类" class="headerlink" title="编写启动类"></a>编写启动类</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> cn.itcast.gateway;<br><br><span class="hljs-keyword">import</span> org.springframework.boot.SpringApplication;<br><span class="hljs-keyword">import</span> org.springframework.boot.autoconfigure.SpringBootApplication;<br><br><span class="hljs-meta">@SpringBootApplication</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">GatewayApplication</span> &#123;<br><br>	<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">main</span><span class="hljs-params">(String[] args)</span> &#123;<br>		SpringApplication.run(GatewayApplication.class, args);<br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="编写基础配置-amp-路由规则"><a href="#编写基础配置-amp-路由规则" class="headerlink" title="编写基础配置&amp;路由规则"></a>编写基础配置&amp;路由规则</h2><p>创建application.yml文件，内容如下：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">server:</span><br>  <span class="hljs-attr">port:</span> <span class="hljs-number">10010</span> <span class="hljs-comment"># 网关端口</span><br><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">application:</span><br>    <span class="hljs-attr">name:</span> <span class="hljs-string">gateway</span> <span class="hljs-comment"># 服务名称</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">nacos:</span><br>      <span class="hljs-attr">server-addr:</span> <span class="hljs-string">localhost:8848</span> <span class="hljs-comment"># nacos地址</span><br>    <span class="hljs-attr">gateway:</span><br>      <span class="hljs-attr">routes:</span> <span class="hljs-comment"># 网关路由配置</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-attr">id:</span> <span class="hljs-string">user-service</span> <span class="hljs-comment"># 路由id，自定义，只要唯一即可</span><br>          <span class="hljs-comment"># uri: http://127.0.0.1:8081 # 路由的目标地址 http就是固定地址</span><br>          <span class="hljs-attr">uri:</span> <span class="hljs-string">lb://userservice</span> <span class="hljs-comment"># 路由的目标地址 lb就是负载均衡，后面跟服务名称</span><br>          <span class="hljs-attr">predicates:</span> <span class="hljs-comment"># 路由断言，也就是判断请求是否符合路由规则的条件</span><br>            <span class="hljs-bullet">-</span> <span class="hljs-string">Path=/user/**</span> <span class="hljs-comment"># 这个是按照路径匹配，只要以/user/开头就符合要求</span><br></code></pre></td></tr></table></figure>
+
+<p>我们将符合<code>Path</code> 规则的一切请求，都代理到 <code>uri</code>参数指定的地址。</p>
+<p>本例中，我们将 <code>/user/**</code>开头的请求，代理到<code>lb://userservice</code>，lb是负载均衡，根据服务名拉取服务列表，实现负载均衡。</p>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p>重启网关，访问<a target="_blank" rel="noopener" href="http://localhost:10010/user/1">http://localhost:10010/user/1</a>时，符合<code>/user/**</code>规则，请求转发到uri：<a target="_blank" rel="noopener" href="http://userservice/user/1">http://userservice/user/1</a>，得到了结果：</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403191211148.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="网关路由流程图"><a href="#网关路由流程图" class="headerlink" title="网关路由流程图"></a>网关路由流程图</h2><p>整个访问的流程如下：</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403191212861.png" srcset="/img/loading.gif" lazyload></p>
+<p>总结：</p>
+<p>网关搭建步骤：</p>
+<ol>
+<li>创建项目，引入nacos服务发现和gateway依赖</li>
+<li>配置application.yml，包括服务基本信息、nacos地址、路由</li>
+</ol>
+<p>路由配置包括：</p>
+<ol>
+<li>路由id：路由的唯一标示</li>
+<li>路由目标（uri）：路由的目标地址，http代表固定地址，lb代表根据服务名负载均衡</li>
+<li>路由断言（predicates）：判断路由的规则，</li>
+<li>路由过滤器（filters）：对请求或响应做处理</li>
+</ol>
+<h1 id="断言工厂"><a href="#断言工厂" class="headerlink" title="断言工厂"></a>断言工厂</h1><p>在配置文件中写的断言规则只是字符串，这些字符串会被Predicate Factory读取并处理，转变为路由判断的条件</p>
+<p>例如Path&#x3D;&#x2F;user&#x2F;**是按照路径匹配，这个规则是由</p>
+<p><code>org.springframework.cloud.gateway.handler.predicate.PathRoutePredicateFactory</code>类来</p>
+<p>处理的，像这样的断言工厂在SpringCloudGateway还有十几个:</p>
+<table>
+<thead>
+<tr>
+<th><strong>名称</strong></th>
+<th><strong>说明</strong></th>
+<th><strong>示例</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>After</td>
+<td>是某个时间点后的请求</td>
+<td>- After&#x3D;2037-01-20T17:42:47.789-07:00[America&#x2F;Denver]</td>
+</tr>
+<tr>
+<td>Before</td>
+<td>是某个时间点之前的请求</td>
+<td>- Before&#x3D;2031-04-13T15:14:47.433+08:00[Asia&#x2F;Shanghai]</td>
+</tr>
+<tr>
+<td>Between</td>
+<td>是某两个时间点之前的请求</td>
+<td>- Between&#x3D;2037-01-20T17:42:47.789-07:00[America&#x2F;Denver], 2037-01-21T17:42:47.789-07:00[America&#x2F;Denver]</td>
+</tr>
+<tr>
+<td>Cookie</td>
+<td>请求必须包含某些cookie</td>
+<td>- Cookie&#x3D;chocolate, ch.p</td>
+</tr>
+<tr>
+<td>Header</td>
+<td>请求必须包含某些header</td>
+<td>- Header&#x3D;X-Request-Id, \d+</td>
+</tr>
+<tr>
+<td>Host</td>
+<td>请求必须是访问某个host（域名）</td>
+<td>- Host&#x3D;<strong>.somehost.org,</strong>.anotherhost.org</td>
+</tr>
+<tr>
+<td>Method</td>
+<td>请求方式必须是指定方式</td>
+<td>- Method&#x3D;GET,POST</td>
+</tr>
+<tr>
+<td>Path</td>
+<td>请求路径必须符合指定规则</td>
+<td>- Path&#x3D;&#x2F;red&#x2F;{segment},&#x2F;blue&#x2F;</td>
+</tr>
+<tr>
+<td>Query</td>
+<td>请求参数必须包含指定参数</td>
+<td>- Query&#x3D;name, Jack或者- Query&#x3D;name</td>
+</tr>
+<tr>
+<td>RemoteAddr</td>
+<td>请求者的ip必须是指定范围</td>
+<td>- RemoteAddr&#x3D;192.168.1.1&#x2F;24</td>
+</tr>
+<tr>
+<td>Weight</td>
+<td>权重处理</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>只需要掌握Path这种路由工程就可以了</p>
+<h1 id="过滤器工厂"><a href="#过滤器工厂" class="headerlink" title="过滤器工厂"></a>过滤器工厂</h1><p>GatewayFilter是网关中提供的一种过滤器，可以对进入网关的请求和微服务返回的响应做处理：</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403191214198.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="路由过滤器种类"><a href="#路由过滤器种类" class="headerlink" title="路由过滤器种类"></a>路由过滤器种类</h2><p>Spring提供了31种不同的路由过滤器工厂。例如：</p>
+<table>
+<thead>
+<tr>
+<th><strong>名称</strong></th>
+<th><strong>说明</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>AddRequestHeader</td>
+<td>给当前请求添加一个请求头</td>
+</tr>
+<tr>
+<td>RemoveRequestHeader</td>
+<td>移除请求中的一个请求头</td>
+</tr>
+<tr>
+<td>AddResponseHeader</td>
+<td>给响应结果中添加一个响应头</td>
+</tr>
+<tr>
+<td>RemoveResponseHeader</td>
+<td>从响应结果中移除有一个响应头</td>
+</tr>
+<tr>
+<td>RequestRateLimiter</td>
+<td>限制请求的流量</td>
+</tr>
+</tbody></table>
+<h2 id="请求头过滤器"><a href="#请求头过滤器" class="headerlink" title="请求头过滤器"></a>请求头过滤器</h2><p>下面我们以AddRequestHeader 为例来讲解。</p>
+<blockquote>
+<p><strong>需求</strong>：给所有进入userservice的请求添加一个请求头：Truth&#x3D;itcast is freaking awesome!</p>
+</blockquote>
+<p>只需要修改gateway服务的application.yml文件，添加路由过滤即可：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">gateway:</span><br>      <span class="hljs-attr">routes:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">id:</span> <span class="hljs-string">user-service</span> <br>        <span class="hljs-attr">uri:</span> <span class="hljs-string">lb://userservice</span> <br>        <span class="hljs-attr">predicates:</span> <br>        <span class="hljs-bullet">-</span> <span class="hljs-string">Path=/user/**</span> <br>        <span class="hljs-attr">filters:</span> <span class="hljs-comment"># 过滤器</span><br>        <span class="hljs-bullet">-</span> <span class="hljs-string">AddRequestHeader=Truth,</span> <span class="hljs-string">Itcast</span> <span class="hljs-string">is</span> <span class="hljs-string">freaking</span> <span class="hljs-string">awesome!</span> <span class="hljs-comment"># 添加请求头</span><br></code></pre></td></tr></table></figure>
+
+<p>当前过滤器写在userservice路由下，因此仅仅对访问userservice的请求有效。</p>
+<h2 id="默认过滤器"><a href="#默认过滤器" class="headerlink" title="默认过滤器"></a>默认过滤器</h2><p>如果要对所有的路由都生效，则可以将过滤器工厂写到default下。格式如下：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">gateway:</span><br>      <span class="hljs-attr">routes:</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-attr">id:</span> <span class="hljs-string">user-service</span> <br>        <span class="hljs-attr">uri:</span> <span class="hljs-string">lb://userservice</span> <br>        <span class="hljs-attr">predicates:</span> <br>        <span class="hljs-bullet">-</span> <span class="hljs-string">Path=/user/**</span><br>      <span class="hljs-attr">default-filters:</span> <span class="hljs-comment"># 默认过滤项</span><br>      <span class="hljs-bullet">-</span> <span class="hljs-string">AddRequestHeader=Truth,</span> <span class="hljs-string">Itcast</span> <span class="hljs-string">is</span> <span class="hljs-string">freaking</span> <span class="hljs-string">awesome!</span> <br></code></pre></td></tr></table></figure>
+
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>过滤器的作用是什么？</p>
+<p>① 对路由的请求或响应做加工处理，比如添加请求头<br>② 配置在路由下的过滤器只对当前路由的请求生效</p>
+<p>defaultFilters的作用是什么？<br>对所有路由都生效的过滤器</p>
+<h1 id="全局过滤器"><a href="#全局过滤器" class="headerlink" title="全局过滤器"></a>全局过滤器</h1><p>上一节的过滤器，网关提供了31种，但每一种过滤器的作用都是固定的。如果我们希望拦截请求，做自己的业务逻辑则没办法实现。</p>
+<h2 id="全局过滤器作用"><a href="#全局过滤器作用" class="headerlink" title="全局过滤器作用"></a>全局过滤器作用</h2><p>全局过滤器的作用也是处理一切进入网关的请求和微服务响应，与GatewayFilter的作用一样。区别在于GatewayFilter通过配置定义，处理逻辑是固定的；而GlobalFilter的逻辑需要自己写代码实现。</p>
+<p>定义方式是实现GlobalFilter接口。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">GlobalFilter</span> &#123;<br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     *  处理当前请求，有必要的话通过&#123;<span class="hljs-doctag">@link</span> GatewayFilterChain&#125;将请求交给下一个过滤器处理</span><br><span class="hljs-comment">     *</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> exchange 请求上下文，里面可以获取Request、Response等信息</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> chain 用来把请求委托给下一个过滤器 </span><br><span class="hljs-comment">     * <span class="hljs-doctag">@return</span> &#123;<span class="hljs-doctag">@code</span> Mono&lt;Void&gt;&#125; 返回标示当前过滤器业务结束</span><br><span class="hljs-comment">     */</span><br>    Mono&lt;Void&gt; <span class="hljs-title function_">filter</span><span class="hljs-params">(ServerWebExchange exchange, GatewayFilterChain chain)</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>在filter中编写自定义逻辑，可以实现下列功能：</p>
+<ul>
+<li>登录状态判断</li>
+<li>权限校验</li>
+<li>请求限流等</li>
+</ul>
+<h2 id="自定义全局过滤器"><a href="#自定义全局过滤器" class="headerlink" title="自定义全局过滤器"></a>自定义全局过滤器</h2><p>需求：定义全局过滤器，拦截请求，判断请求的参数是否满足下面条件：</p>
+<ul>
+<li>参数中是否有authorization，</li>
+<li>authorization参数值是否为admin</li>
+</ul>
+<p>如果同时满足则放行，否则拦截</p>
+<p>实现：</p>
+<p>在gateway中定义一个过滤器：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> cn.itcast.gateway.filters;<br><br><span class="hljs-keyword">import</span> org.springframework.cloud.gateway.filter.GatewayFilterChain;<br><span class="hljs-keyword">import</span> org.springframework.cloud.gateway.filter.GlobalFilter;<br><span class="hljs-keyword">import</span> org.springframework.core.annotation.Order;<br><span class="hljs-keyword">import</span> org.springframework.http.HttpStatus;<br><span class="hljs-keyword">import</span> org.springframework.stereotype.Component;<br><span class="hljs-keyword">import</span> org.springframework.web.server.ServerWebExchange;<br><span class="hljs-keyword">import</span> reactor.core.publisher.Mono;<br><br><span class="hljs-meta">@Order(-1)</span><br><span class="hljs-meta">@Component</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">AuthorizeFilter</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">GlobalFilter</span> &#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> Mono&lt;Void&gt; <span class="hljs-title function_">filter</span><span class="hljs-params">(ServerWebExchange exchange, GatewayFilterChain chain)</span> &#123;<br>        <span class="hljs-comment">// 1.获取请求参数</span><br>        MultiValueMap&lt;String, String&gt; params = exchange.getRequest().getQueryParams();<br>        <span class="hljs-comment">// 2.获取authorization参数</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">auth</span> <span class="hljs-operator">=</span> params.getFirst(<span class="hljs-string">&quot;authorization&quot;</span>);<br>        <span class="hljs-comment">// 3.校验</span><br>        <span class="hljs-keyword">if</span> (<span class="hljs-string">&quot;admin&quot;</span>.equals(auth)) &#123;<br>            <span class="hljs-comment">// 放行</span><br>            <span class="hljs-keyword">return</span> chain.filter(exchange);<br>        &#125;<br>        <span class="hljs-comment">// 4.拦截</span><br>        <span class="hljs-comment">// 4.1.禁止访问，设置状态码</span><br>        exchange.getResponse().setStatusCode(HttpStatus.FORBIDDEN);<br>        <span class="hljs-comment">// 4.2.结束处理</span><br>        <span class="hljs-keyword">return</span> exchange.getResponse().setComplete();<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="过滤器执行顺序"><a href="#过滤器执行顺序" class="headerlink" title="过滤器执行顺序"></a>过滤器执行顺序</h2><p>请求进入网关会碰到三类过滤器：当前路由的过滤器、DefaultFilter、GlobalFilter</p>
+<p>请求路由后，会将当前路由过滤器和DefaultFilter、GlobalFilter，合并到一个过滤器链（集合）中，排序后依次执行每个过滤器：</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403191217433.png" srcset="/img/loading.gif" lazyload></p>
+<p>排序的规则是什么呢？</p>
+<ul>
+<li>每一个过滤器都必须指定一个int类型的order值，<strong>order值越小，优先级越高，执行顺序越靠前</strong>。</li>
+<li>GlobalFilter通过实现Ordered接口，或者添加@Order注解来指定order值，由我们自己指定</li>
+<li>路由过滤器和defaultFilter的order由Spring指定，默认是按照声明顺序从1递增。</li>
+<li>当过滤器的order值一样时，会按照 defaultFilter &gt; 路由过滤器 &gt; GlobalFilter的顺序执行。</li>
+</ul>
+<p>详细内容，可以查看源码：</p>
+<p><code>org.springframework.cloud.gateway.route.RouteDefinitionRouteLocator#getFilters()</code>方法是先加载defaultFilters，然后再加载某个route的filters，然后合并。</p>
+<p><code>org.springframework.cloud.gateway.handler.FilteringWebHandler#handle()</code>方法会加载全局过滤器，与前面的过滤器合并后根据order排序，组织过滤器链</p>
+<h1 id="跨域问题"><a href="#跨域问题" class="headerlink" title="跨域问题"></a>跨域问题</h1><h2 id="什么是跨域"><a href="#什么是跨域" class="headerlink" title="什么是跨域"></a>什么是跨域</h2><p>跨域：域名不一致就是跨域，主要包括：</p>
+<ul>
+<li>域名不同： <a href="www.taobao.com">www.taobao.com</a> 和 <a href="www.taobao.org">www.taobao.org</a> 和 <a href="www.jd.com">www.jd.com</a> 和 miaosha.jd.com</li>
+<li>域名相同，端口不同：localhost:8080和localhost8081</li>
+</ul>
+<p>跨域问题：浏览器禁止请求的发起者与服务端发生跨域ajax请求，请求被浏览器拦截的问题</p>
+<p>解决方案：CORS，这里不再赘述了。</p>
+<h2 id="解决跨域问题"><a href="#解决跨域问题" class="headerlink" title="解决跨域问题"></a>解决跨域问题</h2><p>在gateway服务的application.yml文件中，添加下面的配置：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">spring:</span><br>  <span class="hljs-attr">cloud:</span><br>    <span class="hljs-attr">gateway:</span><br>      <span class="hljs-comment"># 。。。</span><br>      <span class="hljs-attr">globalcors:</span> <span class="hljs-comment"># 全局的跨域处理</span><br>        <span class="hljs-attr">add-to-simple-url-handler-mapping:</span> <span class="hljs-literal">true</span> <span class="hljs-comment"># 解决options请求被拦截问题</span><br>        <span class="hljs-attr">corsConfigurations:</span><br>          <span class="hljs-string">&#x27;[/**]&#x27;</span><span class="hljs-string">:</span><br>            <span class="hljs-attr">allowedOrigins:</span> <span class="hljs-comment"># 允许哪些网站的跨域请求 </span><br>              <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;http://localhost:8090&quot;</span><br>            <span class="hljs-attr">allowedMethods:</span> <span class="hljs-comment"># 允许的跨域ajax的请求方式</span><br>              <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;GET&quot;</span><br>              <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;POST&quot;</span><br>              <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;DELETE&quot;</span><br>              <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;PUT&quot;</span><br>              <span class="hljs-bullet">-</span> <span class="hljs-string">&quot;OPTIONS&quot;</span><br>            <span class="hljs-attr">allowedHeaders:</span> <span class="hljs-string">&quot;*&quot;</span> <span class="hljs-comment"># 允许在请求中携带的头信息</span><br>            <span class="hljs-attr">allowCredentials:</span> <span class="hljs-literal">true</span> <span class="hljs-comment"># 是否允许携带cookie</span><br>            <span class="hljs-attr">maxAge:</span> <span class="hljs-number">360000</span> <span class="hljs-comment"># 这次跨域检测的有效期</span><br></code></pre></td></tr></table></figure>
+
 
                 
               </div>

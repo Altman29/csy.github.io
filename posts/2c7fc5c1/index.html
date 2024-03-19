@@ -1,0 +1,967 @@
+
+
+<!DOCTYPE html>
+<html lang="en" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="拾叁">
+  <meta name="keywords" content="feign">
+  
+    <meta name="description" content="与dubbo同样是一款优秀的RPC远程调用框架。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="通关微服务-feign">
+<meta property="og:url" content="https://blog.13space.cn/posts/2c7fc5c1/index.html">
+<meta property="og:site_name" content="拾叁的小破站">
+<meta property="og:description" content="与dubbo同样是一款优秀的RPC远程调用框架。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://blog.13space.cn/img/feign/feign.png">
+<meta property="article:published_time" content="2021-07-15T06:21:15.000Z">
+<meta property="article:modified_time" content="2024-03-19T01:55:13.808Z">
+<meta property="article:author" content="拾叁">
+<meta property="article:tag" content="feign">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://blog.13space.cn/img/feign/feign.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>通关微服务-feign - 拾叁的小破站</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"blog.13space.cn","root":"/","version":"1.9.4","typing":{"enable":true,"typeSpeed":100,"cursorChar":"*","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>拾叁 | space</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>时间轴</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/remark/">
+                <i class="iconfont icon-speakernotes"></i>
+                <span>留言板</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                <span>Links</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/home_bg.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="通关微服务-feign"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        拾叁
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2021-07-15 14:21" pubdate>
+          July 15, 2021 pm
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.5k words
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          55 mins
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+<script src="/js/custom-iconfont.js?v=" ></script>
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">通关微服务-feign</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <blockquote>
+<p>同样是rpc远程调用框架，有dubbo为什么还有再掌握feign呢？<br>先说结论：<br>Feign 是一个声明式的伪 Http 客户端，它使得写 Http 客户端变得更简单。使用 Feign，只需要创建一个接口并注解。它具有可插拔的注解特性，可使用 Feign 注解和 JAX-RS 注解。Feign 支持可插拔的编码器和解码器。Feign 默认集成了 Ribbon，Nacos 也很好的兼容了 Feign，默认实现了负载均衡的效果。<br>虽然dubbo在性能上有优势，<strong>不过这种性能差异除非是达极高的并发量级，否则无需过多考虑。</strong> 相比之下，个人更偏好Feign，因为比较简洁、优雅。</p>
+</blockquote>
+<hr>
+<h1 id="Feign替代RestTemplate"><a href="#Feign替代RestTemplate" class="headerlink" title="Feign替代RestTemplate"></a>Feign替代RestTemplate</h1><p>先来看我们以前利用RestTemplate发起远程调用的代码：</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403190936149.png" srcset="/img/loading.gif" lazyload></p>
+<p>存在下面的问题：</p>
+<p>•代码可读性差，编程体验不统一<br>•参数复杂URL难以维护</p>
+<p>其作用就是帮助我们优雅的实现http请求的发送，解决上面提到的问题。</p>
+<p>feign使用步骤如下</p>
+<h2 id="引入依赖"><a href="#引入依赖" class="headerlink" title="引入依赖"></a>引入依赖</h2><p>我们在order-service服务的pom文件中引入feign的依赖：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs pom">&lt;dependency&gt;<br>    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;<br>    &lt;artifactId&gt;spring-cloud-starter-openfeign&lt;/artifactId&gt;<br>&lt;/dependency&gt;<br></code></pre></td></tr></table></figure>
+
+<h2 id="添加注解"><a href="#添加注解" class="headerlink" title="添加注解"></a>添加注解</h2><p>在order-service的<strong>启动类</strong>添加注解开启Feign的功能：</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403190937087.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="编写Feign的客户端"><a href="#编写Feign的客户端" class="headerlink" title="编写Feign的客户端"></a>编写Feign的客户端</h2><p>在order-service中新建一个接口，内容如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> cn.itcast.order.client;<br><br><span class="hljs-keyword">import</span> cn.itcast.order.pojo.User;<br><span class="hljs-keyword">import</span> org.springframework.cloud.openfeign.FeignClient;<br><span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.GetMapping;<br><span class="hljs-keyword">import</span> org.springframework.web.bind.annotation.PathVariable;<br><br><span class="hljs-meta">@FeignClient(&quot;userservice&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">UserClient</span> &#123;<br>    <span class="hljs-meta">@GetMapping(&quot;/user/&#123;id&#125;&quot;)</span><br>    User <span class="hljs-title function_">findById</span><span class="hljs-params">(<span class="hljs-meta">@PathVariable(&quot;id&quot;)</span> Long id)</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这个客户端主要是<strong>基于SpringMVC的注解来声明远程调用的信息</strong>，比如：</p>
+<ul>
+<li>服务名称：userservice</li>
+<li>请求方式：GET</li>
+<li>请求路径：&#x2F;user&#x2F;{id}</li>
+<li>请求参数：Long id</li>
+<li>返回值类型：User</li>
+</ul>
+<p>这样，Feign就可以帮助我们发送http请求，无需自己使用RestTemplate来发送了。</p>
+<h2 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h2><p>修改order-service中的OrderService类中的queryOrderById方法，使用Feign客户端代替RestTemplate：</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403190939525.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>使用Feign的步骤：</p>
+<p>① 引入依赖<br>② 添加@EnableFeignClients注解<br>③ 编写FeignClient接口<br>④ 使用FeignClient中定义的方法代替RestTemplate</p>
+<h1 id="自定义配置"><a href="#自定义配置" class="headerlink" title="自定义配置"></a>自定义配置</h1><p>Feign可以支持很多的自定义配置，如下表所示：</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>作用</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>feign.Logger.Level</strong></td>
+<td>修改日志级别</td>
+<td>包含四种不同的级别：NONE、BASIC、HEADERS、FULL</td>
+</tr>
+<tr>
+<td>feign.codec.Decoder</td>
+<td>响应结果的解析器</td>
+<td>http远程调用的结果做解析，例如解析json字符串为java对象</td>
+</tr>
+<tr>
+<td>feign.codec.Encoder</td>
+<td>请求参数编码</td>
+<td>将请求参数编码，便于通过http请求发送</td>
+</tr>
+<tr>
+<td>feign. Contract</td>
+<td>支持的注解格式</td>
+<td>默认是SpringMVC的注解</td>
+</tr>
+<tr>
+<td>feign. Retryer</td>
+<td>失败重试机制</td>
+<td>请求失败的重试机制，默认是没有，不过会使用Ribbon的重试</td>
+</tr>
+</tbody></table>
+<p>一般情况下，默认值就能满足我们使用，如果要自定义时，只需要创建自定义的@Bean覆盖默认Bean即可。</p>
+<p>下面以日志为例来演示如何自定义配置。</p>
+<h2 id="配置文件方式"><a href="#配置文件方式" class="headerlink" title="配置文件方式"></a>配置文件方式</h2><p>基于配置文件修改feign的日志级别可以针对单个服务：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">feign:</span>  <br>  <span class="hljs-attr">client:</span><br>    <span class="hljs-attr">config:</span> <br>      <span class="hljs-attr">userservice:</span> <span class="hljs-comment"># 针对某个微服务的配置</span><br>        <span class="hljs-attr">loggerLevel:</span> <span class="hljs-string">FULL</span> <span class="hljs-comment">#  日志级别 </span><br></code></pre></td></tr></table></figure>
+
+<p>也可以针对所有服务：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">feign:</span>  <br>  <span class="hljs-attr">client:</span><br>    <span class="hljs-attr">config:</span> <br>      <span class="hljs-attr">default:</span> <span class="hljs-comment"># 这里用default就是全局配置，如果是写服务名称，则是针对某个微服务的配置</span><br>        <span class="hljs-attr">loggerLevel:</span> <span class="hljs-string">FULL</span> <span class="hljs-comment">#  日志级别 </span><br></code></pre></td></tr></table></figure>
+
+<p>而日志的级别分为四种：</p>
+<ul>
+<li>NONE：不记录任何日志信息，这是默认值。</li>
+<li>BASIC：仅记录请求的方法，URL以及响应状态码和执行时间</li>
+<li>HEADERS：在BASIC的基础上，额外记录了请求和响应的头信息</li>
+<li>FULL：记录所有请求和响应的明细，包括头信息、请求体、元数据。</li>
+</ul>
+<h2 id="Java代码方式"><a href="#Java代码方式" class="headerlink" title="Java代码方式"></a>Java代码方式</h2><p>也可以基于Java代码来修改日志级别，先声明一个类，然后声明一个Logger.Level的对象：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">DefaultFeignConfiguration</span>  &#123;<br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-keyword">public</span> Logger.Level <span class="hljs-title function_">feignLogLevel</span><span class="hljs-params">()</span>&#123;<br>        <span class="hljs-keyword">return</span> Logger.Level.BASIC; <span class="hljs-comment">// 日志级别为BASIC</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>如果要<strong>全局生效</strong>，将其放到启动类的@EnableFeignClients这个注解中：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@EnableFeignClients(defaultConfiguration = DefaultFeignConfiguration .class)</span> <br></code></pre></td></tr></table></figure>
+
+<p>如果是<strong>局部生效</strong>，则把它放到对应的@FeignClient这个注解中：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@FeignClient(value = &quot;userservice&quot;, configuration = DefaultFeignConfiguration .class)</span> <br></code></pre></td></tr></table></figure>
+
+<h1 id="使用优化"><a href="#使用优化" class="headerlink" title="使用优化"></a>使用优化</h1><p>Feign底层发起http请求，依赖于其它的框架。其底层客户端实现包括：</p>
+<p>•URLConnection：默认实现，不支持连接池<br>•Apache HttpClient ：支持连接池<br>•OKHttp：支持连接池</p>
+<p>因此提高Feign的性能主要手段就是使用<strong>连接池</strong>代替默认的URLConnection。</p>
+<p>这里我们用Apache的HttpClient来演示。</p>
+<h2 id="引入依赖-1"><a href="#引入依赖-1" class="headerlink" title="引入依赖"></a>引入依赖</h2><p>在order-service的pom文件中引入Apache的HttpClient依赖：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs pom">&lt;!--httpClient的依赖 --&gt;<br>&lt;dependency&gt;<br>    &lt;groupId&gt;io.github.openfeign&lt;/groupId&gt;<br>    &lt;artifactId&gt;feign-httpclient&lt;/artifactId&gt;<br>&lt;/dependency&gt;<br></code></pre></td></tr></table></figure>
+
+<h2 id="配置连接池"><a href="#配置连接池" class="headerlink" title="配置连接池"></a>配置连接池</h2><p>在order-service的application.yml中添加配置：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">feign:</span><br>  <span class="hljs-attr">client:</span><br>    <span class="hljs-attr">config:</span><br>      <span class="hljs-attr">default:</span> <span class="hljs-comment"># default全局的配置</span><br>        <span class="hljs-attr">loggerLevel:</span> <span class="hljs-string">BASIC</span> <span class="hljs-comment"># 日志级别，BASIC就是基本的请求和响应信息</span><br>  <span class="hljs-attr">httpclient:</span><br>    <span class="hljs-attr">enabled:</span> <span class="hljs-literal">true</span> <span class="hljs-comment"># 开启feign对HttpClient的支持!!!</span><br>    <span class="hljs-attr">max-connections:</span> <span class="hljs-number">200</span> <span class="hljs-comment"># 最大的连接数</span><br>    <span class="hljs-attr">max-connections-per-route:</span> <span class="hljs-number">50</span> <span class="hljs-comment"># 每个路径的最大连接数</span><br></code></pre></td></tr></table></figure>
+
+<p>接下来，在FeignClientFactoryBean中的loadBalance方法中打断点：</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403190943107.png" srcset="/img/loading.gif" lazyload></p>
+<p>Debug方式启动order-service服务，可以看到这里的client，底层就是Apache HttpClient：</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403190944530.png" srcset="/img/loading.gif" lazyload></p>
+<p>总结，Feign的优化：</p>
+<p>1.日志级别尽量用basic<br>2.使用HttpClient或OKHttp代替URLConnection<br>① 引入feign-httpClient依赖<br>② 配置文件开启httpClient功能，设置连接池参数</p>
+<h1 id="最佳实践"><a href="#最佳实践" class="headerlink" title="最佳实践"></a>最佳实践</h1><p>所谓最近实践，就是使用过程中总结的经验，最好的一种使用方式。</p>
+<p>观察可以发现，Feign的客户端与服务提供者的controller代码非常相似：</p>
+<p>feign客户端：</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403190944874.png" srcset="/img/loading.gif" lazyload></p>
+<p>UserController：</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403190945882.png" srcset="/img/loading.gif" lazyload></p>
+<p>有没有一种办法简化这种重复的代码编写呢？</p>
+<h2 id="继承方式"><a href="#继承方式" class="headerlink" title="继承方式"></a>继承方式</h2><p>一样的代码可以通过继承来共享：</p>
+<p>1）定义一个API接口，利用定义方法，并基于SpringMVC注解做声明。<br>2）Feign客户端和Controller都集成改接口</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403190945915.png" srcset="/img/loading.gif" lazyload></p>
+<p>优点：</p>
+<ul>
+<li>简单</li>
+<li>实现了代码共享</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>服务提供方、服务消费方紧耦合</li>
+<li>参数列表中的注解映射并不会继承，因此Controller中必须再次声明方法、参数列表、注解</li>
+</ul>
+<h2 id="抽取方式"><a href="#抽取方式" class="headerlink" title="抽取方式"></a>抽取方式</h2><p>将Feign的Client抽取为独立模块，并且把接口有关的POJO、默认的Feign配置都放到这个模块中，提供给所有消费者使用。</p>
+<p>例如，将UserClient、User、Feign的默认配置都抽取到一个feign-api包中，所有微服务引用该依赖包，即可直接使用。</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403190946725.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="基于抽取方式的最佳实践"><a href="#基于抽取方式的最佳实践" class="headerlink" title="基于抽取方式的最佳实践"></a>基于抽取方式的最佳实践</h2><h3 id="抽取"><a href="#抽取" class="headerlink" title="抽取"></a>抽取</h3><p>首先创建一个module，命名为feign-api：</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403190948682.png" srcset="/img/loading.gif" lazyload></p>
+<p>项目结构：</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403190948827.png" srcset="/img/loading.gif" lazyload></p>
+<p>在feign-api中然后引入feign的starter依赖：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs pom">&lt;dependency&gt;<br>    &lt;groupId&gt;org.springframework.cloud&lt;/groupId&gt;<br>    &lt;artifactId&gt;spring-cloud-starter-openfeign&lt;/artifactId&gt;<br>&lt;/dependency&gt;<br></code></pre></td></tr></table></figure>
+
+<p>然后，order-service中编写的UserClient、User、DefaultFeignConfiguration都复制到feign-api项目中：</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403190949199.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="使用feign-api"><a href="#使用feign-api" class="headerlink" title="使用feign-api"></a>使用feign-api</h3><p>首先，删除order-service中的UserClient、User、DefaultFeignConfiguration等类或接口。</p>
+<p>在order-service的pom文件中中引入feign-api的依赖：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs pom">&lt;dependency&gt;<br>    &lt;groupId&gt;cn.itcast.demo&lt;/groupId&gt;<br>    &lt;artifactId&gt;feign-api&lt;/artifactId&gt;<br>    &lt;version&gt;1.0&lt;/version&gt;<br>&lt;/dependency&gt;<br></code></pre></td></tr></table></figure>
+
+<p>修改order-service中的所有与上述三个组件有关的导包部分，改成导入feign-api中的包</p>
+<h3 id="测试-1"><a href="#测试-1" class="headerlink" title="测试"></a>测试</h3><p>重启后，发现服务报错了：</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403190950020.png" srcset="/img/loading.gif" lazyload></p>
+<p>这是因为UserClient现在在cn.itcast.feign.clients包下，</p>
+<p>而order-service的@EnableFeignClients注解是在cn.itcast.order包下，不在同一个包，无法扫描到UserClient。</p>
+<h3 id="解决扫描包问题"><a href="#解决扫描包问题" class="headerlink" title="解决扫描包问题"></a>解决扫描包问题</h3><p><strong>方式一</strong></p>
+<p>指定Feign应该扫描的包：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@EnableFeignClients(basePackages = &quot;cn.itcast.feign.clients&quot;)</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>方式二</strong></p>
+<p>指定需要加载的Client接口：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@EnableFeignClients(clients = &#123;UserClient.class&#125;)</span><br></code></pre></td></tr></table></figure>
+
+<p>这样就完成了Feign的最佳实践。</p>
+<h1 id="Feign与Dubbo"><a href="#Feign与Dubbo" class="headerlink" title="Feign与Dubbo"></a>Feign与Dubbo</h1><p><strong>Feign</strong>是Spring Cloud提供的一个声明式的伪Http客户端，它使得调用远程服务就像调用本地服务一样简单，只需要创建一个接口并添加一个注解即可。</p>
+<p>Nacos注册中心很好的兼容了Feign，Feign默认集成了Ribbon，所以在Nacos下使用Fegin默认就实现了负载均衡的效果。</p>
+<p><strong>Dubbo</strong>是阿里巴巴开源的基于Java的高性能RPC分布式服务框架，致力于提供高性能和透明化的RPC远程服务调用方案，以及SOA服务治理方案。</p>
+<p>Spring-cloud-alibaba-dubbo是基于SpringCloudAlibaba技术栈对dubbo技术的一种封装，目的在于实现基于RPC的服务调用。</p>
+<h2 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h2><h3 id="协议支持方面"><a href="#协议支持方面" class="headerlink" title="协议支持方面"></a>协议支持方面</h3><p>Feign更加优雅简单。Feign是通过REST API实现的远程调用，基于Http传输协议，服务提供者需要对外暴露Http接口供消费者调用，服务粒度是http接口级的。通过短连接的方式进行通信，不适合高并发的访问。Feign追求的是简洁，少侵入（因为就服务端而言，在SpringCloud环境下，不需要做任何额外的操作，而Dubbo的服务端需要配置开放的Dubbo接口)。</p>
+<p>Dubbo方式更灵活。Dubbo是通过RPC调用实现的远程调用，支持多传输协议(Dubbo、Rmi、http、redis等等)，可以根据业务场景选择最佳的方式，非常灵活。默认的Dubbo协议：利用Netty，TCP传输，单一、异步、长连接，适合数据量小、高并发和服务提供者远远少于消费者的场景。Dubbo通过TCP长连接的方式进行通信，服务粒度是方法级的。</p>
+<p>从协议层选择看，Dubbo是配置化的，更加灵活。Dubbo协议更适合小数据高并发场景。</p>
+<h3 id="通信性能方面"><a href="#通信性能方面" class="headerlink" title="通信性能方面"></a>通信性能方面</h3><p>从通信的性能上来分析，SpringCloud的通信采用Openfeign（feign）组件。</p>
+<p>Feign基于Http传输协议，底层实现是rest。从OSI 7层模型上来看rest属于应用层。</p>
+<p>在高并发场景下性能不够理想，成为性能瓶颈（虽然他是基于Ribbon以及带有熔断机制可以防止雪崩），需要改造。具体需要改造的内容需要时再研究。</p>
+<p>Dubbo框架的通信协议采用RPC协议，属于传输层协议，性能上自然比rest高。提升了交互的性能，保持了长连接，高性能。</p>
+<p>Dubbo性能更好，比如支持异步调用、Netty性能更好。Dubbo主要是配置而无需改造。</p>
+<table>
+<thead>
+<tr>
+<th>RPC</th>
+<th>REST</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>耦合性</td>
+<td>强耦合</td>
+</tr>
+<tr>
+<td>消息协议</td>
+<td>二进制 thrift&#x2F;protobuf</td>
+</tr>
+<tr>
+<td>通信协议</td>
+<td>TCP</td>
+</tr>
+<tr>
+<td>接口契约IDL</td>
+<td>thrift&#x2F;protobuf</td>
+</tr>
+<tr>
+<td>开发调试</td>
+<td>消息不可读</td>
+</tr>
+<tr>
+<td>对外开放</td>
+<td>一般作为内部各个系统的通信框架</td>
+</tr>
+</tbody></table>
+<h3 id="负载均衡方面"><a href="#负载均衡方面" class="headerlink" title="负载均衡方面"></a>负载均衡方面</h3><p>Feign默认使用Ribbon作为负载均衡的组件。</p>
+<p>Dubbo和Ribbon（Feign默认集成Ribbon）都支持负载均衡策略，但是Dubbo支持的更灵活。</p>
+<p>Dubbo和Ribbon对比：</p>
+<p>Ribbon的负载均衡策略：随机、规则轮询、空闲策略、响应时间策略。</p>
+<p>Dubbo的负载均衡策略：Dubbo支持4种算法，随机、权重轮询、最少活跃调用数、一致性Hash策略。而且算法里面引入权重的概念。</p>
+<p>Dubbo可以使用路由策略，然后再进行负载均衡。</p>
+<p>Dubbo配置的形式不仅支持代码配置，还支持Dubbo控制台灵活动态配置。</p>
+<p>Dubbo负载均衡的算法可以精准到某个服务接口的某个方法，而Ribbon的算法是Client级别的。Ribbon需要进行全局配置，个性化配置比较麻烦。</p>
+<h3 id="容错机制方面"><a href="#容错机制方面" class="headerlink" title="容错机制方面"></a>容错机制方面</h3><p>Feign默认使用Hystix作为服务熔断的组件。Hystix提供了服务降级，服务熔断，依赖隔离，监控（Hystrix Dashboard）等功能。Feign是利用熔断机制来实现容错的，与Dubbo处理的方式不一样。</p>
+<p>Dubbo支持多种容错策略，FailOver、FailFast、Failsafe、FailBack、Aviailable、Broadcast、Forking策略等，以及Mock。也引入了retry次数，timeout等配置参数。Dubbo自带了失败重试的功能。</p>
+<h3 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h3><p>如果项目对性能要求不是很严格，可以选择使用Feign，它使用起来更方便。</p>
+<p>如果需要提高性能，避开基于Http方式的性能瓶颈，可以使用Dubbo。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" class="category-chain-item">微服务</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/feign/">#feign</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>通关微服务-feign</div>
+      <div>https://blog.13space.cn/posts/2c7fc5c1/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>Author</div>
+          <div>拾叁</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>Posted on</div>
+          <div>July 15, 2021</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>Licensed under</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - Attribution">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/posts/2c2c4e78/" title="通关微服务-nacos">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">通关微服务-nacos</span>
+                        <span class="visible-mobile">Previous</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/posts/198ade24/" title="通关微服务-dubbo">
+                        <span class="hidden-mobile">通关微服务-dubbo</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="twikoo"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#comments', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/twikoo/1.6.8/twikoo.all.min.js', function() {
+        var options = Object.assign(
+          {"envId":"https://hexo-blog-twikoo-flame.vercel.app/","region":"ap-shanghai","path":"window.location.pathname"},
+          {
+            el: '#twikoo',
+            path: 'window.location.pathname',
+            onCommentLoaded: function() {
+              var imgSelector = '#twikoo .tk-content img:not(.tk-owo-emotion)';
+              Fluid.plugins.imageCaption(imgSelector);
+              Fluid.plugins.fancyBox(imgSelector);
+            }
+          }
+        )
+        twikoo.init(options)
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>Table of Contents</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Search</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">Keyword</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> </br>拾叁的小破站，欢迎浏览啊~</br> <div style="font-size: 0.85rem"> <span id="timeDate">载入天数...</span> <span id="times">载入时分秒...</span> <script src="/js/duration.js"></script> </div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        Views: 
+        <span id="busuanzi_value_site_pv"></span>
+        
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        Visitors: 
+        <span id="busuanzi_value_site_uv"></span>
+        
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">Blog works best with JavaScript enabled</div>
+  </noscript>
+</body>
+</html>
