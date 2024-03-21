@@ -4,19 +4,6 @@
   
   
   <entry>
-    <title>备忘系列-zookeeper</title>
-    <link href="/posts/5326b2b2/"/>
-    <url>/posts/5326b2b2/</url>
-    
-    <content type="html"><![CDATA[<p>sadasd</p>]]></content>
-    
-    
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>云原生之DevOps</title>
     <link href="/posts/9393e822/"/>
     <url>/posts/9393e822/</url>
@@ -94,7 +81,7 @@
   
   
   <entry>
-    <title>备忘系列-nginx</title>
+    <title>nginx</title>
     <link href="/posts/c06c050/"/>
     <url>/posts/c06c050/</url>
     
@@ -123,36 +110,7 @@
   
   
   <entry>
-    <title>备忘系列-netty</title>
-    <link href="/posts/75dbf2b5/"/>
-    <url>/posts/75dbf2b5/</url>
-    
-    <content type="html"><![CDATA[<p>是sadasd</p>]]></content>
-    
-    
-    <categories>
-      
-      <category>网络应用组件</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>netty</tag>
-      
-      <tag>io</tag>
-      
-      <tag>nio</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>备忘系列-mongodb</title>
+    <title>mongodb</title>
     <link href="/posts/c9d19155/"/>
     <url>/posts/c9d19155/</url>
     
@@ -179,25 +137,23 @@
   
   
   <entry>
-    <title>备忘系列-solr</title>
+    <title>redis-下</title>
     <link href="/posts/7aa76e65/"/>
     <url>/posts/7aa76e65/</url>
     
-    <content type="html"><![CDATA[]]></content>
+    <content type="html"><![CDATA[<p>实战篇</p>]]></content>
     
     
     <categories>
       
-      <category>nosql</category>
+      <category>微服务</category>
       
     </categories>
     
     
     <tags>
       
-      <tag>nosql</tag>
-      
-      <tag>solr</tag>
+      <tag>redis</tag>
       
     </tags>
     
@@ -206,7 +162,7 @@
   
   
   <entry>
-    <title>备忘系列-xxl-job</title>
+    <title>xxl-job</title>
     <link href="/posts/89b2e006/"/>
     <url>/posts/89b2e006/</url>
     
@@ -231,7 +187,7 @@
   
   
   <entry>
-    <title>通关微服务-mysql</title>
+    <title>深入了解-mysql</title>
     <link href="/posts/bb4eda82/"/>
     <url>/posts/bb4eda82/</url>
     
@@ -256,11 +212,11 @@
   
   
   <entry>
-    <title>通关微服务-redis</title>
+    <title>redis-上</title>
     <link href="/posts/554b12af/"/>
     <url>/posts/554b12af/</url>
     
-    <content type="html"><![CDATA[<p>redis is good<br>2333</p>]]></content>
+    <content type="html"><![CDATA[<p>入门篇</p>]]></content>
     
     
     <categories>

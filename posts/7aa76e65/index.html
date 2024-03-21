@@ -16,29 +16,28 @@
   
   <meta name="theme-color" content="#2f4154">
   <meta name="author" content="拾叁">
-  <meta name="keywords" content="solr">
+  <meta name="keywords" content="redis">
   
-    <meta name="description" content="开源的搜索平台，基于Apache Lucene构建，用于全文搜索、文本分析和搜索引擎功能。它支持高性能的搜索和检索、复杂的查询、分布式部署和多种数据格式。">
+    <meta name="description" content="redis 原理源码解析。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="备忘系列-solr">
+<meta property="og:title" content="redis-下">
 <meta property="og:url" content="https://blog.13space.cn/posts/7aa76e65/index.html">
 <meta property="og:site_name" content="拾叁的小破站">
-<meta property="og:description" content="开源的搜索平台，基于Apache Lucene构建，用于全文搜索、文本分析和搜索引擎功能。它支持高性能的搜索和检索、复杂的查询、分布式部署和多种数据格式。">
+<meta property="og:description" content="redis 原理源码解析。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://blog.13space.cn/img/micro/solr.png">
-<meta property="article:published_time" content="2022-05-08T13:45:41.000Z">
-<meta property="article:modified_time" content="2023-09-19T15:55:19.996Z">
+<meta property="og:image" content="https://blog.13space.cn/img/micro/redis.png">
+<meta property="article:published_time" content="2022-04-17T02:02:51.000Z">
+<meta property="article:modified_time" content="2024-03-21T10:35:11.387Z">
 <meta property="article:author" content="拾叁">
-<meta property="article:tag" content="nosql">
-<meta property="article:tag" content="solr">
+<meta property="article:tag" content="redis">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://blog.13space.cn/img/micro/solr.png">
+<meta name="twitter:image" content="https://blog.13space.cn/img/micro/redis.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>备忘系列-solr - 拾叁的小破站</title>
+  <title>redis-下 - 拾叁的小破站</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -243,7 +242,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="备忘系列-solr"></span>
+            <span id="subtitle" data-typed-text="redis-下"></span>
           
         </div>
 
@@ -259,8 +258,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-05-08 21:45" pubdate>
-          May 8, 2022 pm
+        <time datetime="2022-04-17 10:02" pubdate>
+          April 17, 2022 am
         </time>
       </span>
     
@@ -271,7 +270,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          0 words
+          3 words
         
       </span>
     
@@ -322,12 +321,13 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">备忘系列-solr</h1>
+            <h1 style="display: none">redis-下</h1>
             
             
               <div class="markdown-body">
                 
-                
+                <p>实战篇</p>
+
                 
               </div>
             
@@ -345,7 +345,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/nosql/" class="category-chain-item">nosql</a>
+  <a href="/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" class="category-chain-item">微服务</a>
   
   
 
@@ -360,9 +360,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/nosql/">#nosql</a>
-      
-        <a href="/tags/solr/">#solr</a>
+        <a href="/tags/redis/">#redis</a>
       
     </div>
   
@@ -374,7 +372,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>备忘系列-solr</div>
+      <div>redis-下</div>
       <div>https://blog.13space.cn/posts/7aa76e65/</div>
     </div>
     <div class="license-meta">
@@ -387,7 +385,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>May 8, 2022</div>
+          <div>April 17, 2022</div>
         </div>
       
       
@@ -419,9 +417,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/posts/c9d19155/" title="备忘系列-mongodb">
+                      <a href="/posts/c9d19155/" title="mongodb">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">备忘系列-mongodb</span>
+                        <span class="hidden-mobile">mongodb</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -429,8 +427,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/posts/89b2e006/" title="备忘系列-xxl-job">
-                        <span class="hidden-mobile">备忘系列-xxl-job</span>
+                      <a href="/posts/89b2e006/" title="xxl-job">
+                        <span class="hidden-mobile">xxl-job</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
