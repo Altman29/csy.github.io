@@ -27,7 +27,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://blog.13space.cn/img/micro/seata.png">
 <meta property="article:published_time" content="2021-12-01T09:39:41.000Z">
-<meta property="article:modified_time" content="2023-09-19T15:52:04.713Z">
+<meta property="article:modified_time" content="2024-03-21T08:14:00.209Z">
 <meta property="article:author" content="拾叁">
 <meta property="article:tag" content="seata">
 <meta name="twitter:card" content="summary_large_image">
@@ -270,7 +270,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          6 words
+          20k words
         
       </span>
     
@@ -281,7 +281,7 @@
         
         
         
-          1 mins
+          167 mins
         
       </span>
     
@@ -326,7 +326,525 @@
             
               <div class="markdown-body">
                 
-                <p>asd221</p>
+                <blockquote>
+<p>用于管理和协调分布式事务。Seata提供了高性能、易于使用的分布式事务功能，支持多种数据库和事务模型，XA、TCC（Try-Confirm-Cancel）、AT（Automatic Transaction）等。帮助开发者在微服务和分布式系统中确保数据一致性和事务的可靠性。</p>
+</blockquote>
+<hr>
+<h1 id="分布式事务问题"><a href="#分布式事务问题" class="headerlink" title="分布式事务问题"></a>分布式事务问题</h1><h2 id="本地事务"><a href="#本地事务" class="headerlink" title="本地事务"></a>本地事务</h2><p>本地事务，也就是传统的<strong>单机事务</strong>。在传统数据库事务中，必须要满足四个原则：</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403211514874.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="分布式事务"><a href="#分布式事务" class="headerlink" title="分布式事务"></a>分布式事务</h2><p><strong>分布式事务</strong>，就是指不是在单个服务或单个数据库架构下，产生的事务，例如：</p>
+<ul>
+<li><p>跨数据源的分布式事务</p>
+</li>
+<li><p>跨服务的分布式事务</p>
+</li>
+<li><p>综合情况</p>
+</li>
+</ul>
+<p>在数据库水平拆分、服务垂直拆分之后，一个业务操作通常要跨多个数据库、服务才能完成。例如电商行业中比较常见的下单付款案例，包括下面几个行为：</p>
+<ul>
+<li><p>创建新订单</p>
+</li>
+<li><p>扣减商品库存</p>
+</li>
+<li><p>从用户账户余额扣除金额</p>
+</li>
+</ul>
+<p>完成上面的操作需要访问三个不同的微服务和三个不同的数据库。</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403211514508.png" srcset="/img/loading.gif" lazyload></p>
+<p>订单的创建、库存的扣减、账户扣款在每一个服务和数据库内是一个本地事务，可以保证ACID原则。</p>
+<p>但是当我们把三件事情看做一个”业务”，要满足保证“业务”的原子性，要么所有操作全部成功，要么全部失败，不允许出现部分成功部分失败的现象，这就是<strong>分布式系统下的事务</strong>了。</p>
+<p>此时ACID难以满足，这是分布式事务要解决的问题。</p>
+<h1 id="理论基础"><a href="#理论基础" class="headerlink" title="理论基础"></a>理论基础</h1><p>解决分布式事务问题，需要一些分布式系统的基础知识作为理论指导。</p>
+<h2 id="CAP定理"><a href="#CAP定理" class="headerlink" title="CAP定理"></a>CAP定理</h2><p>1998年，加州大学的计算机科学家 Eric Brewer 提出，分布式系统有三个指标。</p>
+<blockquote>
+<ul>
+<li><p>Consistency（一致性）</p>
+</li>
+<li><p>Availability（可用性）</p>
+</li>
+<li><p>Partition tolerance （分区容错性）</p>
+</li>
+</ul>
+</blockquote>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403211516661.png" srcset="/img/loading.gif" lazyload><br>它们的第一个字母分别是 C、A、P。</p>
+<p>Eric Brewer 说，这三个指标不可能同时做到。这个结论就叫做 CAP 定理。</p>
+<h3 id="一致性（C）"><a href="#一致性（C）" class="headerlink" title="一致性（C）"></a>一致性（C）</h3><p>Consistency（一致性）：用户访问分布式系统中的任意节点，得到的数据必须一致。</p>
+<p>比如现在包含两个节点，其中的初始数据是一致的：</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403211516799.png" srcset="/img/loading.gif" lazyload></p>
+<p>当我们修改其中一个节点的数据时，两者的数据产生了差异：</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403211517413.png" srcset="/img/loading.gif" lazyload></p>
+<p>要想保住一致性，就必须实现node01 到 node02的数据 同步：</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403211517165.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="可用性（A）"><a href="#可用性（A）" class="headerlink" title="可用性（A）"></a>可用性（A）</h3><p>Availability （可用性）：用户访问集群中的任意健康节点，必须能得到响应，而不是超时或拒绝。</p>
+<p>如图，有三个节点的集群，访问任何一个都可以及时得到响应：</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403211517535.png" srcset="/img/loading.gif" lazyload></p>
+<p>当有部分节点因为网络故障或其它原因无法访问时，代表节点不可用：</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403211518797.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="分区容错（P）"><a href="#分区容错（P）" class="headerlink" title="分区容错（P）"></a>分区容错（P）</h3><p><strong>Partition（分区）</strong>：因为网络故障或其它原因导致分布式系统中的部分节点与其它节点失去连接，形成独立分区。</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403211518724.png" srcset="/img/loading.gif" lazyload><br><strong>Tolerance（容错）</strong>：在集群出现分区时，整个系统也要持续对外提供服务</p>
+<h3 id="矛盾"><a href="#矛盾" class="headerlink" title="矛盾"></a>矛盾</h3><p>在分布式系统中，系统间的网络不能100%保证健康，一定会有故障的时候，而服务有必须对外保证服务。因此Partition Tolerance不可避免。</p>
+<p>当节点接收到新的数据变更时，就会出现问题了：</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403211519125.png" srcset="/img/loading.gif" lazyload></p>
+<p>如果此时要保证<strong>一致性</strong>，就必须等待网络恢复，完成数据同步后，整个集群才对外提供服务，服务处于阻塞状态，不可用。</p>
+<p>如果此时要保证<strong>可用性</strong>，就不能等待网络恢复，那node01、node02与node03之间就会出现数据不一致。</p>
+<p>也就是说，在P一定会出现的情况下，A和C之间只能保证一个。</p>
+<h2 id="BASE理论"><a href="#BASE理论" class="headerlink" title="BASE理论"></a>BASE理论</h2><p>BASE理论是对CAP的一种解决思路，包含三个思想：</p>
+<ul>
+<li><p><strong>Basically Available</strong> <strong>（基本可用）</strong>：分布式系统在出现故障时，允许损失部分可用性，即保证核心可用。</p>
+</li>
+<li><p><strong>Soft State（软状态）：</strong> 在一定时间内，允许出现中间状态，比如临时的不一致状态。</p>
+</li>
+<li><p><strong>Eventually Consistent（最终一致性）</strong>：虽然无法保证强一致性，但是在软状态结束后，最终达到数据一致。</p>
+</li>
+</ul>
+<h2 id="解决分布式事务的思路"><a href="#解决分布式事务的思路" class="headerlink" title="解决分布式事务的思路"></a>解决分布式事务的思路</h2><p>分布式事务最大的问题是各个子事务的一致性问题，因此可以借鉴CAP定理和BASE理论，有两种解决思路：</p>
+<ul>
+<li><p>AP模式：各子事务分别执行和提交，允许出现结果不一致，然后采用弥补措施恢复数据即可，实现最终一致。</p>
+</li>
+<li><p>CP模式：各个子事务执行后互相等待，同时提交，同时回滚，达成强一致。但事务等待过程中，处于弱可用状态。</p>
+</li>
+</ul>
+<p>但不管是哪一种模式，都需要在子系统事务之间互相通讯，协调事务状态，也就是需要一个**事务协调者(TC)**：</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403211520971.png" srcset="/img/loading.gif" lazyload><br>这里的子系统事务，称为<strong>分支事务</strong>；有关联的各个分支事务在一起称为<strong>全局事务</strong>。</p>
+<h1 id="初始Seata"><a href="#初始Seata" class="headerlink" title="初始Seata"></a>初始Seata</h1><p>Seata是 2019 年 1 月份蚂蚁金服和阿里巴巴共同开源的分布式事务解决方案。致力于提供高性能和简单易用的分布式事务服务，为用户打造一站式的分布式解决方案。</p>
+<p>官网地址：<a target="_blank" rel="noopener" href="http://seata.io/">http://seata.io/</a>，其中的文档提供了大量的使用说明、源码分析。</p>
+<h2 id="Seata架构"><a href="#Seata架构" class="headerlink" title="Seata架构"></a>Seata架构</h2><p>Seata事务管理中有三个重要的角色：</p>
+<ul>
+<li><p><strong>TC (Transaction Coordinator) -</strong> <strong>事务协调者：</strong> 维护全局和分支事务的状态，协调全局事务提交或回滚。</p>
+</li>
+<li><p><strong>TM (Transaction Manager) -</strong> <strong>事务管理器：</strong> 定义全局事务的范围、开始全局事务、提交或回滚全局事务。</p>
+</li>
+<li><p><strong>RM (Resource Manager) -</strong> <strong>资源管理器：</strong> 管理分支事务处理的资源，与TC交谈以注册分支事务和报告分支事务的状态，并驱动分支事务提交或回滚。</p>
+</li>
+</ul>
+<p>整体的架构如图：</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403211522177.png" srcset="/img/loading.gif" lazyload></p>
+<p>Seata基于上述架构提供了四种不同的分布式事务解决方案：</p>
+<ul>
+<li><p>XA模式：<font color="#245bdb">强一致性分阶段事务模式</font>，牺牲了一定的可用性，<strong>无业务侵入</strong></p>
+</li>
+<li><p>TCC模式：<font color="#245bdb">最终一致的分阶段事务模式</font>，<strong>有业务侵入</strong></p>
+</li>
+<li><p>AT模式：<font color="#245bdb">最终一致的分阶段事务模式</font>，<strong>无业务侵入</strong>，也是<strong>Seata的默认模式</strong></p>
+</li>
+<li><p>SAGA模式：<font color="#245bdb">长事务模式</font>，<strong>有业务侵入</strong></p>
+</li>
+</ul>
+<p>无论哪种方案，都离不开TC，也就是事务的协调者。</p>
+<h2 id="部署TC服务"><a href="#部署TC服务" class="headerlink" title="部署TC服务"></a>部署TC服务</h2><h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><p>首先我们要下载seata-server包，地址在(<a href="http://seata.io)[.](http://seata.io/zh-cn/blog/download.html)">http://seata.io)[.](http://seata.io/zh-cn/blog/download.html)</a></p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403211544266.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="解压"><a href="#解压" class="headerlink" title="解压"></a>解压</h3><p>在非中文目录解压缩这个zip包，其目录结构如下：</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403211544892.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="修改配置"><a href="#修改配置" class="headerlink" title="修改配置"></a>修改配置</h3><p>修改conf目录下的registry.conf文件：</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403211545207.png" srcset="/img/loading.gif" lazyload><br>内容如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs conf">registry &#123;<br>  # tc服务的注册中心类，这里选择nacos，也可以是eureka、zookeeper等<br>  type = &quot;nacos&quot;<br><br>  nacos &#123;<br>    # seata tc 服务注册到 nacos的服务名称，可以自定义<br>    application = &quot;seata-tc-server&quot;<br>    serverAddr = &quot;127.0.0.1:8848&quot;<br>    group = &quot;DEFAULT_GROUP&quot;<br>    namespace = &quot;&quot;<br>    cluster = &quot;SH&quot;<br>    username = &quot;nacos&quot;<br>    password = &quot;nacos&quot;<br>  &#125;<br>&#125;<br><br>config &#123;<br>  # 读取tc服务端的配置文件的方式，这里是从nacos配置中心读取，这样如果tc是集群，可以共享配置<br>  type = &quot;nacos&quot;<br>  # 配置nacos地址等信息<br>  nacos &#123;<br>    serverAddr = &quot;127.0.0.1:8848&quot;<br>    namespace = &quot;&quot;<br>    group = &quot;SEATA_GROUP&quot;<br>    username = &quot;nacos&quot;<br>    password = &quot;nacos&quot;<br>    dataId = &quot;seataServer.properties&quot;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h3 id="在nacos添加配置"><a href="#在nacos添加配置" class="headerlink" title="在nacos添加配置"></a>在nacos添加配置</h3><p>特别注意，为了让tc服务的集群可以共享配置，我们选择了nacos作为统一配置中心。因此服务端配置文件seataServer.properties文件需要在nacos中配好。</p>
+<p>格式如下：</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403211546663.png" srcset="/img/loading.gif" lazyload></p>
+<p>配置内容如下：</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-comment"># 数据存储方式，db代表数据库</span><br><span class="hljs-attr">store.mode</span>=<span class="hljs-string">db</span><br><span class="hljs-attr">store.db.datasource</span>=<span class="hljs-string">druid</span><br><span class="hljs-attr">store.db.dbType</span>=<span class="hljs-string">mysql</span><br><span class="hljs-attr">store.db.driverClassName</span>=<span class="hljs-string">com.mysql.jdbc.Driver</span><br><span class="hljs-attr">store.db.url</span>=<span class="hljs-string">jdbc:mysql://127.0.0.1:3306/seata?useUnicode=true&amp;rewriteBatchedStatements=true</span><br><span class="hljs-attr">store.db.user</span>=<span class="hljs-string">root</span><br><span class="hljs-attr">store.db.password</span>=<span class="hljs-string">123</span><br><span class="hljs-attr">store.db.minConn</span>=<span class="hljs-string">5</span><br><span class="hljs-attr">store.db.maxConn</span>=<span class="hljs-string">30</span><br><span class="hljs-attr">store.db.globalTable</span>=<span class="hljs-string">global_table</span><br><span class="hljs-attr">store.db.branchTable</span>=<span class="hljs-string">branch_table</span><br><span class="hljs-attr">store.db.queryLimit</span>=<span class="hljs-string">100</span><br><span class="hljs-attr">store.db.lockTable</span>=<span class="hljs-string">lock_table</span><br><span class="hljs-attr">store.db.maxWait</span>=<span class="hljs-string">5000</span><br><span class="hljs-comment"># 事务、日志等配置</span><br><span class="hljs-attr">server.recovery.committingRetryPeriod</span>=<span class="hljs-string">1000</span><br><span class="hljs-attr">server.recovery.asynCommittingRetryPeriod</span>=<span class="hljs-string">1000</span><br><span class="hljs-attr">server.recovery.rollbackingRetryPeriod</span>=<span class="hljs-string">1000</span><br><span class="hljs-attr">server.recovery.timeoutRetryPeriod</span>=<span class="hljs-string">1000</span><br><span class="hljs-attr">server.maxCommitRetryTimeout</span>=<span class="hljs-string">-1</span><br><span class="hljs-attr">server.maxRollbackRetryTimeout</span>=<span class="hljs-string">-1</span><br><span class="hljs-attr">server.rollbackRetryTimeoutUnlockEnable</span>=<span class="hljs-string">false</span><br><span class="hljs-attr">server.undo.logSaveDays</span>=<span class="hljs-string">7</span><br><span class="hljs-attr">server.undo.logDeletePeriod</span>=<span class="hljs-string">86400000</span><br><span class="hljs-comment"></span><br><span class="hljs-comment"># 客户端与服务端传输方式</span><br><span class="hljs-attr">transport.serialization</span>=<span class="hljs-string">seata</span><br><span class="hljs-attr">transport.compressor</span>=<span class="hljs-string">none</span><br><span class="hljs-comment"># 关闭metrics功能，提高性能</span><br><span class="hljs-attr">metrics.enabled</span>=<span class="hljs-string">false</span><br><span class="hljs-attr">metrics.registryType</span>=<span class="hljs-string">compact</span><br><span class="hljs-attr">metrics.exporterList</span>=<span class="hljs-string">prometheus</span><br><span class="hljs-attr">metrics.exporterPrometheusPort</span>=<span class="hljs-string">9898</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="数据库相关配置"><a href="#数据库相关配置" class="headerlink" title="数据库相关配置"></a>数据库相关配置</h3><p>特别注意：tc服务在管理分布式事务时，需要记录事务相关数据到数据库中，你需要提前创建好这些表。</p>
+<p>新建一个名为seata的数据库，这些表主要记录全局事务、分支事务、全局锁信息：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><code class="hljs sql"><br><span class="hljs-keyword">SET</span> NAMES utf8mb4;<br><span class="hljs-keyword">SET</span> FOREIGN_KEY_CHECKS <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br><br><span class="hljs-comment">-- ----------------------------</span><br><span class="hljs-comment">-- 分支事务表</span><br><span class="hljs-comment">-- ----------------------------</span><br><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> IF <span class="hljs-keyword">EXISTS</span> `branch_table`;<br><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> `branch_table`  (<br>  `branch_id` <span class="hljs-type">bigint</span>(<span class="hljs-number">20</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>,<br>  `xid` <span class="hljs-type">varchar</span>(<span class="hljs-number">128</span>) <span class="hljs-type">CHARACTER</span> <span class="hljs-keyword">SET</span> utf8 <span class="hljs-keyword">COLLATE</span> utf8_general_ci <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>,<br>  `transaction_id` <span class="hljs-type">bigint</span>(<span class="hljs-number">20</span>) <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">NULL</span>,<br>  `resource_group_id` <span class="hljs-type">varchar</span>(<span class="hljs-number">32</span>) <span class="hljs-type">CHARACTER</span> <span class="hljs-keyword">SET</span> utf8 <span class="hljs-keyword">COLLATE</span> utf8_general_ci <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">NULL</span>,<br>  `resource_id` <span class="hljs-type">varchar</span>(<span class="hljs-number">256</span>) <span class="hljs-type">CHARACTER</span> <span class="hljs-keyword">SET</span> utf8 <span class="hljs-keyword">COLLATE</span> utf8_general_ci <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">NULL</span>,<br>  `branch_type` <span class="hljs-type">varchar</span>(<span class="hljs-number">8</span>) <span class="hljs-type">CHARACTER</span> <span class="hljs-keyword">SET</span> utf8 <span class="hljs-keyword">COLLATE</span> utf8_general_ci <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">NULL</span>,<br>  `status` tinyint(<span class="hljs-number">4</span>) <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">NULL</span>,<br>  `client_id` <span class="hljs-type">varchar</span>(<span class="hljs-number">64</span>) <span class="hljs-type">CHARACTER</span> <span class="hljs-keyword">SET</span> utf8 <span class="hljs-keyword">COLLATE</span> utf8_general_ci <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">NULL</span>,<br>  `application_data` <span class="hljs-type">varchar</span>(<span class="hljs-number">2000</span>) <span class="hljs-type">CHARACTER</span> <span class="hljs-keyword">SET</span> utf8 <span class="hljs-keyword">COLLATE</span> utf8_general_ci <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">NULL</span>,<br>  `gmt_create` datetime(<span class="hljs-number">6</span>) <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">NULL</span>,<br>  `gmt_modified` datetime(<span class="hljs-number">6</span>) <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">NULL</span>,<br>  <span class="hljs-keyword">PRIMARY</span> KEY (`branch_id`) <span class="hljs-keyword">USING</span> BTREE,<br>  INDEX `idx_xid`(`xid`) <span class="hljs-keyword">USING</span> BTREE<br>) ENGINE <span class="hljs-operator">=</span> InnoDB <span class="hljs-type">CHARACTER</span> <span class="hljs-keyword">SET</span> <span class="hljs-operator">=</span> utf8 <span class="hljs-keyword">COLLATE</span> <span class="hljs-operator">=</span> utf8_general_ci ROW_FORMAT <span class="hljs-operator">=</span> Compact;<br><br><span class="hljs-comment">-- ----------------------------</span><br><span class="hljs-comment">-- 全局事务表</span><br><span class="hljs-comment">-- ----------------------------</span><br><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> IF <span class="hljs-keyword">EXISTS</span> `global_table`;<br><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> `global_table`  (<br>  `xid` <span class="hljs-type">varchar</span>(<span class="hljs-number">128</span>) <span class="hljs-type">CHARACTER</span> <span class="hljs-keyword">SET</span> utf8 <span class="hljs-keyword">COLLATE</span> utf8_general_ci <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>,<br>  `transaction_id` <span class="hljs-type">bigint</span>(<span class="hljs-number">20</span>) <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">NULL</span>,<br>  `status` tinyint(<span class="hljs-number">4</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>,<br>  `application_id` <span class="hljs-type">varchar</span>(<span class="hljs-number">32</span>) <span class="hljs-type">CHARACTER</span> <span class="hljs-keyword">SET</span> utf8 <span class="hljs-keyword">COLLATE</span> utf8_general_ci <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">NULL</span>,<br>  `transaction_service_group` <span class="hljs-type">varchar</span>(<span class="hljs-number">32</span>) <span class="hljs-type">CHARACTER</span> <span class="hljs-keyword">SET</span> utf8 <span class="hljs-keyword">COLLATE</span> utf8_general_ci <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">NULL</span>,<br>  `transaction_name` <span class="hljs-type">varchar</span>(<span class="hljs-number">128</span>) <span class="hljs-type">CHARACTER</span> <span class="hljs-keyword">SET</span> utf8 <span class="hljs-keyword">COLLATE</span> utf8_general_ci <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">NULL</span>,<br>  `timeout` <span class="hljs-type">int</span>(<span class="hljs-number">11</span>) <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">NULL</span>,<br>  `begin_time` <span class="hljs-type">bigint</span>(<span class="hljs-number">20</span>) <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">NULL</span>,<br>  `application_data` <span class="hljs-type">varchar</span>(<span class="hljs-number">2000</span>) <span class="hljs-type">CHARACTER</span> <span class="hljs-keyword">SET</span> utf8 <span class="hljs-keyword">COLLATE</span> utf8_general_ci <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">NULL</span>,<br>  `gmt_create` datetime <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">NULL</span>,<br>  `gmt_modified` datetime <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">NULL</span>,<br>  <span class="hljs-keyword">PRIMARY</span> KEY (`xid`) <span class="hljs-keyword">USING</span> BTREE,<br>  INDEX `idx_gmt_modified_status`(`gmt_modified`, `status`) <span class="hljs-keyword">USING</span> BTREE,<br>  INDEX `idx_transaction_id`(`transaction_id`) <span class="hljs-keyword">USING</span> BTREE<br>) ENGINE <span class="hljs-operator">=</span> InnoDB <span class="hljs-type">CHARACTER</span> <span class="hljs-keyword">SET</span> <span class="hljs-operator">=</span> utf8 <span class="hljs-keyword">COLLATE</span> <span class="hljs-operator">=</span> utf8_general_ci ROW_FORMAT <span class="hljs-operator">=</span> Compact;<br><br><span class="hljs-keyword">SET</span> FOREIGN_KEY_CHECKS <span class="hljs-operator">=</span> <span class="hljs-number">1</span>;<br></code></pre></td></tr></table></figure>
+
+<h3 id="启动TC服务"><a href="#启动TC服务" class="headerlink" title="启动TC服务"></a>启动TC服务</h3><p>进入bin目录，运行其中的seata-server.bat即可：</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403211548214.png" srcset="/img/loading.gif" lazyload></p>
+<p>启动成功后，seata-server应该已经注册到nacos注册中心了。</p>
+<p>打开浏览器，访问nacos地址：<a target="_blank" rel="noopener" href="http://localhost:8848/">http://localhost:8848</a>，然后进入服务列表页面，可以看到seata-tc-server的信息：</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403211548892.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="微服务集成Seata"><a href="#微服务集成Seata" class="headerlink" title="微服务集成Seata"></a>微服务集成Seata</h2><h3 id="引入依赖"><a href="#引入依赖" class="headerlink" title="引入依赖"></a>引入依赖</h3><p>首先，在order-service中引入依赖：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs pom">&lt;!--seata--&gt;<br>&lt;dependency&gt;<br>    &lt;groupId&gt;com.alibaba.cloud&lt;/groupId&gt;<br>    &lt;artifactId&gt;spring-cloud-starter-alibaba-seata&lt;/artifactId&gt;<br>    &lt;exclusions&gt;<br>        &lt;!--版本较低，1.3.0，因此排除--&gt; <br>        &lt;exclusion&gt;<br>            &lt;artifactId&gt;seata-spring-boot-starter&lt;/artifactId&gt;<br>            &lt;groupId&gt;io.seata&lt;/groupId&gt;<br>        &lt;/exclusion&gt;<br>    &lt;/exclusions&gt;<br>&lt;/dependency&gt;<br>&lt;dependency&gt;<br>    &lt;groupId&gt;io.seata&lt;/groupId&gt;<br>    &lt;artifactId&gt;seata-spring-boot-starter&lt;/artifactId&gt;<br>    &lt;!--seata starter 采用1.4.2版本--&gt;<br>    &lt;version&gt;$&#123;seata.version&#125;&lt;/version&gt;<br>&lt;/dependency&gt;<br></code></pre></td></tr></table></figure>
+
+<h3 id="配置TC地址"><a href="#配置TC地址" class="headerlink" title="配置TC地址"></a>配置TC地址</h3><p>在order-service中的application.yml中，配置TC服务信息，通过注册中心nacos，结合服务名称获取TC地址：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">seata:</span><br>  <span class="hljs-attr">registry:</span> <span class="hljs-comment"># TC服务注册中心的配置，微服务根据这些信息去注册中心获取tc服务地址</span><br>    <span class="hljs-attr">type:</span> <span class="hljs-string">nacos</span> <span class="hljs-comment"># 注册中心类型 nacos</span><br>    <span class="hljs-attr">nacos:</span><br>      <span class="hljs-attr">server-addr:</span> <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span><span class="hljs-string">:8848</span> <span class="hljs-comment"># nacos地址</span><br>      <span class="hljs-attr">namespace:</span> <span class="hljs-string">&quot;&quot;</span> <span class="hljs-comment"># namespace，默认为空</span><br>      <span class="hljs-attr">group:</span> <span class="hljs-string">DEFAULT_GROUP</span> <span class="hljs-comment"># 分组，默认是DEFAULT_GROUP</span><br>      <span class="hljs-attr">application:</span> <span class="hljs-string">seata-tc-server</span> <span class="hljs-comment"># seata服务名称</span><br>      <span class="hljs-attr">username:</span> <span class="hljs-string">nacos</span><br>      <span class="hljs-attr">password:</span> <span class="hljs-string">nacos</span><br>  <span class="hljs-attr">tx-service-group:</span> <span class="hljs-string">seata-demo</span> <span class="hljs-comment"># 事务组名称</span><br>  <span class="hljs-attr">service:</span><br>    <span class="hljs-attr">vgroup-mapping:</span> <span class="hljs-comment"># 事务组与cluster的映射关系</span><br>      <span class="hljs-attr">seata-demo:</span> <span class="hljs-string">SH</span><br></code></pre></td></tr></table></figure>
+
+<p>微服务如何根据这些配置寻找TC的地址呢？</p>
+<p>我们知道注册到Nacos中的微服务，确定一个具体实例需要四个信息：</p>
+<ul>
+<li><p>namespace：命名空间</p>
+</li>
+<li><p>group：分组</p>
+</li>
+<li><p>application：服务名</p>
+</li>
+<li><p>cluster：集群名</p>
+</li>
+</ul>
+<p>以上四个信息，在刚才的yaml文件中都能找到：</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403211550412.png" srcset="/img/loading.gif" lazyload></p>
+<p>namespace为空，就是默认的public</p>
+<p>结合起来，TC服务的信息就是：public@DEFAULT_GROUP@seata-tc-server@SH，这样就能确定TC服务集群了。然后就可以去Nacos拉取对应的实例信息了。</p>
+<h1 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h1><p>下面动手实践下Seata中的四种不同的事务模式。</p>
+<h2 id="XA模式"><a href="#XA模式" class="headerlink" title="XA模式"></a>XA模式</h2><p>XA 规范 是 X&#x2F;Open 组织定义的分布式事务处理（DTP，Distributed Transaction Processing）标准，XA 规范 描述了全局的TM与局部的RM之间的接口，几乎所有主流的数据库都对 XA 规范 提供了支持。</p>
+<h3 id="两阶段提交"><a href="#两阶段提交" class="headerlink" title="两阶段提交"></a>两阶段提交</h3><p>XA是规范，目前主流数据库都实现了这种规范，实现的原理都是基于<strong>两阶段提交</strong>。</p>
+<p>正常情况：</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403211552240.png" srcset="/img/loading.gif" lazyload></p>
+<p>异常情况：</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403211552272.png" srcset="/img/loading.gif" lazyload></p>
+<p>一阶段：</p>
+<ul>
+<li><p>事务协调者通知每个事物参与者执行本地事务</p>
+</li>
+<li><p>本地事务执行完成后报告事务执行状态给事务协调者，此时事务不提交，继续持有数据库锁</p>
+</li>
+</ul>
+<p>二阶段：</p>
+<ul>
+<li><p>事务协调者基于一阶段的报告来判断下一步操作</p>
+<ul>
+<li><p>如果一阶段都成功，则通知所有事务参与者，提交事务</p>
+</li>
+<li><p>如果一阶段任意一个参与者失败，则通知所有事务参与者回滚事务</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="Seata的XA模型"><a href="#Seata的XA模型" class="headerlink" title="Seata的XA模型"></a>Seata的XA模型</h3><p>Seata对原始的XA模式做了简单的封装和改造，以适应自己的事务模型，基本架构如图：</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403211553346.png" srcset="/img/loading.gif" lazyload><br>RM一阶段的工作：</p>
+<p>① 注册分支事务到TC</p>
+<p>② 执行分支业务sql但不提交</p>
+<p>③ 报告执行状态到TC</p>
+<p>TC二阶段的工作：</p>
+<ul>
+<li><p>TC检测各分支事务执行状态</p>
+<p>  a.如果都成功，通知所有RM提交事务</p>
+<p>  b.如果有失败，通知所有RM回滚事务</p>
+</li>
+</ul>
+<p>RM二阶段的工作：</p>
+<ul>
+<li>接收TC指令，提交或回滚事务</li>
+</ul>
+<h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3><p>XA模式的优点是什么？</p>
+<ul>
+<li><p>事务的强一致性，满足ACID原则。</p>
+</li>
+<li><p>常用数据库都支持，实现简单，并且没有代码侵入</p>
+</li>
+</ul>
+<p>XA模式的缺点是什么？</p>
+<ul>
+<li><p>因为一阶段需要锁定数据库资源，等待二阶段结束才释放，性能较差</p>
+</li>
+<li><p>依赖关系型数据库实现事务</p>
+</li>
+</ul>
+<h3 id="实现XA模式"><a href="#实现XA模式" class="headerlink" title="实现XA模式"></a>实现XA模式</h3><p>Seata的starter已经完成了XA模式的自动装配，实现非常简单，步骤如下：</p>
+<p>1）修改application.yml文件（每个参与事务的微服务），开启XA模式：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">seata:</span><br>  <span class="hljs-attr">data-source-proxy-mode:</span> <span class="hljs-string">XA</span><br></code></pre></td></tr></table></figure>
+
+<p>2）给发起全局事务的入口方法添加@GlobalTransactional注解:</p>
+<p>本例中是OrderServiceImpl中的create方法.</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403211555775.png" srcset="/img/loading.gif" lazyload></p>
+<p>3）重启服务并测试</p>
+<p>重启order-service，再次测试，发现无论怎样，三个微服务都能成功回滚。</p>
+<h2 id="AT模式"><a href="#AT模式" class="headerlink" title="AT模式"></a>AT模式</h2><p>AT模式同样是分阶段提交的事务模型，不过<em>缺弥补了XA模型中资源锁定周期过长的缺陷</em>。</p>
+<h3 id="Seata的AT模型"><a href="#Seata的AT模型" class="headerlink" title="Seata的AT模型"></a>Seata的AT模型</h3><p>基本流程图：</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403211556802.png" srcset="/img/loading.gif" lazyload><br>阶段一RM的工作：</p>
+<ul>
+<li><p>注册分支事务</p>
+</li>
+<li><p>记录undo-log（数据快照）</p>
+</li>
+<li><p>执行业务sql并提交</p>
+</li>
+<li><p>报告事务状态</p>
+</li>
+</ul>
+<p>阶段二提交时RM的工作：</p>
+<ul>
+<li>删除undo-log即可</li>
+</ul>
+<p>阶段二回滚时RM的工作：</p>
+<ul>
+<li>根据undo-log恢复数据到更新前</li>
+</ul>
+<h3 id="流程梳理"><a href="#流程梳理" class="headerlink" title="流程梳理"></a>流程梳理</h3><p>用一个真实的业务来梳理下AT模式的原理。</p>
+<p>比如，现在又一个数据库表，记录用户余额：</p>
+<table>
+<thead>
+<tr>
+<th><strong>id</strong></th>
+<th><strong>money</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>100</td>
+</tr>
+</tbody></table>
+<p>其中一个分支业务要执行的SQL为：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">update</span> tb_account <span class="hljs-keyword">set</span> money <span class="hljs-operator">=</span> money <span class="hljs-operator">-</span> <span class="hljs-number">10</span> <span class="hljs-keyword">where</span> id <span class="hljs-operator">=</span> <span class="hljs-number">1</span><br></code></pre></td></tr></table></figure>
+
+<p>AT模式下，当前分支事务执行流程如下：</p>
+<p><strong>一阶段</strong>：</p>
+<p>1）TM发起并注册全局事务到TC</p>
+<p>2）TM调用分支事务</p>
+<p>3）分支事务准备执行业务SQL</p>
+<p>4）RM拦截业务SQL，根据where条件查询原始数据，形成快照。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs json"><span class="hljs-punctuation">&#123;</span><br>    <span class="hljs-attr">&quot;id&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">1</span><span class="hljs-punctuation">,</span> <span class="hljs-attr">&quot;money&quot;</span><span class="hljs-punctuation">:</span> <span class="hljs-number">100</span><br><span class="hljs-punctuation">&#125;</span><br></code></pre></td></tr></table></figure>
+<p>5）RM执行业务SQL，提交本地事务，释放数据库锁。此时 <code>money = 90</code></p>
+<p>6）RM报告本地事务状态给TC</p>
+<p><strong>二阶段</strong>：</p>
+<p>1）TM通知TC事务结束</p>
+<p>2）TC检查分支事务状态</p>
+<p>a）如果都成功，则立即删除快照</p>
+<p>b）如果有分支事务失败，需要回滚。读取快照数据（<code>&#123;&quot;id&quot;: 1, &quot;money&quot;: 100&#125;</code>），将快照恢复到数据库。此时数据库再次恢复为100。</p>
+<p><strong>流程图</strong>：</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403211558136.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="AT与XA的区别"><a href="#AT与XA的区别" class="headerlink" title="AT与XA的区别"></a>AT与XA的区别</h3><p>简述AT模式与XA模式最大的区别是什么？</p>
+<ul>
+<li><p>XA模式一阶段不提交事务，锁定资源；AT模式一阶段直接提交，不锁定资源。</p>
+</li>
+<li><p>XA模式依赖数据库机制实现回滚；AT模式利用数据快照实现数据回滚。</p>
+</li>
+<li><p>XA模式强一致；AT模式最终一致</p>
+</li>
+</ul>
+<h3 id="脏写问题"><a href="#脏写问题" class="headerlink" title="脏写问题"></a>脏写问题</h3><p>在多线程并发访问AT模式的分布式事务时，有可能出现脏写问题，如图：</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403211559525.png" srcset="/img/loading.gif" lazyload></p>
+<p>解决思路就是引入了全局锁的概念。在释放DB锁之前，先拿到全局锁。避免同一时刻有另外一个事务来操作当前数据。</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403211600654.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="优缺点-1"><a href="#优缺点-1" class="headerlink" title="优缺点"></a>优缺点</h3><p>AT模式的优点：</p>
+<ul>
+<li><p>一阶段完成直接提交事务，释放数据库资源，性能比较好</p>
+</li>
+<li><p>利用全局锁实现读写隔离</p>
+</li>
+<li><p>没有代码侵入，框架自动完成回滚和提交</p>
+</li>
+</ul>
+<p>AT模式的缺点：</p>
+<ul>
+<li><p>两阶段之间属于软状态，属于最终一致</p>
+</li>
+<li><p>框架的快照功能会影响性能，但比XA模式要好很多</p>
+</li>
+</ul>
+<h3 id="实现AT模式"><a href="#实现AT模式" class="headerlink" title="实现AT模式"></a>实现AT模式</h3><p>AT模式中的快照生成、回滚等动作都是由框架自动完成，没有任何代码侵入，因此实现非常简单。</p>
+<p>只不过，AT模式需要一个表来记录全局锁、另一张表来记录数据快照undo_log。</p>
+<p>1）导入数据库表，记录全局锁</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-comment">/*</span><br><span class="hljs-comment"> Navicat Premium Data Transfer</span><br><span class="hljs-comment"></span><br><span class="hljs-comment"> Source Server         : local</span><br><span class="hljs-comment"> Source Server Type    : MySQL</span><br><span class="hljs-comment"> Source Server Version : 50622</span><br><span class="hljs-comment"> Source Host           : localhost:3306</span><br><span class="hljs-comment"> Source Schema         : seata_demo</span><br><span class="hljs-comment"></span><br><span class="hljs-comment"> Target Server Type    : MySQL</span><br><span class="hljs-comment"> Target Server Version : 50622</span><br><span class="hljs-comment"> File Encoding         : 65001</span><br><span class="hljs-comment"></span><br><span class="hljs-comment"> Date: 20/06/2021 12:39:03</span><br><span class="hljs-comment">*/</span><br><br><span class="hljs-keyword">SET</span> NAMES utf8mb4;<br><span class="hljs-keyword">SET</span> FOREIGN_KEY_CHECKS <span class="hljs-operator">=</span> <span class="hljs-number">0</span>;<br><br><span class="hljs-comment">-- ----------------------------</span><br><span class="hljs-comment">-- Table structure for undo_log</span><br><span class="hljs-comment">-- ----------------------------</span><br><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> IF <span class="hljs-keyword">EXISTS</span> `undo_log`;<br><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> `undo_log`  (<br>  `branch_id` <span class="hljs-type">bigint</span>(<span class="hljs-number">20</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span> COMMENT <span class="hljs-string">&#x27;branch transaction id&#x27;</span>,<br>  `xid` <span class="hljs-type">varchar</span>(<span class="hljs-number">100</span>) <span class="hljs-type">CHARACTER</span> <span class="hljs-keyword">SET</span> utf8 <span class="hljs-keyword">COLLATE</span> utf8_general_ci <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span> COMMENT <span class="hljs-string">&#x27;global transaction id&#x27;</span>,<br>  `context` <span class="hljs-type">varchar</span>(<span class="hljs-number">128</span>) <span class="hljs-type">CHARACTER</span> <span class="hljs-keyword">SET</span> utf8 <span class="hljs-keyword">COLLATE</span> utf8_general_ci <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span> COMMENT <span class="hljs-string">&#x27;undo_log context,such as serialization&#x27;</span>,<br>  `rollback_info` longblob <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span> COMMENT <span class="hljs-string">&#x27;rollback info&#x27;</span>,<br>  `log_status` <span class="hljs-type">int</span>(<span class="hljs-number">11</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span> COMMENT <span class="hljs-string">&#x27;0:normal status,1:defense status&#x27;</span>,<br>  `log_created` datetime(<span class="hljs-number">6</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span> COMMENT <span class="hljs-string">&#x27;create datetime&#x27;</span>,<br>  `log_modified` datetime(<span class="hljs-number">6</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span> COMMENT <span class="hljs-string">&#x27;modify datetime&#x27;</span>,<br>  <span class="hljs-keyword">UNIQUE</span> INDEX `ux_undo_log`(`xid`, `branch_id`) <span class="hljs-keyword">USING</span> BTREE<br>) ENGINE <span class="hljs-operator">=</span> InnoDB <span class="hljs-type">CHARACTER</span> <span class="hljs-keyword">SET</span> <span class="hljs-operator">=</span> utf8 <span class="hljs-keyword">COLLATE</span> <span class="hljs-operator">=</span> utf8_general_ci COMMENT <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;AT transaction mode undo table&#x27;</span> ROW_FORMAT <span class="hljs-operator">=</span> Compact;<br><br><span class="hljs-comment">-- ----------------------------</span><br><span class="hljs-comment">-- Records of undo_log</span><br><span class="hljs-comment">-- ----------------------------</span><br><br><br><br><span class="hljs-comment">-- ----------------------------</span><br><span class="hljs-comment">-- Table structure for lock_table</span><br><span class="hljs-comment">-- ----------------------------</span><br><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">TABLE</span> IF <span class="hljs-keyword">EXISTS</span> `lock_table`;<br><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> `lock_table`  (<br>  `row_key` <span class="hljs-type">varchar</span>(<span class="hljs-number">128</span>) <span class="hljs-type">CHARACTER</span> <span class="hljs-keyword">SET</span> utf8 <span class="hljs-keyword">COLLATE</span> utf8_general_ci <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>,<br>  `xid` <span class="hljs-type">varchar</span>(<span class="hljs-number">96</span>) <span class="hljs-type">CHARACTER</span> <span class="hljs-keyword">SET</span> utf8 <span class="hljs-keyword">COLLATE</span> utf8_general_ci <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">NULL</span>,<br>  `transaction_id` <span class="hljs-type">bigint</span>(<span class="hljs-number">20</span>) <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">NULL</span>,<br>  `branch_id` <span class="hljs-type">bigint</span>(<span class="hljs-number">20</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>,<br>  `resource_id` <span class="hljs-type">varchar</span>(<span class="hljs-number">256</span>) <span class="hljs-type">CHARACTER</span> <span class="hljs-keyword">SET</span> utf8 <span class="hljs-keyword">COLLATE</span> utf8_general_ci <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">NULL</span>,<br>  `table_name` <span class="hljs-type">varchar</span>(<span class="hljs-number">32</span>) <span class="hljs-type">CHARACTER</span> <span class="hljs-keyword">SET</span> utf8 <span class="hljs-keyword">COLLATE</span> utf8_general_ci <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">NULL</span>,<br>  `pk` <span class="hljs-type">varchar</span>(<span class="hljs-number">36</span>) <span class="hljs-type">CHARACTER</span> <span class="hljs-keyword">SET</span> utf8 <span class="hljs-keyword">COLLATE</span> utf8_general_ci <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">NULL</span>,<br>  `gmt_create` datetime <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">NULL</span>,<br>  `gmt_modified` datetime <span class="hljs-keyword">NULL</span> <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">NULL</span>,<br>  <span class="hljs-keyword">PRIMARY</span> KEY (`row_key`) <span class="hljs-keyword">USING</span> BTREE,<br>  INDEX `idx_branch_id`(`branch_id`) <span class="hljs-keyword">USING</span> BTREE<br>) ENGINE <span class="hljs-operator">=</span> InnoDB <span class="hljs-type">CHARACTER</span> <span class="hljs-keyword">SET</span> <span class="hljs-operator">=</span> utf8 <span class="hljs-keyword">COLLATE</span> <span class="hljs-operator">=</span> utf8_general_ci ROW_FORMAT <span class="hljs-operator">=</span> Compact;<br><br><br><span class="hljs-keyword">SET</span> FOREIGN_KEY_CHECKS <span class="hljs-operator">=</span> <span class="hljs-number">1</span>;<br></code></pre></td></tr></table></figure>
+
+
+<p>2）修改application.yml文件，将事务模式修改为AT模式即可：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">seata:</span><br>  <span class="hljs-attr">data-source-proxy-mode:</span> <span class="hljs-string">AT</span> <span class="hljs-comment"># 默认就是AT</span><br></code></pre></td></tr></table></figure>
+
+<p>3）重启服务并测试</p>
+<h2 id="TCC模式"><a href="#TCC模式" class="headerlink" title="TCC模式"></a>TCC模式</h2><p>TCC模式与AT模式非常相似，每阶段都是独立事务，不同的是TCC通过人工编码来实现数据恢复。需要实现三个方法：</p>
+<ul>
+<li><p>Try：资源的检测和预留；</p>
+</li>
+<li><p>Confirm：完成资源操作业务；要求 Try 成功 Confirm 一定要能成功。</p>
+</li>
+<li><p>Cancel：预留资源释放，可以理解为try的反向操作。</p>
+</li>
+</ul>
+<h3 id="流程分析"><a href="#流程分析" class="headerlink" title="流程分析"></a>流程分析</h3><p>举例，一个扣减用户余额的业务。假设账户A原来余额是100，需要余额扣减30元。</p>
+<ul>
+<li><strong>阶段一（ Try ）</strong>：检查余额是否充足，如果充足则冻结金额增加30元，可用余额扣除30</li>
+</ul>
+<p>初始余额：</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403211602024.png" srcset="/img/loading.gif" lazyload></p>
+<p>余额充足，可以冻结：</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403211602639.png" srcset="/img/loading.gif" lazyload></p>
+<p>此时，总金额 &#x3D; 冻结金额 + 可用金额，数量依然是100不变。事务直接提交无需等待其它事务。</p>
+<ul>
+<li>**阶段二（Confirm)**：假如要提交（Confirm），则冻结金额扣减30</li>
+</ul>
+<p>确认可以提交，不过之前可用金额已经扣减过了，这里只要清除冻结金额就好了：</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403211603668.png" srcset="/img/loading.gif" lazyload></p>
+<p>此时，总金额 &#x3D; 冻结金额 + 可用金额 &#x3D; 0 + 70 &#x3D; 70元</p>
+<ul>
+<li>**阶段二(Canncel)**：如果要回滚（Cancel），则冻结金额扣减30，可用余额增加30</li>
+</ul>
+<p>需要回滚，那么就要释放冻结金额，恢复可用金额：</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403211603169.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="Seata的TCC模型"><a href="#Seata的TCC模型" class="headerlink" title="Seata的TCC模型"></a>Seata的TCC模型</h3><p>Seata中的TCC模型依然延续之前的事务架构，如图：</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403211604749.png" srcset="/img/loading.gif" lazyload></p>
+<h3 id="优缺点-2"><a href="#优缺点-2" class="headerlink" title="优缺点"></a>优缺点</h3><p>TCC模式的每个阶段是做什么的？</p>
+<ul>
+<li><p>Try：资源检查和预留</p>
+</li>
+<li><p>Confirm：业务执行和提交</p>
+</li>
+<li><p>Cancel：预留资源的释放</p>
+</li>
+</ul>
+<p>TCC的优点是什么？</p>
+<ul>
+<li><p>一阶段完成直接提交事务，释放数据库资源，性能好</p>
+</li>
+<li><p>相比AT模型，无需生成快照，无需使用全局锁，性能最强</p>
+</li>
+<li><p>不依赖数据库事务，而是依赖补偿操作，可以用于非事务型数据库</p>
+</li>
+</ul>
+<p>TCC的缺点是什么？</p>
+<ul>
+<li><p>有代码侵入，需要人为编写try、Confirm和Cancel接口，太麻烦</p>
+</li>
+<li><p>软状态，事务是最终一致</p>
+</li>
+<li><p>需要考虑Confirm和Cancel的失败情况，做好幂等处理</p>
+</li>
+</ul>
+<h3 id="事务悬挂和空回滚"><a href="#事务悬挂和空回滚" class="headerlink" title="事务悬挂和空回滚"></a>事务悬挂和空回滚</h3><h4 id="空回滚"><a href="#空回滚" class="headerlink" title="空回滚"></a>空回滚</h4><p>当某分支事务的try阶段<strong>阻塞</strong>时，可能导致全局事务超时而触发二阶段的cancel操作。在未执行try操作时先执行了cancel操作，这时cancel不能做回滚，就是<strong>空回滚</strong>。</p>
+<p>如图：</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403211605704.png" srcset="/img/loading.gif" lazyload></p>
+<p>执行cancel操作时，应当判断try是否已经执行，如果尚未执行，则应该空回滚。</p>
+<h4 id="业务悬挂"><a href="#业务悬挂" class="headerlink" title="业务悬挂"></a>业务悬挂</h4><p>对于已经空回滚的业务，之前被阻塞的try操作恢复，继续执行try，就永远不可能confirm或cancel ，事务一直处于中间状态，这就是<strong>业务悬挂</strong>。</p>
+<p>执行try操作时，应当判断cancel是否已经执行过了，如果已经执行，应当阻止空回滚后的try操作，避免悬挂。</p>
+<h3 id="实现TCC模式"><a href="#实现TCC模式" class="headerlink" title="实现TCC模式"></a>实现TCC模式</h3><p>解决空回滚和业务悬挂问题，必须要记录当前事务状态，是在try、还是cancel？</p>
+<h4 id="思路分析"><a href="#思路分析" class="headerlink" title="思路分析"></a>思路分析</h4><p>这里我们定义一张表：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> `account_freeze_tbl` (<br>  `xid` <span class="hljs-type">varchar</span>(<span class="hljs-number">128</span>) <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">NULL</span>,<br>  `user_id` <span class="hljs-type">varchar</span>(<span class="hljs-number">255</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">NULL</span> COMMENT <span class="hljs-string">&#x27;用户id&#x27;</span>,<br>  `freeze_money` <span class="hljs-type">int</span>(<span class="hljs-number">11</span>) unsigned <span class="hljs-keyword">DEFAULT</span> <span class="hljs-string">&#x27;0&#x27;</span> COMMENT <span class="hljs-string">&#x27;冻结金额&#x27;</span>,<br>  `state` <span class="hljs-type">int</span>(<span class="hljs-number">1</span>) <span class="hljs-keyword">DEFAULT</span> <span class="hljs-keyword">NULL</span> COMMENT <span class="hljs-string">&#x27;事务状态，0:try，1:confirm，2:cancel&#x27;</span>,<br>  <span class="hljs-keyword">PRIMARY</span> KEY (`xid`) <span class="hljs-keyword">USING</span> BTREE<br>) ENGINE<span class="hljs-operator">=</span>InnoDB <span class="hljs-keyword">DEFAULT</span> CHARSET<span class="hljs-operator">=</span>utf8 ROW_FORMAT<span class="hljs-operator">=</span>COMPACT;<br><br></code></pre></td></tr></table></figure>
+
+<p>其中：</p>
+<ul>
+<li><p>xid：是全局事务id</p>
+</li>
+<li><p>freeze_money：用来记录用户冻结金额</p>
+</li>
+<li><p>state：用来记录事务状态</p>
+</li>
+</ul>
+<p>那此时，我们的业务开怎么做呢？</p>
+<ul>
+<li><p>Try业务：</p>
+<ul>
+<li><p>记录冻结金额和事务状态到account_freeze表</p>
+</li>
+<li><p>扣减account表可用金额</p>
+</li>
+</ul>
+</li>
+<li><p>Confirm业务</p>
+<ul>
+<li>根据xid删除account_freeze表的冻结记录</li>
+</ul>
+</li>
+<li><p>Cancel业务</p>
+<ul>
+<li><p>修改account_freeze表，冻结金额为0，state为2</p>
+</li>
+<li><p>修改account表，恢复可用金额</p>
+</li>
+</ul>
+</li>
+<li><p>如何判断是否空回滚？</p>
+<ul>
+<li>cancel业务中，根据xid查询account_freeze，如果为null则说明try还没做，需要空回滚</li>
+</ul>
+</li>
+<li><p>如何避免业务悬挂？</p>
+<ul>
+<li>try业务中，根据xid查询account_freeze ，如果已经存在则证明Cancel已经执行，拒绝执行try业务</li>
+</ul>
+</li>
+</ul>
+<p>接下来，我们改造account-service，利用TCC实现余额扣减功能。</p>
+<h4 id="声明TCC接口"><a href="#声明TCC接口" class="headerlink" title="声明TCC接口"></a>声明TCC接口</h4><p>TCC的Try、Confirm、Cancel方法都需要在接口中基于注解来声明，</p>
+<p>我们在account-service项目中的<code>cn.itcast.account.service</code>包中新建一个接口，声明TCC三个接口：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> cn.itcast.account.service;<br><br><span class="hljs-keyword">import</span> io.seata.rm.tcc.api.BusinessActionContext;<br><span class="hljs-keyword">import</span> io.seata.rm.tcc.api.BusinessActionContextParameter;<br><span class="hljs-keyword">import</span> io.seata.rm.tcc.api.LocalTCC;<br><span class="hljs-keyword">import</span> io.seata.rm.tcc.api.TwoPhaseBusinessAction;<br><br><span class="hljs-meta">@LocalTCC</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title class_">AccountTCCService</span> &#123;<br><br>    <span class="hljs-meta">@TwoPhaseBusinessAction(name = &quot;deduct&quot;, commitMethod = &quot;confirm&quot;, rollbackMethod = &quot;cancel&quot;)</span><br>    <span class="hljs-keyword">void</span> <span class="hljs-title function_">deduct</span><span class="hljs-params">(<span class="hljs-meta">@BusinessActionContextParameter(paramName = &quot;userId&quot;)</span> String userId,</span><br><span class="hljs-params">                <span class="hljs-meta">@BusinessActionContextParameter(paramName = &quot;money&quot;)</span><span class="hljs-type">int</span> money)</span>;<br><br>    <span class="hljs-type">boolean</span> <span class="hljs-title function_">confirm</span><span class="hljs-params">(BusinessActionContext ctx)</span>;<br><br>    <span class="hljs-type">boolean</span> <span class="hljs-title function_">cancel</span><span class="hljs-params">(BusinessActionContext ctx)</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h4 id="编写实现"><a href="#编写实现" class="headerlink" title="编写实现"></a>编写实现</h4><p>在account-service服务中的<code>cn.itcast.account.service.impl</code>包下新建一个类，实现TCC业务：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">package</span> cn.itcast.account.service.impl;<br><br><span class="hljs-keyword">import</span> cn.itcast.account.entity.AccountFreeze;<br><span class="hljs-keyword">import</span> cn.itcast.account.mapper.AccountFreezeMapper;<br><span class="hljs-keyword">import</span> cn.itcast.account.mapper.AccountMapper;<br><span class="hljs-keyword">import</span> cn.itcast.account.service.AccountTCCService;<br><span class="hljs-keyword">import</span> io.seata.core.context.RootContext;<br><span class="hljs-keyword">import</span> io.seata.rm.tcc.api.BusinessActionContext;<br><span class="hljs-keyword">import</span> lombok.extern.slf4j.Slf4j;<br><span class="hljs-keyword">import</span> org.springframework.beans.factory.annotation.Autowired;<br><span class="hljs-keyword">import</span> org.springframework.stereotype.Service;<br><span class="hljs-keyword">import</span> org.springframework.transaction.annotation.Transactional;<br><br><span class="hljs-meta">@Service</span><br><span class="hljs-meta">@Slf4j</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">AccountTCCServiceImpl</span> <span class="hljs-keyword">implements</span> <span class="hljs-title class_">AccountTCCService</span> &#123;<br><br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> AccountMapper accountMapper;<br>    <span class="hljs-meta">@Autowired</span><br>    <span class="hljs-keyword">private</span> AccountFreezeMapper freezeMapper;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-meta">@Transactional</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">deduct</span><span class="hljs-params">(String userId, <span class="hljs-type">int</span> money)</span> &#123;<br>        <span class="hljs-comment">// 0.获取事务id</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">xid</span> <span class="hljs-operator">=</span> RootContext.getXID();<br>        <span class="hljs-comment">// 1.扣减可用余额</span><br>        accountMapper.deduct(userId, money);<br>        <span class="hljs-comment">// 2.记录冻结金额，事务状态</span><br>        <span class="hljs-type">AccountFreeze</span> <span class="hljs-variable">freeze</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">AccountFreeze</span>();<br>        freeze.setUserId(userId);<br>        freeze.setFreezeMoney(money);<br>        freeze.setState(AccountFreeze.State.TRY);<br>        freeze.setXid(xid);<br>        freezeMapper.insert(freeze);<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">confirm</span><span class="hljs-params">(BusinessActionContext ctx)</span> &#123;<br>        <span class="hljs-comment">// 1.获取事务id</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">xid</span> <span class="hljs-operator">=</span> ctx.getXid();<br>        <span class="hljs-comment">// 2.根据id删除冻结记录</span><br>        <span class="hljs-type">int</span> <span class="hljs-variable">count</span> <span class="hljs-operator">=</span> freezeMapper.deleteById(xid);<br>        <span class="hljs-keyword">return</span> count == <span class="hljs-number">1</span>;<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">cancel</span><span class="hljs-params">(BusinessActionContext ctx)</span> &#123;<br>        <span class="hljs-comment">// 0.查询冻结记录</span><br>        <span class="hljs-type">String</span> <span class="hljs-variable">xid</span> <span class="hljs-operator">=</span> ctx.getXid();<br>        <span class="hljs-type">AccountFreeze</span> <span class="hljs-variable">freeze</span> <span class="hljs-operator">=</span> freezeMapper.selectById(xid);<br><br>        <span class="hljs-comment">// 1.恢复可用余额</span><br>        accountMapper.refund(freeze.getUserId(), freeze.getFreezeMoney());<br>        <span class="hljs-comment">// 2.将冻结金额清零，状态改为CANCEL</span><br>        freeze.setFreezeMoney(<span class="hljs-number">0</span>);<br>        freeze.setState(AccountFreeze.State.CANCEL);<br>        <span class="hljs-type">int</span> <span class="hljs-variable">count</span> <span class="hljs-operator">=</span> freezeMapper.updateById(freeze);<br>        <span class="hljs-keyword">return</span> count == <span class="hljs-number">1</span>;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h2 id="SAGA模式"><a href="#SAGA模式" class="headerlink" title="SAGA模式"></a>SAGA模式</h2><p>Saga 模式是 Seata 即将开源的长事务解决方案。</p>
+<h3 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h3><p>在 Saga 模式下，分布式事务内有多个参与者，每一个参与者都是一个冲正补偿服务，需要用户根据业务场景实现其正向操作和逆向回滚操作。</p>
+<p>分布式事务执行过程中，依次执行各参与者的正向操作，如果所有正向操作均执行成功，那么分布式事务提交。如果任何一个正向操作执行失败，那么分布式事务会去退回去执行前面各参与者的逆向回滚操作，回滚已提交的参与者，使分布式事务回到初始状态。</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403211609695.png" srcset="/img/loading.gif" lazyload></p>
+<p>Saga也分为两个阶段：</p>
+<ul>
+<li><p>一阶段：直接提交本地事务</p>
+</li>
+<li><p>二阶段：成功则什么都不做；失败则通过编写补偿业务来回滚</p>
+</li>
+</ul>
+<h3 id="优缺点-3"><a href="#优缺点-3" class="headerlink" title="优缺点"></a>优缺点</h3><p>优点：</p>
+<ul>
+<li><p>事务参与者可以基于事件驱动实现异步调用，吞吐高</p>
+</li>
+<li><p>一阶段直接提交事务，无锁，性能好</p>
+</li>
+<li><p>不用编写TCC中的三个阶段，实现简单</p>
+</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li><p>软状态持续时间不确定，时效性差</p>
+</li>
+<li><p>没有锁，没有事务隔离，会有脏写</p>
+</li>
+</ul>
+<h2 id="四种模式对比"><a href="#四种模式对比" class="headerlink" title="四种模式对比"></a>四种模式对比</h2><p>我们从以下几个方面来对比四种实现：</p>
+<ul>
+<li><p>一致性：能否保证事务的一致性？强一致还是最终一致？</p>
+</li>
+<li><p>隔离性：事务之间的隔离性如何？</p>
+</li>
+<li><p>代码侵入：是否需要对业务代码改造？</p>
+</li>
+<li><p>性能：有无性能损耗？</p>
+</li>
+<li><p>场景：常见的业务场景</p>
+</li>
+</ul>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403211610641.png" srcset="/img/loading.gif" lazyload></p>
+<h1 id="高可用"><a href="#高可用" class="headerlink" title="高可用"></a>高可用</h1><p>Seata的TC服务作为分布式事务核心，一定要保证集群的高可用性。</p>
+<h2 id="高可用架构模型"><a href="#高可用架构模型" class="headerlink" title="高可用架构模型"></a>高可用架构模型</h2><p>搭建TC服务集群非常简单，启动多个TC服务，注册到nacos即可。</p>
+<p>但集群并不能确保100%安全，万一集群所在机房故障怎么办？所以如果要求较高，一般都会做异地多机房容灾。</p>
+<p>比如一个TC集群在上海，另一个TC集群在杭州：</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403211611352.png" srcset="/img/loading.gif" lazyload></p>
+<p>微服务基于事务组（tx-service-group)与TC集群的映射关系，来查找当前应该使用哪个TC集群。当SH集群故障时，只需要将vgroup-mapping中的映射关系改成HZ。则所有微服务就会切换到HZ的TC集群了。</p>
+<h2 id="实现高可用"><a href="#实现高可用" class="headerlink" title="实现高可用"></a>实现高可用</h2><p>计划启动两台seata的tc服务节点：</p>
+<table>
+<thead>
+<tr>
+<th>节点名称</th>
+<th>ip地址</th>
+<th>端口号</th>
+<th>集群名称</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>seata</td>
+<td>127.0.0.1</td>
+<td>8091</td>
+<td>SH</td>
+</tr>
+<tr>
+<td>seata2</td>
+<td>127.0.0.1</td>
+<td>8092</td>
+<td>HZ</td>
+</tr>
+</tbody></table>
+<p>之前我们已经启动了一台seata服务，端口是8091，集群名为SH。</p>
+<p>现在，将seata目录复制一份，起名为seata2</p>
+<p>修改seata2&#x2F;conf&#x2F;registry.conf内容如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs conf">registry &#123;<br>  # tc服务的注册中心类，这里选择nacos，也可以是eureka、zookeeper等<br>  type = &quot;nacos&quot;<br><br>  nacos &#123;<br>    # seata tc 服务注册到 nacos的服务名称，可以自定义<br>    application = &quot;seata-tc-server&quot;<br>    serverAddr = &quot;127.0.0.1:8848&quot;<br>    group = &quot;DEFAULT_GROUP&quot;<br>    namespace = &quot;&quot;<br>    cluster = &quot;HZ&quot;<br>    username = &quot;nacos&quot;<br>    password = &quot;nacos&quot;<br>  &#125;<br>&#125;<br><br>config &#123;<br>  # 读取tc服务端的配置文件的方式，这里是从nacos配置中心读取，这样如果tc是集群，可以共享配置<br>  type = &quot;nacos&quot;<br>  # 配置nacos地址等信息<br>  nacos &#123;<br>    serverAddr = &quot;127.0.0.1:8848&quot;<br>    namespace = &quot;&quot;<br>    group = &quot;SEATA_GROUP&quot;<br>    username = &quot;nacos&quot;<br>    password = &quot;nacos&quot;<br>    dataId = &quot;seataServer.properties&quot;<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>进入seata2&#x2F;bin目录，然后运行命令：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">seata-server.bat -p 8092<br></code></pre></td></tr></table></figure>
+
+<p>打开nacos控制台，查看服务列表：</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403211612751.png" srcset="/img/loading.gif" lazyload></p>
+<p>点进详情查看：</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403211613323.png" srcset="/img/loading.gif" lazyload></p>
+<p>接下来，我们需要将tx-service-group与cluster的映射关系都配置到nacos配置中心。</p>
+<p>新建一个配置：</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403211613497.png" srcset="/img/loading.gif" lazyload></p>
+<p>配置的内容如下：</p>
+<figure class="highlight properties"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><code class="hljs properties"><span class="hljs-comment"># 事务组映射关系</span><br><span class="hljs-attr">service.vgroupMapping.seata-demo</span>=<span class="hljs-string">SH</span><br><br><span class="hljs-attr">service.enableDegrade</span>=<span class="hljs-string">false</span><br><span class="hljs-attr">service.disableGlobalTransaction</span>=<span class="hljs-string">false</span><br><span class="hljs-comment"># 与TC服务的通信配置</span><br><span class="hljs-attr">transport.type</span>=<span class="hljs-string">TCP</span><br><span class="hljs-attr">transport.server</span>=<span class="hljs-string">NIO</span><br><span class="hljs-attr">transport.heartbeat</span>=<span class="hljs-string">true</span><br><span class="hljs-attr">transport.enableClientBatchSendRequest</span>=<span class="hljs-string">false</span><br><span class="hljs-attr">transport.threadFactory.bossThreadPrefix</span>=<span class="hljs-string">NettyBoss</span><br><span class="hljs-attr">transport.threadFactory.workerThreadPrefix</span>=<span class="hljs-string">NettyServerNIOWorker</span><br><span class="hljs-attr">transport.threadFactory.serverExecutorThreadPrefix</span>=<span class="hljs-string">NettyServerBizHandler</span><br><span class="hljs-attr">transport.threadFactory.shareBossWorker</span>=<span class="hljs-string">false</span><br><span class="hljs-attr">transport.threadFactory.clientSelectorThreadPrefix</span>=<span class="hljs-string">NettyClientSelector</span><br><span class="hljs-attr">transport.threadFactory.clientSelectorThreadSize</span>=<span class="hljs-string">1</span><br><span class="hljs-attr">transport.threadFactory.clientWorkerThreadPrefix</span>=<span class="hljs-string">NettyClientWorkerThread</span><br><span class="hljs-attr">transport.threadFactory.bossThreadSize</span>=<span class="hljs-string">1</span><br><span class="hljs-attr">transport.threadFactory.workerThreadSize</span>=<span class="hljs-string">default</span><br><span class="hljs-attr">transport.shutdown.wait</span>=<span class="hljs-string">3</span><br><span class="hljs-comment"># RM配置</span><br><span class="hljs-attr">client.rm.asyncCommitBufferLimit</span>=<span class="hljs-string">10000</span><br><span class="hljs-attr">client.rm.lock.retryInterval</span>=<span class="hljs-string">10</span><br><span class="hljs-attr">client.rm.lock.retryTimes</span>=<span class="hljs-string">30</span><br><span class="hljs-attr">client.rm.lock.retryPolicyBranchRollbackOnConflict</span>=<span class="hljs-string">true</span><br><span class="hljs-attr">client.rm.reportRetryCount</span>=<span class="hljs-string">5</span><br><span class="hljs-attr">client.rm.tableMetaCheckEnable</span>=<span class="hljs-string">false</span><br><span class="hljs-attr">client.rm.tableMetaCheckerInterval</span>=<span class="hljs-string">60000</span><br><span class="hljs-attr">client.rm.sqlParserType</span>=<span class="hljs-string">druid</span><br><span class="hljs-attr">client.rm.reportSuccessEnable</span>=<span class="hljs-string">false</span><br><span class="hljs-attr">client.rm.sagaBranchRegisterEnable</span>=<span class="hljs-string">false</span><br><span class="hljs-comment"># TM配置</span><br><span class="hljs-attr">client.tm.commitRetryCount</span>=<span class="hljs-string">5</span><br><span class="hljs-attr">client.tm.rollbackRetryCount</span>=<span class="hljs-string">5</span><br><span class="hljs-attr">client.tm.defaultGlobalTransactionTimeout</span>=<span class="hljs-string">60000</span><br><span class="hljs-attr">client.tm.degradeCheck</span>=<span class="hljs-string">false</span><br><span class="hljs-attr">client.tm.degradeCheckAllowTimes</span>=<span class="hljs-string">10</span><br><span class="hljs-attr">client.tm.degradeCheckPeriod</span>=<span class="hljs-string">2000</span><br><span class="hljs-comment"></span><br><span class="hljs-comment"># undo日志配置</span><br><span class="hljs-attr">client.undo.dataValidation</span>=<span class="hljs-string">true</span><br><span class="hljs-attr">client.undo.logSerialization</span>=<span class="hljs-string">jackson</span><br><span class="hljs-attr">client.undo.onlyCareUpdateColumns</span>=<span class="hljs-string">true</span><br><span class="hljs-attr">client.undo.logTable</span>=<span class="hljs-string">undo_log</span><br><span class="hljs-attr">client.undo.compress.enable</span>=<span class="hljs-string">true</span><br><span class="hljs-attr">client.undo.compress.type</span>=<span class="hljs-string">zip</span><br><span class="hljs-attr">client.undo.compress.threshold</span>=<span class="hljs-string">64k</span><br><span class="hljs-attr">client.log.exceptionRate</span>=<span class="hljs-string">100</span><br></code></pre></td></tr></table></figure>
+
+<p>接下来，需要修改每一个微服务的application.yml文件，让微服务读取nacos中的client.properties文件：</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">seata:</span><br>  <span class="hljs-attr">config:</span><br>    <span class="hljs-attr">type:</span> <span class="hljs-string">nacos</span><br>    <span class="hljs-attr">nacos:</span><br>      <span class="hljs-attr">server-addr:</span> <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span><span class="hljs-string">:8848</span><br>      <span class="hljs-attr">username:</span> <span class="hljs-string">nacos</span><br>      <span class="hljs-attr">password:</span> <span class="hljs-string">nacos</span><br>      <span class="hljs-attr">group:</span> <span class="hljs-string">SEATA_GROUP</span><br>      <span class="hljs-attr">data-id:</span> <span class="hljs-string">client.properties</span><br></code></pre></td></tr></table></figure>
+
+<p>重启微服务，现在微服务到底是连接tc的SH集群，还是tc的HZ集群，都统一由nacos的client.properties来决定了。</p>
 
                 
               </div>
