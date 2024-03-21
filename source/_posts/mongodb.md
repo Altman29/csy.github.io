@@ -1,5 +1,5 @@
 ---
-title: 备忘系列-mongodb
+title: mongodb
 tags:
   - mongodb
   - nosql

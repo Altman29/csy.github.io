@@ -1,5 +1,5 @@
 ---
-title: 备忘系列-nginx
+title: nginx
 tags:
   - nginx
   - 反向代理

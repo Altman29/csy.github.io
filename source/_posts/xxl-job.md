@@ -1,5 +1,5 @@
 ---
-title: 备忘系列-xxl-job
+title: xxl-job
 tags:
   - xxl-job
 categories:

@@ -1,5 +1,5 @@
 ---
-title: 通关微服务-redis
+title: redis-上
 tags:
   - redis
 categories:
@@ -10,5 +10,4 @@ excerpt: Redis提供快速读写操作和持久化存储，具有出色的性能
 abbrlink: 554b12af
 date: 2022-01-15 16:52:51
 ---
-redis is good
-2333
+入门篇

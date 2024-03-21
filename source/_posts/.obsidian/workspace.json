@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "通关微服务-seata.md",
+                "file": "nginx.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "通关微服务-seata.md",
+                "file": "nginx.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "通关微服务-seata.md",
+                "file": "nginx.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "通关微服务-seata.md"
+                "file": "nginx.md"
               }
             }
           }
@@ -148,6 +148,14 @@
   },
   "active": "60b66de191b8374f",
   "lastOpenFiles": [
+    "mongodb.md",
+    "xxl-job.md",
+    "深入了解-mysql.md",
+    "redis-下.md",
+    "redis-上.md",
+    "redis-原理.md",
+    "redis-高级.md",
+    "通关微服务-seata.md",
     "Pasted image 20240321161239.png",
     "通关微服务-sentinel.md",
     "Pasted image 20240321104325.png",
@@ -175,15 +183,7 @@
     "重构法则节选-上.md",
     "docker.md",
     "备忘系列-swagger.md",
-    "maven使用教程.md",
-    "git使用指北.md",
-    "jenkins自动化与持续集成.md",
-    "mybatis and plus.md",
     "Pasted image 20240314184223.png",
-    "attachment/Pasted image 20230626162721.png.md",
-    "attachment/Pasted image 20230626183731.png.md",
-    "关于Spring.md",
-    "attachment",
-    "Pasted image 20240220161508.png"
+    "attachment"
   ]
 }
