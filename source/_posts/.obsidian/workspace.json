@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "通关微服务-sentinel.md",
+                "file": "通关微服务-seata.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "通关微服务-sentinel.md",
+                "file": "通关微服务-seata.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "通关微服务-sentinel.md",
+                "file": "通关微服务-seata.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "通关微服务-sentinel.md"
+                "file": "通关微服务-seata.md"
               }
             }
           }
@@ -148,6 +148,8 @@
   },
   "active": "60b66de191b8374f",
   "lastOpenFiles": [
+    "Pasted image 20240321161239.png",
+    "通关微服务-sentinel.md",
     "Pasted image 20240321104325.png",
     "Pasted image 20240321094015.png",
     "Pasted image 20240321093941.png",
@@ -181,9 +183,7 @@
     "attachment/Pasted image 20230626162721.png.md",
     "attachment/Pasted image 20230626183731.png.md",
     "关于Spring.md",
-    "关于并发编程（下）.md",
     "attachment",
-    "Pasted image 20240220161508.png",
-    "Pasted image 20240304181242.png"
+    "Pasted image 20240220161508.png"
   ]
 }
