@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "nginx.md",
+                "file": "redis-上.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "nginx.md",
+                "file": "redis-上.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "nginx.md",
+                "file": "redis-上.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "nginx.md"
+                "file": "redis-上.md"
               }
             }
           }
@@ -148,6 +148,7 @@
   },
   "active": "60b66de191b8374f",
   "lastOpenFiles": [
+    "nginx.md",
     "mongodb.md",
     "xxl-job.md",
     "深入了解-mysql.md",
@@ -182,7 +183,6 @@
     "单体应用的困境.md",
     "重构法则节选-上.md",
     "docker.md",
-    "备忘系列-swagger.md",
     "Pasted image 20240314184223.png",
     "attachment"
   ]
