@@ -97,11 +97,11 @@
     
     <tags>
       
-      <tag>线程安全</tag>
-      
       <tag>nginx</tag>
       
       <tag>反向代理</tag>
+      
+      <tag>线程安全</tag>
       
     </tags>
     
@@ -126,34 +126,9 @@
     
     <tags>
       
-      <tag>mongodb</tag>
-      
       <tag>nosql</tag>
       
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
-    <title>redis-下</title>
-    <link href="/posts/7aa76e65/"/>
-    <url>/posts/7aa76e65/</url>
-    
-    <content type="html"><![CDATA[<p>实战篇</p>]]></content>
-    
-    
-    <categories>
-      
-      <category>微服务</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>redis</tag>
+      <tag>mongodb</tag>
       
     </tags>
     
@@ -212,7 +187,70 @@
   
   
   <entry>
-    <title>redis-上</title>
+    <title>redis-最佳实践</title>
+    <link href="/posts/5326b2b2/"/>
+    <url>/posts/5326b2b2/</url>
+    
+    <content type="html"><![CDATA[<p>原理篇</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>微服务</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>redis-深入理解</title>
+    <link href="/posts/6fe0354c/"/>
+    <url>/posts/6fe0354c/</url>
+    
+    <content type="html"><![CDATA[<p>原理篇</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>微服务</category>
+      
+    </categories>
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>redis-分布式缓存</title>
+    <link href="/posts/75dbf2b5/"/>
+    <url>/posts/75dbf2b5/</url>
+    
+    <content type="html"><![CDATA[<p>高级篇</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>微服务</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>redis</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>redis-入门&amp;场景运用</title>
     <link href="/posts/554b12af/"/>
     <url>/posts/554b12af/</url>
     
@@ -305,13 +343,13 @@
     
     <tags>
       
-      <tag>nosql</tag>
-      
       <tag>elasticsearch</tag>
       
       <tag>logstash</tag>
       
       <tag>kibana</tag>
+      
+      <tag>nosql</tag>
       
     </tags>
     
@@ -507,9 +545,9 @@
     
     <tags>
       
-      <tag>elementUI</tag>
-      
       <tag>vue</tag>
+      
+      <tag>elementUI</tag>
       
       <tag>axios</tag>
       
@@ -802,6 +840,8 @@
     
     <tags>
       
+      <tag>线程安全</tag>
+      
       <tag>并发</tag>
       
       <tag>并行</tag>
@@ -811,8 +851,6 @@
       <tag>异步</tag>
       
       <tag>互斥</tag>
-      
-      <tag>线程安全</tag>
       
       <tag>悲观锁</tag>
       
