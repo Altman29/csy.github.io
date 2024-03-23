@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "redis-分布式缓存.md",
+                "file": "redis-最佳实践.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "redis-分布式缓存.md",
+                "file": "redis-最佳实践.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "redis-分布式缓存.md",
+                "file": "redis-最佳实践.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "redis-分布式缓存.md"
+                "file": "redis-最佳实践.md"
               }
             }
           }
@@ -148,8 +148,8 @@
   },
   "active": "60b66de191b8374f",
   "lastOpenFiles": [
-    "redis-最佳实践.md",
     "redis-深入理解.md",
+    "redis-最佳实践.md",
     "redis-分布式缓存.md",
     "redis-入门&场景运用.md",
     "xxl-job.md",
