@@ -1,5 +1,5 @@
 ---
-title: redis-入门&场景运用
+title: redis-guide
 tags:
   - redis
 categories:

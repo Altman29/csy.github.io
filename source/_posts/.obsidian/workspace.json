@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "redis-深入理解.md",
+                "file": "mycat.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "redis-深入理解.md",
+                "file": "mycat.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "redis-深入理解.md",
+                "file": "mycat.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "redis-深入理解.md"
+                "file": "mycat.md"
               }
             }
           }
@@ -148,15 +148,16 @@
   },
   "active": "60b66de191b8374f",
   "lastOpenFiles": [
-    "redis-最佳实践.md",
-    "redis-深入理解.md",
-    "redis-分布式缓存.md",
-    "redis-入门&场景运用.md",
-    "xxl-job.md",
-    "mongodb.md",
-    "redis-下.md",
     "nginx.md",
-    "深入了解-mysql.md",
+    "mysql.md",
+    "xxl-job.md",
+    "mycat.md",
+    "redis-guide.md",
+    "mongodb.md",
+    "redis-深入理解.md",
+    "redis-最佳实践.md",
+    "redis-分布式缓存.md",
+    "redis-下.md",
     "通关微服务-seata.md",
     "Pasted image 20240321161239.png",
     "通关微服务-sentinel.md",
