@@ -18,27 +18,27 @@
   <meta name="author" content="拾叁">
   <meta name="keywords" content="k8s">
   
-    <meta name="description" content="开源的容器编排和管理平台，用于自动化容器化应用程序的部署、扩展和管理。Kubernetes提供了高度可扩展的集群管理、服务发现、负载均衡、自动伸缩和自我修复等功能，使容器化应用在多个主机上能够更容易地管理和运行。">
+    <meta name="description" content="Mycat是开源的、活跃的、基于Java语言编写的MySQL数据库中间件。可以像使用mysql一样来使用mycat，对于开发人员来说根本感觉不到mycat的存在。开发人员只需要连接MyCat即可。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="云原生之k8s">
+<meta property="og:title" content="mycat">
 <meta property="og:url" content="https://blog.13space.cn/posts/7b28abd7/index.html">
 <meta property="og:site_name" content="拾叁的小破站">
-<meta property="og:description" content="开源的容器编排和管理平台，用于自动化容器化应用程序的部署、扩展和管理。Kubernetes提供了高度可扩展的集群管理、服务发现、负载均衡、自动伸缩和自我修复等功能，使容器化应用在多个主机上能够更容易地管理和运行。">
+<meta property="og:description" content="Mycat是开源的、活跃的、基于Java语言编写的MySQL数据库中间件。可以像使用mysql一样来使用mycat，对于开发人员来说根本感觉不到mycat的存在。开发人员只需要连接MyCat即可。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://blog.13space.cn/img/micro/k8s.jpg">
-<meta property="article:published_time" content="2023-03-01T13:25:47.000Z">
-<meta property="article:modified_time" content="2023-09-19T15:57:40.138Z">
+<meta property="og:image" content="https://blog.13space.cn/img/micro/mycat.jpg">
+<meta property="article:published_time" content="2022-03-01T03:15:42.000Z">
+<meta property="article:modified_time" content="2024-03-25T03:15:06.982Z">
 <meta property="article:author" content="拾叁">
-<meta property="article:tag" content="kubernetes">
-<meta property="article:tag" content="k8s">
+<meta property="article:tag" content="mysql">
+<meta property="article:tag" content="mycat">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://blog.13space.cn/img/micro/k8s.jpg">
+<meta name="twitter:image" content="https://blog.13space.cn/img/micro/mycat.jpg">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>云原生之k8s - 拾叁的小破站</title>
+  <title>mycat - 拾叁的小破站</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -243,7 +243,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="云原生之k8s"></span>
+            <span id="subtitle" data-typed-text="mycat"></span>
           
         </div>
 
@@ -259,8 +259,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-03-01 21:25" pubdate>
-          March 1, 2023 pm
+        <time datetime="2022-03-01 11:15" pubdate>
+          March 1, 2022 am
         </time>
       </span>
     
@@ -271,7 +271,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          7 words
+          377 words
         
       </span>
     
@@ -282,7 +282,7 @@
         
         
         
-          1 mins
+          4 mins
         
       </span>
     
@@ -322,13 +322,12 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">云原生之k8s</h1>
+            <h1 style="display: none">mycat</h1>
             
             
               <div class="markdown-body">
                 
-                <p>kkk8s<br>11</p>
-
+                <h1 id="主从复制"><a href="#主从复制" class="headerlink" title="主从复制"></a>主从复制</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><h2 id="搭建"><a href="#搭建" class="headerlink" title="搭建"></a>搭建</h2><h3 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h3><h3 id="主库配置"><a href="#主库配置" class="headerlink" title="主库配置"></a>主库配置</h3><h3 id="从库配置"><a href="#从库配置" class="headerlink" title="从库配置"></a>从库配置</h3><h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><h1 id="分库分表"><a href="#分库分表" class="headerlink" title="分库分表"></a>分库分表</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><h3 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h3><h3 id="拆分策略"><a href="#拆分策略" class="headerlink" title="拆分策略"></a>拆分策略</h3><h3 id="垂直拆分"><a href="#垂直拆分" class="headerlink" title="垂直拆分"></a>垂直拆分</h3><h3 id="水平拆分"><a href="#水平拆分" class="headerlink" title="水平拆分"></a>水平拆分</h3><h3 id="实现技术"><a href="#实现技术" class="headerlink" title="实现技术"></a>实现技术</h3><h2 id="MyCat概述"><a href="#MyCat概述" class="headerlink" title="MyCat概述"></a>MyCat概述</h2><h3 id="介绍-1"><a href="#介绍-1" class="headerlink" title="介绍"></a>介绍</h3><h3 id="下载"><a href="#下载" class="headerlink" title="下载"></a>下载</h3><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><h3 id="目录介绍"><a href="#目录介绍" class="headerlink" title="目录介绍"></a>目录介绍</h3><h3 id="概念介绍"><a href="#概念介绍" class="headerlink" title="概念介绍"></a>概念介绍</h3><h2 id="MyCat入门"><a href="#MyCat入门" class="headerlink" title="MyCat入门"></a>MyCat入门</h2><h3 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h3><h3 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h3><h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><h3 id="测试-1"><a href="#测试-1" class="headerlink" title="测试"></a>测试</h3><h2 id="MyCat配置"><a href="#MyCat配置" class="headerlink" title="MyCat配置"></a>MyCat配置</h2><h3 id="schema-xml"><a href="#schema-xml" class="headerlink" title="schema.xml"></a>schema.xml</h3><h4 id="schema标签"><a href="#schema标签" class="headerlink" title="schema标签"></a>schema标签</h4><h4 id="datanode标签"><a href="#datanode标签" class="headerlink" title="datanode标签"></a>datanode标签</h4><h4 id="datahost标签"><a href="#datahost标签" class="headerlink" title="datahost标签"></a>datahost标签</h4><h3 id="rule-xml"><a href="#rule-xml" class="headerlink" title="rule.xml"></a>rule.xml</h3><h3 id="server-xml"><a href="#server-xml" class="headerlink" title="server.xml"></a>server.xml</h3><h2 id="MyCat分片"><a href="#MyCat分片" class="headerlink" title="MyCat分片"></a>MyCat分片</h2><h3 id="垂直拆分-1"><a href="#垂直拆分-1" class="headerlink" title="垂直拆分"></a>垂直拆分</h3><h4 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h4><h4 id="准备-1"><a href="#准备-1" class="headerlink" title="准备"></a>准备</h4><h4 id="配置-1"><a href="#配置-1" class="headerlink" title="配置"></a>配置</h4><h4 id="测试-2"><a href="#测试-2" class="headerlink" title="测试"></a>测试</h4><h4 id="全局表"><a href="#全局表" class="headerlink" title="全局表"></a>全局表</h4><h3 id="水平拆分-1"><a href="#水平拆分-1" class="headerlink" title="水平拆分"></a>水平拆分</h3><h4 id="场景-1"><a href="#场景-1" class="headerlink" title="场景"></a>场景</h4><h4 id="准备-2"><a href="#准备-2" class="headerlink" title="准备"></a>准备</h4><h4 id="配置-2"><a href="#配置-2" class="headerlink" title="配置"></a>配置</h4><h4 id="测试-3"><a href="#测试-3" class="headerlink" title="测试"></a>测试</h4><h3 id="分片规则"><a href="#分片规则" class="headerlink" title="分片规则"></a>分片规则</h3><h4 id="范围分片"><a href="#范围分片" class="headerlink" title="范围分片"></a>范围分片</h4><h4 id="取模分片"><a href="#取模分片" class="headerlink" title="取模分片"></a>取模分片</h4><h4 id="一致性hash分片"><a href="#一致性hash分片" class="headerlink" title="一致性hash分片"></a>一致性hash分片</h4><h4 id="枚举分片"><a href="#枚举分片" class="headerlink" title="枚举分片"></a>枚举分片</h4><h4 id="应用指定算法"><a href="#应用指定算法" class="headerlink" title="应用指定算法"></a>应用指定算法</h4><h4 id="固定分片hash解析算法"><a href="#固定分片hash解析算法" class="headerlink" title="固定分片hash解析算法"></a>固定分片hash解析算法</h4><h4 id="字符串hash解析算法"><a href="#字符串hash解析算法" class="headerlink" title="字符串hash解析算法"></a>字符串hash解析算法</h4><h4 id="按天分片算法"><a href="#按天分片算法" class="headerlink" title="按天分片算法"></a>按天分片算法</h4><h4 id="自然月分片"><a href="#自然月分片" class="headerlink" title="自然月分片"></a>自然月分片</h4><h2 id="MyCat管理及监控"><a href="#MyCat管理及监控" class="headerlink" title="MyCat管理及监控"></a>MyCat管理及监控</h2><h3 id="MyCat原理"><a href="#MyCat原理" class="headerlink" title="MyCat原理"></a>MyCat原理</h3><h3 id="MyCat管理"><a href="#MyCat管理" class="headerlink" title="MyCat管理"></a>MyCat管理</h3><h3 id="MyCat-eye"><a href="#MyCat-eye" class="headerlink" title="MyCat-eye"></a>MyCat-eye</h3><h4 id="介绍-2"><a href="#介绍-2" class="headerlink" title="介绍"></a>介绍</h4><h4 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h4><h4 id="访问"><a href="#访问" class="headerlink" title="访问"></a>访问</h4><h4 id="访问-1"><a href="#访问-1" class="headerlink" title="访问"></a>访问</h4><h4 id="测试-4"><a href="#测试-4" class="headerlink" title="测试"></a>测试</h4><h1 id="读写分离"><a href="#读写分离" class="headerlink" title="读写分离"></a>读写分离</h1><h2 id="介绍-3"><a href="#介绍-3" class="headerlink" title="介绍"></a>介绍</h2><h2 id="一主一从"><a href="#一主一从" class="headerlink" title="一主一从"></a>一主一从</h2><h3 id="原理-1"><a href="#原理-1" class="headerlink" title="原理"></a>原理</h3><h3 id="准备-3"><a href="#准备-3" class="headerlink" title="准备"></a>准备</h3><h2 id="一主一从读写分离"><a href="#一主一从读写分离" class="headerlink" title="一主一从读写分离"></a>一主一从读写分离</h2><h3 id="schema-xml配置"><a href="#schema-xml配置" class="headerlink" title="schema.xml配置"></a>schema.xml配置</h3><h3 id="server-xml配置"><a href="#server-xml配置" class="headerlink" title="server.xml配置"></a>server.xml配置</h3><h3 id="测试-5"><a href="#测试-5" class="headerlink" title="测试"></a>测试</h3><h2 id="双主双从"><a href="#双主双从" class="headerlink" title="双主双从"></a>双主双从</h2><h3 id="介绍-4"><a href="#介绍-4" class="headerlink" title="介绍"></a>介绍</h3><h3 id="准备-4"><a href="#准备-4" class="headerlink" title="准备"></a>准备</h3><h3 id="搭建-1"><a href="#搭建-1" class="headerlink" title="搭建"></a>搭建</h3><h3 id="主库配置-1"><a href="#主库配置-1" class="headerlink" title="主库配置"></a>主库配置</h3><h4 id="从库配置-1"><a href="#从库配置-1" class="headerlink" title="从库配置"></a>从库配置</h4><h4 id="从库管理主库"><a href="#从库管理主库" class="headerlink" title="从库管理主库"></a>从库管理主库</h4><h3 id="测试-6"><a href="#测试-6" class="headerlink" title="测试"></a>测试</h3><h2 id="双主双从读写分离"><a href="#双主双从读写分离" class="headerlink" title="双主双从读写分离"></a>双主双从读写分离</h2><h3 id="配置-3"><a href="#配置-3" class="headerlink" title="配置"></a>配置</h3><h3 id="测试-7"><a href="#测试-7" class="headerlink" title="测试"></a>测试</h3>
                 
               </div>
             
@@ -346,7 +345,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E4%BA%91%E5%8E%9F%E7%94%9F/" class="category-chain-item">云原生</a>
+  <a href="/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" class="category-chain-item">微服务</a>
   
   
 
@@ -361,9 +360,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/kubernetes/">#kubernetes</a>
+        <a href="/tags/mysql/">#mysql</a>
       
-        <a href="/tags/k8s/">#k8s</a>
+        <a href="/tags/mycat/">#mycat</a>
       
     </div>
   
@@ -375,7 +374,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>云原生之k8s</div>
+      <div>mycat</div>
       <div>https://blog.13space.cn/posts/7b28abd7/</div>
     </div>
     <div class="license-meta">
@@ -388,7 +387,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>March 1, 2023</div>
+          <div>March 1, 2022</div>
         </div>
       
       
@@ -420,9 +419,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/posts/68893475/" title="云原生之kubeSphere">
+                      <a href="/posts/89b2e006/" title="xxl-job">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">云原生之kubeSphere</span>
+                        <span class="hidden-mobile">xxl-job</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
@@ -430,8 +429,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/posts/c06c050/" title="nginx">
-                        <span class="hidden-mobile">nginx</span>
+                      <a href="/posts/bb4eda82/" title="mysql">
+                        <span class="hidden-mobile">mysql</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

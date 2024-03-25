@@ -20,14 +20,14 @@
   
     <meta name="description" content="开源的关系型数据库管理系统，广泛用于应用程序开发中的数据存储和管理。它是互联网和企业应用中最受欢迎的数据库之一，拥有庞大的社区支持和丰富的扩展功能。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="深入了解-mysql">
+<meta property="og:title" content="mysql">
 <meta property="og:url" content="https://blog.13space.cn/posts/bb4eda82/index.html">
 <meta property="og:site_name" content="拾叁的小破站">
 <meta property="og:description" content="开源的关系型数据库管理系统，广泛用于应用程序开发中的数据存储和管理。它是互联网和企业应用中最受欢迎的数据库之一，拥有庞大的社区支持和丰富的扩展功能。">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://blog.13space.cn/img/micro/mysql.png">
 <meta property="article:published_time" content="2022-02-22T13:03:36.000Z">
-<meta property="article:modified_time" content="2024-03-21T10:35:56.992Z">
+<meta property="article:modified_time" content="2024-03-25T03:14:58.366Z">
 <meta property="article:author" content="拾叁">
 <meta property="article:tag" content="mysql">
 <meta name="twitter:card" content="summary_large_image">
@@ -37,7 +37,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>深入了解-mysql - 拾叁的小破站</title>
+  <title>mysql - 拾叁的小破站</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -242,7 +242,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="深入了解-mysql"></span>
+            <span id="subtitle" data-typed-text="mysql"></span>
           
         </div>
 
@@ -270,7 +270,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          6 words
+          573 words
         
       </span>
     
@@ -281,7 +281,7 @@
         
         
         
-          1 mins
+          5 mins
         
       </span>
     
@@ -321,13 +321,12 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">深入了解-mysql</h1>
+            <h1 style="display: none">mysql</h1>
             
             
               <div class="markdown-body">
                 
-                <p>333311</p>
-
+                <h1 id="存储引擎"><a href="#存储引擎" class="headerlink" title="存储引擎"></a>存储引擎</h1><h2 id="MySQL体系结构"><a href="#MySQL体系结构" class="headerlink" title="MySQL体系结构"></a>MySQL体系结构</h2><h2 id="存储引擎介绍"><a href="#存储引擎介绍" class="headerlink" title="存储引擎介绍"></a>存储引擎介绍</h2><h2 id="存储引擎特点"><a href="#存储引擎特点" class="headerlink" title="存储引擎特点"></a>存储引擎特点</h2><h3 id="InnoDB"><a href="#InnoDB" class="headerlink" title="InnoDB"></a>InnoDB</h3><h3 id="MyISAM"><a href="#MyISAM" class="headerlink" title="MyISAM"></a>MyISAM</h3><h3 id="Memory"><a href="#Memory" class="headerlink" title="Memory"></a>Memory</h3><h3 id="区别及特点"><a href="#区别及特点" class="headerlink" title="区别及特点"></a>区别及特点</h3><h2 id="存储引擎选择"><a href="#存储引擎选择" class="headerlink" title="存储引擎选择"></a>存储引擎选择</h2><h1 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h1><h2 id="索引概述"><a href="#索引概述" class="headerlink" title="索引概述"></a>索引概述</h2><h3 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h3><h3 id="演示"><a href="#演示" class="headerlink" title="演示"></a>演示</h3><h3 id="特点"><a href="#特点" class="headerlink" title="特点"></a>特点</h3><h2 id="索引结构"><a href="#索引结构" class="headerlink" title="索引结构"></a>索引结构</h2><h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><h3 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h3><h3 id="B-Tree"><a href="#B-Tree" class="headerlink" title="B Tree"></a>B Tree</h3><h3 id="B-Tree-1"><a href="#B-Tree-1" class="headerlink" title="B+ Tree"></a>B+ Tree</h3><h3 id="Hash"><a href="#Hash" class="headerlink" title="Hash"></a>Hash</h3><h2 id="索引分类"><a href="#索引分类" class="headerlink" title="索引分类"></a>索引分类</h2><h3 id="索引分类-1"><a href="#索引分类-1" class="headerlink" title="索引分类"></a>索引分类</h3><h3 id="聚集索引-amp-二级索引"><a href="#聚集索引-amp-二级索引" class="headerlink" title="聚集索引&amp;二级索引"></a>聚集索引&amp;二级索引</h3><h2 id="索引语法"><a href="#索引语法" class="headerlink" title="索引语法"></a>索引语法</h2><h2 id="SQL性能分析"><a href="#SQL性能分析" class="headerlink" title="SQL性能分析"></a>SQL性能分析</h2><h3 id="SQL执行频率"><a href="#SQL执行频率" class="headerlink" title="SQL执行频率"></a>SQL执行频率</h3><h3 id="慢查询日志"><a href="#慢查询日志" class="headerlink" title="慢查询日志"></a>慢查询日志</h3><h3 id="profile详情"><a href="#profile详情" class="headerlink" title="profile详情"></a>profile详情</h3><h3 id="explain"><a href="#explain" class="headerlink" title="explain"></a>explain</h3><h2 id="索引使用"><a href="#索引使用" class="headerlink" title="索引使用"></a>索引使用</h2><h3 id="验证索引效率"><a href="#验证索引效率" class="headerlink" title="验证索引效率"></a>验证索引效率</h3><h3 id="最左前缀法则"><a href="#最左前缀法则" class="headerlink" title="最左前缀法则"></a>最左前缀法则</h3><h3 id="范围查询"><a href="#范围查询" class="headerlink" title="范围查询"></a>范围查询</h3><h3 id="索引失效"><a href="#索引失效" class="headerlink" title="索引失效"></a>索引失效</h3><h4 id="索引列运算"><a href="#索引列运算" class="headerlink" title="索引列运算"></a>索引列运算</h4><h4 id="字符串不加引号"><a href="#字符串不加引号" class="headerlink" title="字符串不加引号"></a>字符串不加引号</h4><h4 id="模糊查询"><a href="#模糊查询" class="headerlink" title="模糊查询"></a>模糊查询</h4><h4 id="or连接条件"><a href="#or连接条件" class="headerlink" title="or连接条件"></a>or连接条件</h4><h4 id="数据分布影响"><a href="#数据分布影响" class="headerlink" title="数据分布影响"></a>数据分布影响</h4><h3 id="SQL提示"><a href="#SQL提示" class="headerlink" title="SQL提示"></a>SQL提示</h3><h3 id="覆盖索引"><a href="#覆盖索引" class="headerlink" title="覆盖索引"></a>覆盖索引</h3><h3 id="前缀索引"><a href="#前缀索引" class="headerlink" title="前缀索引"></a>前缀索引</h3><h3 id="单列索引与联合索引"><a href="#单列索引与联合索引" class="headerlink" title="单列索引与联合索引"></a>单列索引与联合索引</h3><h2 id="索引设计原则"><a href="#索引设计原则" class="headerlink" title="索引设计原则"></a>索引设计原则</h2><h1 id="SQL优化"><a href="#SQL优化" class="headerlink" title="SQL优化"></a>SQL优化</h1><h2 id="插入数据"><a href="#插入数据" class="headerlink" title="插入数据"></a>插入数据</h2><h3 id="insert"><a href="#insert" class="headerlink" title="insert"></a>insert</h3><h3 id="大批量插入数据"><a href="#大批量插入数据" class="headerlink" title="大批量插入数据"></a>大批量插入数据</h3><h2 id="主键优化"><a href="#主键优化" class="headerlink" title="主键优化"></a>主键优化</h2><h2 id="order-by优化"><a href="#order-by优化" class="headerlink" title="order by优化"></a>order by优化</h2><h2 id="group-by优化"><a href="#group-by优化" class="headerlink" title="group by优化"></a>group by优化</h2><h2 id="limit优化"><a href="#limit优化" class="headerlink" title="limit优化"></a>limit优化</h2><h2 id="count优化"><a href="#count优化" class="headerlink" title="count优化"></a>count优化</h2><h3 id="概述-1"><a href="#概述-1" class="headerlink" title="概述"></a>概述</h3><h3 id="count用法"><a href="#count用法" class="headerlink" title="count用法"></a>count用法</h3><h2 id="update优化"><a href="#update优化" class="headerlink" title="update优化"></a>update优化</h2><h1 id="视图-amp-存储过程-amp-触发器"><a href="#视图-amp-存储过程-amp-触发器" class="headerlink" title="视图&amp;存储过程&amp;触发器"></a>视图&amp;存储过程&amp;触发器</h1><h2 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h2><h3 id="概述-2"><a href="#概述-2" class="headerlink" title="概述"></a>概述</h3><h3 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h3><h3 id="检查选项"><a href="#检查选项" class="headerlink" title="检查选项"></a>检查选项</h3><h3 id="视图的更新"><a href="#视图的更新" class="headerlink" title="视图的更新"></a>视图的更新</h3><h3 id="视图作用"><a href="#视图作用" class="headerlink" title="视图作用"></a>视图作用</h3><h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h3><h2 id="存储过程"><a href="#存储过程" class="headerlink" title="存储过程"></a>存储过程</h2><h3 id="介绍-1"><a href="#介绍-1" class="headerlink" title="介绍"></a>介绍</h3><h3 id="基本语法"><a href="#基本语法" class="headerlink" title="基本语法"></a>基本语法</h3><h3 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h3><h4 id="系统变量"><a href="#系统变量" class="headerlink" title="系统变量"></a>系统变量</h4><h4 id="用户定义变量"><a href="#用户定义变量" class="headerlink" title="用户定义变量"></a>用户定义变量</h4><h4 id="局部变量"><a href="#局部变量" class="headerlink" title="局部变量"></a>局部变量</h4><h3 id="if"><a href="#if" class="headerlink" title="if"></a>if</h3><h3 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h3><h3 id="case"><a href="#case" class="headerlink" title="case"></a>case</h3><h3 id="while"><a href="#while" class="headerlink" title="while"></a>while</h3><h3 id="repeat"><a href="#repeat" class="headerlink" title="repeat"></a>repeat</h3><h3 id="loop"><a href="#loop" class="headerlink" title="loop"></a>loop</h3><h3 id="游标"><a href="#游标" class="headerlink" title="游标"></a>游标</h3><h3 id="条件处理"><a href="#条件处理" class="headerlink" title="条件处理"></a>条件处理</h3><h2 id="存储函数"><a href="#存储函数" class="headerlink" title="存储函数"></a>存储函数</h2><h2 id="触发器"><a href="#触发器" class="headerlink" title="触发器"></a>触发器</h2><h3 id="介绍-2"><a href="#介绍-2" class="headerlink" title="介绍"></a>介绍</h3><h3 id="语法-1"><a href="#语法-1" class="headerlink" title="语法"></a>语法</h3><h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><h1 id="锁"><a href="#锁" class="headerlink" title="锁"></a>锁</h1><h2 id="概述-3"><a href="#概述-3" class="headerlink" title="概述"></a>概述</h2><h2 id="全局锁"><a href="#全局锁" class="headerlink" title="全局锁"></a>全局锁</h2><h3 id="介绍-3"><a href="#介绍-3" class="headerlink" title="介绍"></a>介绍</h3><h3 id="语法-2"><a href="#语法-2" class="headerlink" title="语法"></a>语法</h3><h3 id="特点-1"><a href="#特点-1" class="headerlink" title="特点"></a>特点</h3><h2 id="表级锁"><a href="#表级锁" class="headerlink" title="表级锁"></a>表级锁</h2><h3 id="介绍-4"><a href="#介绍-4" class="headerlink" title="介绍"></a>介绍</h3><h3 id="表锁"><a href="#表锁" class="headerlink" title="表锁"></a>表锁</h3><h3 id="元数据锁"><a href="#元数据锁" class="headerlink" title="元数据锁"></a>元数据锁</h3><h3 id="意向锁"><a href="#意向锁" class="headerlink" title="意向锁"></a>意向锁</h3><h2 id="行级锁"><a href="#行级锁" class="headerlink" title="行级锁"></a>行级锁</h2><h3 id="介绍-5"><a href="#介绍-5" class="headerlink" title="介绍"></a>介绍</h3><h3 id="行锁"><a href="#行锁" class="headerlink" title="行锁"></a>行锁</h3><h3 id="间隙锁-amp-临键锁"><a href="#间隙锁-amp-临键锁" class="headerlink" title="间隙锁&amp;临键锁"></a>间隙锁&amp;临键锁</h3><h1 id="InnoDB引擎"><a href="#InnoDB引擎" class="headerlink" title="InnoDB引擎"></a>InnoDB引擎</h1><h2 id="逻辑存储结构"><a href="#逻辑存储结构" class="headerlink" title="逻辑存储结构"></a>逻辑存储结构</h2><h2 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h2><h3 id="概述-4"><a href="#概述-4" class="headerlink" title="概述"></a>概述</h3><h3 id="内存结构"><a href="#内存结构" class="headerlink" title="内存结构"></a>内存结构</h3><h3 id="磁盘结构"><a href="#磁盘结构" class="headerlink" title="磁盘结构"></a>磁盘结构</h3><h3 id="后台线程"><a href="#后台线程" class="headerlink" title="后台线程"></a>后台线程</h3><h2 id="事务原理"><a href="#事务原理" class="headerlink" title="事务原理"></a>事务原理</h2><h3 id="事务基础"><a href="#事务基础" class="headerlink" title="事务基础"></a>事务基础</h3><h3 id="并发事务问题"><a href="#并发事务问题" class="headerlink" title="并发事务问题"></a>并发事务问题</h3><h3 id="事务隔离级别"><a href="#事务隔离级别" class="headerlink" title="事务隔离级别"></a>事务隔离级别</h3><h3 id="redo-log"><a href="#redo-log" class="headerlink" title="redo log"></a>redo log</h3><h3 id="undo-log"><a href="#undo-log" class="headerlink" title="undo log"></a>undo log</h3><h2 id="MVCC"><a href="#MVCC" class="headerlink" title="MVCC"></a>MVCC</h2><h3 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h3><h3 id="隐藏字段"><a href="#隐藏字段" class="headerlink" title="隐藏字段"></a>隐藏字段</h3><h4 id="介绍-6"><a href="#介绍-6" class="headerlink" title="介绍"></a>介绍</h4><h4 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h4><h3 id="undolog"><a href="#undolog" class="headerlink" title="undolog"></a>undolog</h3><h4 id="介绍-7"><a href="#介绍-7" class="headerlink" title="介绍"></a>介绍</h4><h4 id="版本链"><a href="#版本链" class="headerlink" title="版本链"></a>版本链</h4><h3 id="readview"><a href="#readview" class="headerlink" title="readview"></a>readview</h3><h3 id="原理分析"><a href="#原理分析" class="headerlink" title="原理分析"></a>原理分析</h3><h4 id="RC隔离级别"><a href="#RC隔离级别" class="headerlink" title="RC隔离级别"></a>RC隔离级别</h4><h4 id="RR隔离级别"><a href="#RR隔离级别" class="headerlink" title="RR隔离级别"></a>RR隔离级别</h4>
                 
               </div>
             
@@ -372,7 +371,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>深入了解-mysql</div>
+      <div>mysql</div>
       <div>https://blog.13space.cn/posts/bb4eda82/</div>
     </div>
     <div class="license-meta">
@@ -417,9 +416,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/posts/89b2e006/" title="xxl-job">
+                      <a href="/posts/7b28abd7/" title="mycat">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">xxl-job</span>
+                        <span class="hidden-mobile">mycat</span>
                         <span class="visible-mobile">Previous</span>
                       </a>
                     
