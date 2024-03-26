@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "mycat.md",
+                "file": "mysql.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "mycat.md",
+                "file": "mysql.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "mycat.md",
+                "file": "mysql.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "mycat.md"
+                "file": "mysql.md"
               }
             }
           }
@@ -148,10 +148,10 @@
   },
   "active": "60b66de191b8374f",
   "lastOpenFiles": [
+    "mycat.md",
     "nginx.md",
     "mysql.md",
     "xxl-job.md",
-    "mycat.md",
     "redis-guide.md",
     "mongodb.md",
     "redis-深入理解.md",
