@@ -27,7 +27,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://blog.13space.cn/img/micro/xxl.jpg">
 <meta property="article:published_time" content="2022-03-09T09:23:27.000Z">
-<meta property="article:modified_time" content="2024-03-21T10:36:16.927Z">
+<meta property="article:modified_time" content="2024-03-27T07:09:35.044Z">
 <meta property="article:author" content="拾叁">
 <meta property="article:tag" content="xxl-job">
 <meta name="twitter:card" content="summary_large_image">
@@ -270,7 +270,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          0 words
+          4.9k words
         
       </span>
     
@@ -281,7 +281,7 @@
         
         
         
-          1 mins
+          41 mins
         
       </span>
     
@@ -326,7 +326,88 @@
             
               <div class="markdown-body">
                 
-                
+                <h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>在平时的业务场景中，经常有一些场景需要使用定时任务，比如：</p>
+<ul>
+<li>时间驱动的场景：某个时间点发送优惠券，发送短信等等。</li>
+<li>批量处理数据：批量统计上个月的账单，统计上个月销售数据等等。</li>
+<li>固定频率的场景：每隔5分钟需要执行一次。</li>
+</ul>
+<p>所以定时任务在平时开发中并不少见，而且对于现在快速消费的时代，每天都需要发送各种推送，消息都需要依赖定时任务去完成，应用非常广泛。</p>
+<h1 id="为什么需要任务调度平台"><a href="#为什么需要任务调度平台" class="headerlink" title="为什么需要任务调度平台"></a>为什么需要任务调度平台</h1><p>在Java中，传统的定时任务实现方案，比如Timer，Quartz等都或多或少存在一些问题：</p>
+<ul>
+<li>不支持集群、不支持统计、没有管理平台、没有失败报警、没有监控等等</li>
+</ul>
+<p>而且在现在分布式的架构中，有一些场景需要分布式任务调度：</p>
+<ul>
+<li>同一个服务多个实例的任务存在互斥时，需要统一的调度。</li>
+<li>任务调度需要支持高可用、监控、故障告警。</li>
+<li>需要统一管理和追踪各个服务节点任务调度的结果，需要记录保存任务属性信息等。</li>
+</ul>
+<p>显然传统的定时任务已经不满足现在的分布式架构，所以需要一个分布式任务调度平台。</p>
+<h1 id="架构设计"><a href="#架构设计" class="headerlink" title="架构设计"></a>架构设计</h1><p>下面简单地说一下xxl-job的架构，我们先看官网提供的一张架构图来分析。</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403271456253.png" srcset="/img/loading.gif" lazyload></p>
+<p><strong>总体分两个部分：</strong></p>
+<ul>
+<li>调度中心：负责管理调度信息，按照调度配置发出调度请求，自身不承担业务代码。调度系统和任务解耦，提高了系统可用性和稳定性。通调度性能不在受限于任务模块。</li>
+<li>执行器：负责接收调度中的请求并执行任务逻辑。任务模块专注于任务的执行操作，开发和运维更加简单和高校。</li>
+</ul>
+<h1 id="xxl-job原理"><a href="#xxl-job原理" class="headerlink" title="xxl-job原理"></a>xxl-job原理</h1><h2 id="执行器原理"><a href="#执行器原理" class="headerlink" title="执行器原理"></a>执行器原理</h2><p>执行器启动主要是把自己注册到调度中心然后保存在数据库（xxl_job_registry表），并定时发送心跳，保持续约。执行器正常关闭，也主动告知调度中心注销，这种是主动注册。</p>
+<p>如果执行器网络故障，调度中心就不知道执行器的情况，如果把任务路由给一个不可用的执行器，就会导致任务失败。所以调度中心需要不断的对执行器探活（RocketMQ的NameServer 管理broker一样），调度中心会启动一个后台线程定时调用执行器接口，如果发现异常就下线。</p>
+<h2 id="调度中心和任务执行"><a href="#调度中心和任务执行" class="headerlink" title="调度中心和任务执行"></a>调度中心和任务执行</h2><ul>
+<li>JobRegistryMonitorHelper 不停的更新注册表，把超时的执行器剔除（每隔30s执行一次）</li>
+<li>创建线程池<ul>
+<li>调度器线程ScheduleThread：计算预读取的任务数（默认6000），然后while 循环不停的获取到期的任务</li>
+<li>时间轮线程池</li>
+</ul>
+</li>
+<li>获取任务锁：第一步获取数据库排它锁，如果没有成功说明其他的调度中心在加载任务</li>
+<li>查询任务：获取锁后， 查询任务</li>
+<li>调度任务</li>
+<li>任务触发，选择执行器：按照配置的路由策略，不通路由策略获取方式也不一样</li>
+<li>远程执行：拿到执行器之后，runExecutor 触发远程的执行器</li>
+<li>执行器处理远程调用，回调</li>
+</ul>
+<h3 id="时间轮"><a href="#时间轮" class="headerlink" title="时间轮"></a>时间轮</h3><p>一批任务都是不同的时间执行，执行时间精确到秒，如何实现对所有的任务调度这个就是<strong>时间轮</strong>。</p>
+<h3 id="任务超时"><a href="#任务超时" class="headerlink" title="任务超时"></a>任务超时</h3><p>如果任务在指定的时间范围内没有返回结果，就不在等结果，抛出异常。</p>
+<h3 id="失败重试"><a href="#失败重试" class="headerlink" title="失败重试"></a>失败重试</h3><p>如果任务执行失败，会更新在xxl_job_log日志表里。调度中心有个后台线程monitorThread。第一步就是查日志表里结果不是200的任务，为了防止集群下同时处理一个失败任务，用了数据库的乐观锁（版本号），如果失败重试次数&gt;0，代表重试，就要重新触发。</p>
+<h3 id="故障转移"><a href="#故障转移" class="headerlink" title="故障转移"></a>故障转移</h3><p>如果一个执行器挂了，就找另一个执行器执行，直到找到一个正常的执行器。</p>
+<h3 id="任务数据分片"><a href="#任务数据分片" class="headerlink" title="任务数据分片"></a>任务数据分片</h3><p>这里的是数据分片，需要用到分片参数 <strong>sharding param</strong>，调度器负责把这个分片参数分发给每个执行器（<strong>执行器个数和参数个数相等</strong>），怎么根据分片参数对数据分片是Job自己的事情。</p>
+<h1 id="基本使用"><a href="#基本使用" class="headerlink" title="基本使用"></a>基本使用</h1><h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>源码仓库地址：<a target="_blank" rel="noopener" href="https://github.com/xuxueli/xxl-job">https://github.com/xuxueli/xxl-job</a></p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403271503084.png" srcset="/img/loading.gif" lazyload></p>
+<p><strong>xxl-job-admin: 调度中心,统一管理任务调度平台上的调度任务，负责触发调度执行，并且提供任务管理平台。</strong><br><strong>xxl-job-core: 接收调度中心的调度并且执行,公共的jar包。</strong><br><strong>xxl-job-executor-samples: 服务端,这里展示的是xxl-job的演示案例</strong></p>
+<p>执行xxl-job准备好的sql</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403271504461.png" srcset="/img/loading.gif" lazyload></p>
+<p>修改admin模块中的数据库连接,并启动该模块,也可以达成jar包部署</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403271504628.png" srcset="/img/loading.gif" lazyload></p>
+<p><a target="_blank" rel="noopener" href="http://localhost:8080/xxl-job-admin">http://localhost:8080/xxl-job-admin</a> 默认账号密码:admin&#x2F;123456</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403271505208.png" srcset="/img/loading.gif" lazyload></p>
+<h2 id="服务端配置"><a href="#服务端配置" class="headerlink" title="服务端配置"></a>服务端配置</h2><p>引入xxl-job的starter</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs pom">&lt;dependency&gt;<br>    &lt;groupId&gt;com.xuxueli&lt;/groupId&gt;<br>    &lt;artifactId&gt;xxl-job-core&lt;/artifactId&gt;<br>    &lt;version&gt;$&#123;版本&#125;&lt;/version&gt;<br>&lt;/dependency&gt;<br></code></pre></td></tr></table></figure>
+
+<p>配置文件</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><code class="hljs yml"><span class="hljs-attr">xxl:</span><br>  <span class="hljs-attr">job:</span><br>    <span class="hljs-comment"># 执行器开关</span><br>    <span class="hljs-attr">enabled:</span> <span class="hljs-literal">true</span><br>    <span class="hljs-comment"># 调度中心地址：如调度中心集群部署存在多个地址则用逗号分隔。</span><br>    <span class="hljs-attr">admin-addresses:</span> <span class="hljs-string">http://localhost:8080/xxl-job-admin</span><br>    <span class="hljs-comment"># 执行器通讯TOKEN：非空时启用</span><br>    <span class="hljs-attr">access-token:</span> <span class="hljs-string">default_token</span><br>    <span class="hljs-comment"># 执行器配置</span><br>    <span class="hljs-attr">executor:</span><br>      <span class="hljs-comment"># 执行器AppName：执行器心跳注册分组依据；为空则关闭自动注册</span><br>      <span class="hljs-attr">appname:</span> <span class="hljs-string">demo-executor</span><br>      <span class="hljs-comment"># 执行器端口号 执行器从19901开始往后写</span><br>      <span class="hljs-attr">port:</span> <span class="hljs-number">9901</span><br>      <span class="hljs-comment"># 执行器注册：默认IP:PORT</span><br>      <span class="hljs-attr">address:</span><br>      <span class="hljs-comment"># 执行器IP：默认自动获取IP</span><br>      <span class="hljs-attr">ip:</span><br>      <span class="hljs-comment"># 执行器运行日志文件存储磁盘路径</span><br>      <span class="hljs-attr">logpath:</span> <span class="hljs-string">./logs/$&#123;spring.application.name&#125;/xxl-job</span><br>      <span class="hljs-comment"># 执行器日志文件保存天数：大于3生效</span><br>      <span class="hljs-attr">logretentiondays:</span> <span class="hljs-number">30</span><br><br></code></pre></td></tr></table></figure>
+
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403271506038.png" srcset="/img/loading.gif" lazyload></p>
+<p><strong>客户端需要配置的执行器就是这里的<code>executor</code>,页面的<code>AppName</code>对应的就是<code>demo-executor</code>,名称随意填写</strong></p>
+<p><strong>注册方式如果选择自动注入,服务端又没有配置的话就会自动读取服务端的地址,手动录入就是手动输入服务端的地址,就是<code>executor</code>中配置的ip和port</strong></p>
+<p>这里的<code>access-token</code>执行器通讯TOKEN,非空时启用,启动的话需要跟admin模块application.yml的配置文件中的token保持一致</p>
+<h2 id="注入bean"><a href="#注入bean" class="headerlink" title="注入bean"></a>注入bean</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Data</span><br><span class="hljs-meta">@ConfigurationProperties(prefix = &quot;xxl.job&quot;)</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">XxlJobProperties</span> &#123;<br><br>    <span class="hljs-keyword">private</span> Boolean enabled;<br><br>    <span class="hljs-keyword">private</span> String adminAddresses;<br><br>    <span class="hljs-keyword">private</span> String accessToken;<br><br>    <span class="hljs-keyword">private</span> Executor executor;<br><br>    <span class="hljs-meta">@Data</span><br>    <span class="hljs-meta">@NoArgsConstructor</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">Executor</span> &#123;<br><br>        <span class="hljs-keyword">private</span> String appname;<br><br>        <span class="hljs-keyword">private</span> String address;<br><br>        <span class="hljs-keyword">private</span> String ip;<br><br>        <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> port;<br><br>        <span class="hljs-keyword">private</span> String logPath;<br><br>        <span class="hljs-keyword">private</span> <span class="hljs-type">int</span> logRetentionDays;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@EnableConfigurationProperties(XxlJobProperties.class)</span><br><span class="hljs-meta">@AutoConfiguration</span><br><span class="hljs-meta">@AllArgsConstructor</span><br><span class="hljs-meta">@ConditionalOnProperty(prefix = &quot;xxl.job&quot;, name = &quot;enabled&quot;, havingValue = &quot;true&quot;)</span><br><span class="hljs-meta">@Slf4j</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">XxlJobConfig</span> &#123;<br><br>    <span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> XxlJobProperties xxlJobProperties;<br><br>    <span class="hljs-meta">@Bean</span><br>    <span class="hljs-keyword">public</span> XxlJobSpringExecutor <span class="hljs-title function_">xxlJobExecutor</span><span class="hljs-params">()</span> &#123;<br>        log.info(<span class="hljs-string">&quot;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt; xxl-job config init.&quot;</span>);<br>        <span class="hljs-type">XxlJobSpringExecutor</span> <span class="hljs-variable">xxlJobSpringExecutor</span> <span class="hljs-operator">=</span> <span class="hljs-keyword">new</span> <span class="hljs-title class_">XxlJobSpringExecutor</span>();<br>        xxlJobSpringExecutor.setAdminAddresses(xxlJobProperties.getAdminAddresses());<br>        xxlJobSpringExecutor.setAccessToken(xxlJobProperties.getAccessToken());<br>        XxlJobProperties.<span class="hljs-type">Executor</span> <span class="hljs-variable">executor</span> <span class="hljs-operator">=</span> xxlJobProperties.getExecutor();<br>        xxlJobSpringExecutor.setAddress(executor.getAddress());<br>        xxlJobSpringExecutor.setIp(executor.getIp());<br>        xxlJobSpringExecutor.setPort(executor.getPort());<br>        xxlJobSpringExecutor.setLogPath(executor.getLogPath());<br>        xxlJobSpringExecutor.setLogRetentionDays(executor.getLogRetentionDays());<br>        <span class="hljs-keyword">return</span> xxlJobSpringExecutor;<br>    &#125;<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<h2 id="启动"><a href="#启动" class="headerlink" title="启动"></a>启动</h2><p>这里就使用最简单的使用注解的方式来执行定时任务</p>
+<p>定时任务的业务逻辑</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Service</span><br><span class="hljs-meta">@Slf4j</span><br><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title class_">JobService</span> &#123;<br><br>    <span class="hljs-meta">@XxlJob(value = &quot;demoJobHandler&quot;, init = &quot;init&quot;, destroy = &quot;destroy&quot;)</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">demoJobHandler2</span><span class="hljs-params">()</span> <span class="hljs-keyword">throws</span> Exception &#123;<br>        System.out.println(<span class="hljs-string">&quot;欢迎来到定时任务&quot;</span>);<br>        XxlJobHelper.log(<span class="hljs-string">&quot;XXL-JOB, Hello World.&quot;</span>);<br>        <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; i++) &#123;<br>            XxlJobHelper.log(<span class="hljs-string">&quot;beat at:&quot;</span> + i);<br>        &#125;<br>        <span class="hljs-comment">// default success</span><br>    &#125;<br><br>    <span class="hljs-comment">// 初始化执行</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">init</span><span class="hljs-params">()</span> &#123;<br>        log.info(<span class="hljs-string">&quot;init&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-comment">// 销毁执行</span><br>    <span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title function_">destroy</span><span class="hljs-params">()</span> &#123;<br>        log.info(<span class="hljs-string">&quot;destory&quot;</span>);<br>    &#125;<br><br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+<p>新增任务</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403271508787.png" srcset="/img/loading.gif" lazyload></p>
+<figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs asciidoc"><span class="hljs-bullet">- </span>执行器: 选择刚刚自定义好的执行器<br><span class="hljs-bullet">- </span>调度类型: 选择定时任务的执行方式<br><span class="hljs-bullet">- </span>Cron: 定时任务的执行周期<br><span class="hljs-bullet">- </span>运行模式: 如果我们使用的是注解的方式,就选择BEAN类型<br><span class="hljs-bullet">- </span>JobHandler: 就设置成服务端@XxlJob(value = &quot;demoJobHandler&quot;)这里面的值<br></code></pre></td></tr></table></figure>
+
+<p>执行</p>
+<p><img src="https://hexo-img-bucket-1306020160.cos.ap-beijing.myqcloud.com/pic/202403271509117.png" srcset="/img/loading.gif" lazyload></p>
+<p>执行一次就只执行一次,启动就是根据设置的执行周期开始定时任务。</p>
+<p>更加详细的使用可见官方文档: <a target="_blank" rel="noopener" href="https://www.xuxueli.com/xxl-job/">https://www.xuxueli.com/xxl-job/</a></p>
+
                 
               </div>
             
@@ -415,12 +496,6 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
-                    
-                      <a href="/posts/c9d19155/" title="mongodb">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">mongodb</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
                     
                   </article>
                   <article class="post-next col-6">
