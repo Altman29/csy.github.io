@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "xxl-job.md",
+                "file": "redis-分布式缓存.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "xxl-job.md",
+                "file": "redis-分布式缓存.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "xxl-job.md",
+                "file": "redis-分布式缓存.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "xxl-job.md"
+                "file": "redis-分布式缓存.md"
               }
             }
           }
@@ -148,15 +148,18 @@
   },
   "active": "60b66de191b8374f",
   "lastOpenFiles": [
-    "mongodb.md",
+    "通关微服务-feign.md",
     "xxl-job.md",
     "mycat.md",
+    "redis-深入理解.md",
+    "zookeeper.md",
+    "通关微服务-rabbitMQ.md",
+    "mongodb.md",
     "Pasted image 20240327131050.png",
     "Pasted image 20240326183817.png",
     "mysql.md",
     "nginx.md",
     "redis-guide.md",
-    "redis-深入理解.md",
     "redis-最佳实践.md",
     "redis-分布式缓存.md",
     "redis-下.md",
@@ -170,9 +173,7 @@
     "elasticsearch-分布式搜索引擎.md",
     "elasticseatch-安装小记.md",
     "Pasted image 20240319133509.png",
-    "通关微服务-rabbitMQ.md",
     "通关微服务-gateway.md",
-    "通关微服务-feign.md",
     "通关微服务-dubbo - 副本.md",
     "通关微服务-dubbo.md",
     "通关微服务-nacos.md",
