@@ -7,7 +7,7 @@ categories:
 keywords: javascript
 excerpt: 系统复习一下js。拜读一下《你不知道的JavaScript》，做一下读书笔记。
 abbrlink: b92db53e
-date: 2024-04-15 12:43:17
+date: 2024-05-28 21:43:17
 index_img: /img/2024/js.png
 ---
 > “JavaScript的确有很多我不了解的地方。我每天从早到晚都在使用JavaScript，并且已经持续了好几年，但我真的了解它了吗？”
