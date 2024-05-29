@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "JS-作用域和闭包.md",
+                "file": "JS-this和对象原型.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "JS-作用域和闭包.md",
+                "file": "JS-this和对象原型.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "JS-作用域和闭包.md",
+                "file": "JS-this和对象原型.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "JS-作用域和闭包.md"
+                "file": "JS-this和对象原型.md"
               }
             }
           }
@@ -148,8 +148,8 @@
   },
   "active": "dc2281287a513069",
   "lastOpenFiles": [
-    "JS-this和对象原型.md",
     "JS-作用域和闭包.md",
+    "JS-this和对象原型.md",
     "D0BF0629C43E3DC46CBE9DD54F4E453C 1.png",
     "D0BF0629C43E3DC46CBE9DD54F4E453C.png",
     "redis-深入理解.md",
